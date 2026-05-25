@@ -1,0 +1,60 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 6sense Lead Scoring And Firmographics API
+  description: Returns combined firmographics, predictive scoring, and segment membership for a
+    contact in a single response.
+  tags:
+  - 6sense
+  - Scoring
+  - Firmographics
+  - Intent
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    SIXSENSE_API_TOKEN: SIXSENSE_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: lead-scoring-firmographics
+    baseUri: https://scribe.6sense.com
+    description: Combined firmographics and scoring business capability.
+    resources:
+    - name: v2-people-full
+      path: /v2/people/full
+      operations:
+      - name: getFullLeadData
+        method: POST
+        description: Get firmographics and scoring for a contact.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Token {{env.SIXSENSE_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: lead-scoring-firmographics-rest
+    port: 8080
+    description: REST adapter for combined firmographics + scoring.
+    resources:
+    - path: /v1/v2/people/full
+      name: v2-people-full
+      description: REST surface for combined response.
+      operations:
+      - method: POST
+        name: getFullLeadData
+        description: Get full lead data.
+        call: lead-scoring-firmographics.getFullLeadData
+        with:
+          body: rest.body

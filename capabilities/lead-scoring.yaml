@@ -1,0 +1,59 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 6sense Lead Scoring API
+  description: Returns predictive product-level lead scoring (company intent, buying stage, profile
+    fit, contact intent and grade) for a contact.
+  tags:
+  - 6sense
+  - Scoring
+  - Intent
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    SIXSENSE_API_TOKEN: SIXSENSE_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: lead-scoring
+    baseUri: https://scribe.6sense.com
+    description: 6sense Lead Scoring business capability.
+    resources:
+    - name: v2-people-score
+      path: /v2/people/score
+      operations:
+      - name: scoreLead
+        method: POST
+        description: Score a lead per product with company and contact intent.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Token {{env.SIXSENSE_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: lead-scoring-rest
+    port: 8080
+    description: REST adapter for 6sense Lead Scoring.
+    resources:
+    - path: /v1/v2/people/score
+      name: v2-people-score
+      description: REST surface for lead scoring.
+      operations:
+      - method: POST
+        name: scoreLead
+        description: Score a lead.
+        call: lead-scoring.scoreLead
+        with:
+          body: rest.body

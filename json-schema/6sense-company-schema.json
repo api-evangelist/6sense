@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/6sense/main/json-schema/6sense-company-schema.json",
+  "title": "6sense Company",
+  "type": "object",
+  "properties": {
+    "companyId": { "type": "string" },
+    "domain": { "type": "string" },
+    "name": { "type": "string" },
+    "industry": { "type": "string" },
+    "country": { "type": "string" },
+    "countryISOCode": { "type": "string" },
+    "region": { "type": "string" },
+    "state": { "type": "string" },
+    "city": { "type": "string" },
+    "streetAddress": { "type": "string" },
+    "postalCode": { "type": "string" },
+    "companyPhone": { "type": "string" },
+    "employeeCount": { "type": "integer" },
+    "employeeRange": { "type": "string" },
+    "annualRevenue": { "type": "number" },
+    "revenueRange": { "type": "string" },
+    "siccode": { "type": "string" },
+    "sicdescription": { "type": "string" },
+    "naicscode": { "type": "string" },
+    "naicsdescription": { "type": "string" }
+  }
+}

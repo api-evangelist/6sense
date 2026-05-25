@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/6sense/main/json-schema/6sense-score-schema.json",
+  "title": "6sense Product Score",
+  "type": "object",
+  "properties": {
+    "product": { "type": "string" },
+    "company_intent_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "company_buying_stage": {
+      "type": "string",
+      "enum": ["Purchase", "Decision", "Consideration", "Awareness", "Target"]
+    },
+    "company_profile_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "company_profile_fit": {
+      "type": "string",
+      "enum": ["Strong", "Moderate", "Weak"]
+    },
+    "contact_intent_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "contact_grade": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "contact_profile_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "contact_profile_fit": {
+      "type": "string",
+      "enum": ["Strong", "Moderate", "Weak"]
+    },
+    "is_6qa": { "type": "boolean" }
+  }
+}

@@ -1,0 +1,183 @@
+openapi: 3.0.3
+info:
+  title: 6sense Company Identification API
+  version: '3'
+  description: |
+    Identifies anonymous website visitors by IP address, returning company firmographics,
+    product-level intent scores, buying stage, profile fit, and segment membership.
+  contact:
+    name: 6sense API Support
+    url: https://api.6sense.com/docs/
+servers:
+- url: https://epsilon.6sense.com
+  description: 6sense Epsilon Production
+security:
+- TokenAuth: []
+paths:
+  /v3/company/details:
+    get:
+      summary: Get Company Details By IP
+      description: Identify a company from an IP address. Returns firmographics, scoring, buying stage, profile fit, and segment membership.
+      operationId: getCompanyDetails
+      parameters:
+      - name: ip
+        in: query
+        description: Visitor IP address (IPv4 or IPv6).
+        required: true
+        schema:
+          type: string
+      - name: EpsilonCookie
+        in: header
+        description: 6sense visitor tracking cookie.
+        required: false
+        schema:
+          type: string
+      - name: X-6s-CustomID
+        in: header
+        description: Custom client-supplied identifier for tracking.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Company identified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDetailsResponse'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: No company match.
+        '429':
+          description: Rate limit exceeded.
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based auth. Format: `Token <api_token>`.'
+  schemas:
+    CompanyDetailsResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+        confidence:
+          type: string
+          enum: [Very High, High, Moderate, Low]
+    Company:
+      type: object
+      properties:
+        company_match:
+          type: string
+          enum: [Match, Non-actionable Match, No Match]
+        additional_comment:
+          type: string
+        companyId:
+          type: string
+        domain:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        country_iso_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        zip:
+          type: string
+        phone:
+          type: string
+        industry:
+          type: string
+        industry_v2:
+          type: array
+          items:
+            type: object
+            properties:
+              industry:
+                type: string
+              subindustry:
+                type: string
+        employee_range:
+          type: string
+        employee_count:
+          type: integer
+        revenue_range:
+          type: string
+        annual_revenue:
+          type: number
+        is_blacklisted:
+          type: boolean
+        is_6qa:
+          type: boolean
+        geoIP_country:
+          type: string
+        geoIP_state:
+          type: string
+        geoIP_city:
+          type: string
+        sic:
+          type: string
+        sic_description:
+          type: string
+        naics:
+          type: string
+        naics_description:
+          type: string
+    ProductScore:
+      type: object
+      properties:
+        product:
+          type: string
+        product_display_name:
+          type: string
+        is_6qa:
+          type: boolean
+        intent_score:
+          type: integer
+        buying_stage:
+          type: string
+          enum: [Purchase, Decision, Consideration, Awareness, Target]
+        profile_score:
+          type: integer
+        profile_fit:
+          type: string
+          enum: [Strong, Moderate, Weak]
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string

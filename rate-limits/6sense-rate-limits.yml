@@ -1,0 +1,56 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: 6sense
+providerId: 6sense
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Quotas
+  - ABM
+description: |
+  Documented 6sense API rate limits and quotas. The default per-minute and per-second limits below
+  are documented in the 6sense API Portal. Annual enrichment credit allocations are negotiated per
+  contract.
+sources:
+  - https://api.6sense.com/docs/
+  - https://support.6sense.com/docs/6sense-api-overview
+responseCodes:
+  throttled: 429
+  quotaExceeded: 402
+algorithm: fixed-window
+limits:
+  - api: Company Identification API
+    endpoint: GET https://epsilon.6sense.com/v3/company/details
+    requestsPerMinute: 100
+    notes: Per API token.
+  - api: Company Firmographics API
+    endpoint: POST https://api.6sense.com/v1/enrichment/company
+    requestsPerMinute: 100
+    notes: Per API token. Counts against annual enrichment credit pool.
+  - api: Lead Scoring API
+    endpoint: POST https://scribe.6sense.com/v2/people/score
+    requestsPerMinute: 100
+    notes: Per API token.
+  - api: Lead Scoring + Firmographics API
+    endpoint: POST https://scribe.6sense.com/v2/people/full
+    requestsPerMinute: 100
+    notes: Per API token. Counts against enrichment credit pool.
+  - api: People Enrichment API
+    endpoint: POST https://api.6sense.com/v2/enrichment/people
+    requestsPerSecond: 20
+    batchSize: 25
+    notes: Up to 25 records per request, 20 QPS per customer. Counts against annual enrichment credits.
+  - api: People Search API
+    endpoint: POST https://api.6sense.com/v2/people/search
+    requestsPerMinute: 100
+    notes: Per API token.
+creditPolicy:
+  metric: enrichment-credit
+  scope: contract-year
+  notes: |
+    Enrichment APIs (Company Firmographics, People Enrichment, Lead Scoring + Firmographics) draw
+    from an annual credit pool defined in the customer's contract. Unused credits do not roll over
+    unless explicitly negotiated.

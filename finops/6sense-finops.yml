@@ -1,0 +1,64 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: 6sense
+providerId: 6sense
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - ABM
+  - B2B
+description: |
+  FOCUS-aligned FinOps definition for the 6sense Revenue AI platform. Subscription contracts with
+  embedded enrichment-credit pools and Data Pack add-ons. Charges are annualized; no per-call
+  metering surfaced to end customers.
+sources:
+  - https://6sense.com/pricing
+  - https://api.6sense.com/docs/
+  - https://support.6sense.com/docs/6sense-api-overview
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: 6sense Insights Inc.
+serviceCategory: Sales and Marketing Technology
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+    - Subscription
+    - Usage
+    - Adjustment
+    - Credit
+  primaryUnit: subscription
+  secondaryUnits:
+    - seat
+    - enrichment-credit
+    - data-pack
+chargeBreakdown:
+  - chargeCategory: Subscription
+    description: Annual platform subscription for Revenue Marketing and/or Sales Intelligence.
+  - chargeCategory: Usage
+    description: Enrichment credit consumption against Company Firmographics, People Enrichment,
+      and Lead Scoring + Firmographics APIs.
+  - chargeCategory: Subscription
+    description: Add-on Data Packs (firmographic, technographic, contact).
+costAllocation:
+  recommendedTags:
+    - department
+    - region
+    - product
+    - go-to-market-team
+  notes: Customers typically allocate by GTM team (Marketing vs. Sales) or by region given the
+    centralized contract model.
+optimizationLevers:
+  - Right-size annual credit pools against historical enrichment volume.
+  - Consolidate duplicate seat allocations across acquired entities under a single master contract.
+  - Negotiate Data Pack scope based on actual ingest into CDP/CRM rather than catalog defaults.

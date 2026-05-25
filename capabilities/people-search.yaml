@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 6sense People Search API
+  description: Search contacts by company domain with optional job-title, function, level, location,
+    and industry filters. Includes a dictionary endpoint for discovering valid filter values.
+  tags:
+  - 6sense
+  - Search
+  - People
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    SIXSENSE_API_TOKEN: SIXSENSE_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: people-search
+    baseUri: https://api.6sense.com
+    description: 6sense People Search business capability.
+    resources:
+    - name: v2-people-search
+      path: /v2/people/search
+      operations:
+      - name: searchPeople
+        method: POST
+        description: Search contacts by company and filters.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: v2-people-search-dictionary
+      path: /v2/people/search/dictionary
+      operations:
+      - name: getSearchDictionary
+        method: GET
+        description: Get valid filter values for People Search.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Token {{env.SIXSENSE_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: people-search-rest
+    port: 8080
+    description: REST adapter for 6sense People Search.
+    resources:
+    - path: /v1/v2/people/search
+      name: v2-people-search
+      description: REST surface for people search.
+      operations:
+      - method: POST
+        name: searchPeople
+        description: Search contacts by company.
+        call: people-search.searchPeople
+        with:
+          body: rest.body
+    - path: /v1/v2/people/search/dictionary
+      name: v2-people-search-dictionary
+      description: REST surface for the search dictionary.
+      operations:
+      - method: GET
+        name: getSearchDictionary
+        description: Get search dictionary.
+        call: people-search.getSearchDictionary

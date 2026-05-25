@@ -1,0 +1,100 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: 6sense
+providerId: 6sense
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - ABM
+  - Intent Data
+  - B2B
+  - Revenue
+description: |
+  6sense does not publish list pricing for its Revenue AI platform or APIs. Pricing is
+  contract-negotiated and gated by sales. Plans are therefore documented as named tiers without
+  unit pricing. Public sources indicate Free, Team, Growth, and Enterprise editions for the
+  Revenue Marketing and Sales Intelligence suites, with Data Packs sold as add-ons.
+sources:
+  - https://6sense.com/pricing
+  - https://6sense.com/platform
+  - https://6sense.com/why-6sense/pricing
+plans:
+  - id: 6sense-free
+    name: Free
+    type: tiered
+    description: Free starter access to limited 6sense Sales Intelligence and Revenue Marketing
+      capabilities. Used for evaluation and SMB sellers.
+    entries:
+      - label: Seat
+        name: seat
+        type: included
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: true
+  - id: 6sense-team
+    name: Team
+    type: tiered
+    description: Team edition aimed at sales teams; bundles List Builder, Sales Alerts, Chrome
+      Extension, and basic intent surfacing. Contract pricing.
+    entries:
+      - label: Seat
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact-sales
+        userMultiplied: true
+  - id: 6sense-growth
+    name: Growth
+    type: tiered
+    description: Mid-market plan for revenue teams; adds Predictive Analytics, AI Email Agents,
+      Digital Advertising, and Audience Builder. Contract pricing.
+    entries:
+      - label: Platform Subscription
+        name: platform
+        type: subscription
+        metric: subscription
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+  - id: 6sense-enterprise
+    name: Enterprise
+    type: tiered
+    description: Enterprise plan with the full Revenue AI platform — Signalverse data, Intelligent
+      Workflows, Data APIs, Data Packs, and integrations with major MAP/CRM systems.
+    entries:
+      - label: Platform Subscription
+        name: platform
+        type: subscription
+        metric: subscription
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+addOns:
+  - id: data-api-credits
+    name: Data API Credits
+    description: People Enrichment and Company Enrichment API credits, sold in annual blocks.
+      Volume-tiered.
+    metric: credit
+    price: contact-sales
+  - id: data-packs
+    name: Data Packs
+    description: Bulk firmographic, technographic, and contact data packages for ingestion into
+      customer data warehouses.
+    metric: pack
+    price: contact-sales

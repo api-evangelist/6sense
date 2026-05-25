@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "sixsense": "https://api.6sense.com/v1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Company": {
+      "@id": "sixsense:Company",
+      "@context": {
+        "companyId": { "@id": "sixsense:Company/id", "@type": "xsd:string" },
+        "domain": { "@id": "sixsense:Company/domain", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "industry": { "@id": "schema:industry", "@type": "xsd:string" },
+        "country": { "@id": "schema:addressCountry", "@type": "xsd:string" },
+        "state": { "@id": "schema:addressRegion", "@type": "xsd:string" },
+        "city": { "@id": "schema:addressLocality", "@type": "xsd:string" },
+        "postalCode": { "@id": "schema:postalCode", "@type": "xsd:string" },
+        "employeeCount": { "@id": "schema:numberOfEmployees", "@type": "xsd:integer" },
+        "annualRevenue": { "@id": "sixsense:Company/annualRevenue", "@type": "xsd:decimal" },
+        "siccode": { "@id": "sixsense:Company/sic", "@type": "xsd:string" },
+        "naicscode": { "@id": "sixsense:Company/naics", "@type": "xsd:string" }
+      }
+    },
+
+    "ProductScore": {
+      "@id": "sixsense:ProductScore",
+      "@context": {
+        "product": { "@id": "sixsense:ProductScore/product", "@type": "xsd:string" },
+        "intent_score": { "@id": "sixsense:ProductScore/intentScore", "@type": "xsd:integer" },
+        "buying_stage": { "@id": "sixsense:ProductScore/buyingStage", "@type": "xsd:string" },
+        "profile_score": { "@id": "sixsense:ProductScore/profileScore", "@type": "xsd:integer" },
+        "profile_fit": { "@id": "sixsense:ProductScore/profileFit", "@type": "xsd:string" },
+        "is_6qa": { "@id": "sixsense:ProductScore/is6qa", "@type": "xsd:boolean" }
+      }
+    },
+
+    "Contact": {
+      "@id": "sixsense:Contact",
+      "@context": {
+        "id": { "@id": "sixsense:Contact/id", "@type": "xsd:string" },
+        "email": { "@id": "schema:email", "@type": "xsd:string" },
+        "fullName": { "@id": "schema:name", "@type": "xsd:string" },
+        "firstName": { "@id": "schema:givenName", "@type": "xsd:string" },
+        "lastName": { "@id": "schema:familyName", "@type": "xsd:string" },
+        "jobTitle": { "@id": "schema:jobTitle", "@type": "xsd:string" },
+        "jobFunction": { "@id": "sixsense:Contact/jobFunction", "@type": "xsd:string" },
+        "jobLevel": { "@id": "sixsense:Contact/jobLevel", "@type": "xsd:string" },
+        "linkedinUrl": { "@id": "sixsense:Contact/linkedinUrl", "@type": "xsd:anyURI" },
+        "phone": { "@id": "schema:telephone", "@type": "xsd:string" }
+      }
+    },
+
+    "Segment": {
+      "@id": "sixsense:Segment",
+      "@context": {
+        "id": { "@id": "sixsense:Segment/id", "@type": "xsd:integer" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" }
+      }
+    }
+  }
+}

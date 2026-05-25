@@ -1,0 +1,215 @@
+aid: 6sense
+url: https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml
+apis:
+- aid: 6sense:6sense-company-identification-api
+  name: 6sense Company Identification API
+  tags:
+  - ABM
+  - Intent
+  - Web Deanonymization
+  - B2B
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: https://support.6sense.com/docs/6sense-api-overview
+    type: Documentation
+  - url: openapi/6sense-company-identification-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/6sense-company-schema.json
+    type: JSONSchema
+  - url: json-schema/6sense-score-schema.json
+    type: JSONSchema
+  - url: json-ld/6sense-context.jsonld
+    type: JSONLD
+  - type: NaftikoCapability
+    url: capabilities/company-identification.yaml
+  description: Identify a company from a visitor IP address and return firmographics, product-level
+    intent scoring, buying stage, profile fit, 6QA flag, and segment membership. Powers 6sense's web
+    deanonymization use case.
+- aid: 6sense:6sense-company-firmographics-api
+  name: 6sense Company Firmographics API
+  tags:
+  - ABM
+  - Firmographics
+  - Enrichment
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: openapi/6sense-company-firmographics-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/6sense-company-schema.json
+    type: JSONSchema
+  - type: NaftikoCapability
+    url: capabilities/company-firmographics.yaml
+  description: Enrich a company by email or domain. Returns industry, employee and revenue ranges,
+    SIC/NAICS classification, address, and segment membership.
+- aid: 6sense:6sense-lead-scoring-api
+  name: 6sense Lead Scoring API
+  tags:
+  - ABM
+  - Scoring
+  - Intent
+  - Predictive Analytics
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: openapi/6sense-lead-scoring-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/6sense-score-schema.json
+    type: JSONSchema
+  - type: NaftikoCapability
+    url: capabilities/lead-scoring.yaml
+  description: Returns predictive product-level scoring for a contact — company intent score and
+    buying stage, profile fit, contact-level intent score, and contact grade — driven by 6sense's
+    predictive analytics models.
+- aid: 6sense:6sense-lead-scoring-firmographics-api
+  name: 6sense Lead Scoring And Firmographics API
+  tags:
+  - ABM
+  - Scoring
+  - Firmographics
+  - Intent
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: openapi/6sense-lead-scoring-firmographics-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/lead-scoring-firmographics.yaml
+  description: Combined endpoint that returns firmographic enrichment, predictive scoring, and
+    segment membership for a contact in a single response.
+- aid: 6sense:6sense-people-enrichment-api
+  name: 6sense People Enrichment API
+  tags:
+  - Enrichment
+  - People
+  - Contacts
+  - B2B
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: openapi/6sense-people-enrichment-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/6sense-contact-schema.json
+    type: JSONSchema
+  - type: NaftikoCapability
+    url: capabilities/people-enrichment.yaml
+  description: Batch enrich up to 25 contact records per request keyed by email, LinkedIn URL, or
+    6sense peopleId. Returns rich profile data (job, location, skills, education) and embedded
+    company firmographics. Up to 20 QPS per customer.
+- aid: 6sense:6sense-people-search-api
+  name: 6sense People Search API
+  tags:
+  - Search
+  - People
+  - Contacts
+  humanURL: https://api.6sense.com/docs/
+  properties:
+  - url: https://api.6sense.com/docs/
+    type: Documentation
+  - url: openapi/6sense-people-search-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/people-search.yaml
+  description: Search contacts at a target company by domain with optional job-title, function,
+    level, location, and industry filters. Includes a dictionary endpoint exposing valid filter
+    values.
+name: 6sense
+tags:
+- ABM
+- Account-Based Marketing
+- Intent Data
+- B2B
+- Predictive Analytics
+- Revenue
+- Sales Intelligence
+- AI
+- Marketing Technology
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- url: https://6sense.com
+  type: Website
+- url: https://6sense.com/platform
+  name: Revenue AI Platform
+  type: Documentation
+- url: https://api.6sense.com/docs/
+  name: 6sense API Portal
+  type: Portal
+- url: https://support.6sense.com/docs/6sense-api-overview
+  name: API Overview
+  type: Documentation
+- url: https://support.6sense.com
+  name: Knowledge Base
+  type: Support
+- url: https://6sense.com/customers
+  name: Customers
+  type: CaseStudies
+- url: https://6sense.com/blog
+  name: Blog
+  type: Blog
+- url: https://www.linkedin.com/company/6sense
+  type: LinkedIn
+- url: https://github.com/6si
+  name: 6si GitHub Org
+  type: Github
+- url: https://6sense.com/pricing
+  name: Pricing
+  type: Pricing
+- url: plans/6sense-plans-pricing.yml
+  name: API Commons Plans
+  type: Plans
+- url: rate-limits/6sense-rate-limits.yml
+  name: Rate Limits
+  type: RateLimits
+- url: finops/6sense-finops.yml
+  name: FinOps Definition
+  type: FinOps
+- url: vocabulary/6sense-vocabulary.yml
+  name: Vocabulary
+  type: Vocabulary
+- url: json-ld/6sense-context.jsonld
+  name: JSON-LD Context
+  type: JSONLD
+solutions:
+- name: AI-Powered Account-Based Marketing
+  description: Identify in-market accounts, orchestrate omnichannel ABM campaigns, and prioritize
+    the accounts most likely to buy using 6AI and the Signalverse intent graph.
+- name: Web Deanonymization
+  description: Resolve anonymous website visitors to companies and surface buying-stage signals via
+    the Company Identification API.
+- name: Predictive Lead And Account Scoring
+  description: Real-time predictive scoring of leads and accounts against product-specific buying
+    journeys via the Lead Scoring APIs.
+- name: B2B Data Enrichment
+  description: Bulk and on-demand enrichment of accounts and contacts using firmographic,
+    technographic, and contact intelligence via the Company and People Enrichment APIs.
+- name: Revenue Marketing Automation
+  description: AI Email Agents, Audience Builder, Digital Advertising, and Intelligent Workflows
+    that act on Signalverse signals across the funnel.
+- name: Sales Intelligence
+  description: Sales Copilot, Account Prioritization, List Builder, Sales Alerts, Company and
+    People Search, and the Chrome Extension surface the right account and contact at the right
+    moment.
+integrations:
+- name: Salesforce
+- name: HubSpot
+- name: Marketo
+- name: Eloqua
+- name: Pardot
+- name: Microsoft Dynamics
+- name: LinkedIn
+- name: Slack
+- name: Outreach
+- name: Salesloft
+- name: Demandbase Tag (web pixel)
+- name: Snowflake (Data Pack ingest)
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com

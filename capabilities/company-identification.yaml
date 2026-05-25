@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 6sense Company Identification API
+  description: Identify a company from a visitor IP address and return firmographics, intent scoring,
+    buying stage, profile fit, and segment membership.
+  tags:
+  - 6sense
+  - Identification
+  - Intent
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    SIXSENSE_API_TOKEN: SIXSENSE_API_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: company-identification
+    baseUri: https://epsilon.6sense.com
+    description: 6sense Company Identification business capability.
+    resources:
+    - name: v3-company-details
+      path: /v3/company/details
+      operations:
+      - name: getCompanyDetails
+        method: GET
+        description: Identify a company by visitor IP and return scoring, buying stage, and segments.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ip
+          in: query
+          type: string
+          required: true
+        - name: EpsilonCookie
+          in: header
+          type: string
+          required: false
+        - name: X-6s-CustomID
+          in: header
+          type: string
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Token {{env.SIXSENSE_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: company-identification-rest
+    port: 8080
+    description: REST adapter for 6sense Company Identification.
+    resources:
+    - path: /v1/v3/company/details
+      name: v3-company-details
+      description: REST surface for company identification.
+      operations:
+      - method: GET
+        name: getCompanyDetails
+        description: Identify a company by IP.
+        call: company-identification.getCompanyDetails
+        with:
+          ip: rest.query.ip

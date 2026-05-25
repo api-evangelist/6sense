@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/6sense/main/json-schema/6sense-contact-schema.json",
+  "title": "6sense Enriched Contact",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "email": { "type": "string", "format": "email" },
+    "emailConfidence": { "type": "string", "enum": ["A+", "A", "B", "C"] },
+    "fullName": { "type": "string" },
+    "firstName": { "type": "string" },
+    "lastName": { "type": "string" },
+    "jobTitle": { "type": "string" },
+    "jobFunction": { "type": "string" },
+    "jobLevel": { "type": "string" },
+    "jobSeniority": { "type": "string" },
+    "phone": { "type": "string" },
+    "mobilePhone": { "type": "string" },
+    "linkedinUrl": { "type": "string", "format": "uri" },
+    "twitterHandle": { "type": "string" },
+    "location": { "type": "string" },
+    "skills": { "type": "array", "items": { "type": "string" } },
+    "company": { "$ref": "6sense-company-schema.json" }
+  }
+}

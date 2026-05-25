@@ -1,0 +1,49 @@
+vocabulary: 6sense
+description: Domain vocabulary for the 6sense Revenue AI platform, intent data, and ABM surface.
+created: '2026-05-25'
+terms:
+  - term: 6QA
+    definition: '"6sense Qualified Account" — an account flagged by 6AI as exhibiting buying-stage
+      signals strong enough to warrant sales engagement.'
+  - term: Buying Stage
+    definition: 'Predicted stage of the buying journey for an account against a specific product
+      category. Values: Target, Awareness, Consideration, Decision, Purchase.'
+  - term: Intent Score
+    definition: 0-100 score representing the strength of buying intent signals associated with an
+      account or contact for a given product.
+  - term: Profile Fit
+    definition: 'How well an account matches an ideal customer profile. Values: Strong, Moderate,
+      Weak.'
+  - term: Profile Score
+    definition: 0-100 numeric expression of profile fit derived from firmographic, technographic,
+      and behavioral signals.
+  - term: Segment
+    definition: A named, query-defined collection of accounts in the 6sense platform used to drive
+      ABM orchestration, advertising, and workflows.
+  - term: Signalverse
+    definition: 6sense's branded data graph of intent, firmographic, contact, and engagement
+      signals — described as one trillion signals captured daily.
+  - term: 6AI
+    definition: 6sense's branded AI system that cleans, dedupes, and models accounts and contacts
+      and produces scoring, suggestions, and AI Email Agents output.
+  - term: Predictive Analytics
+    definition: The 6sense capability that produces buying-stage, intent-score, and profile-fit
+      predictions per account/product.
+  - term: Web Deanonymization
+    definition: The capability of identifying companies (not individuals) behind anonymous website
+      traffic via IP, cookie, and reverse-resolution signals.
+  - term: Data Pack
+    definition: A bulk firmographic, technographic, or contact data package licensed for ingest
+      into a customer data warehouse or CDP.
+  - term: Enrichment Credit
+    definition: The accounting unit that draws down against the contract's annual enrichment pool
+      for each successful enrichment-API response.
+  - term: Account Prioritization
+    definition: A 6sense Sales Intelligence feature that ranks accounts based on combined intent,
+      profile fit, and buying stage.
+  - term: AI Email Agent
+    definition: A 6sense Revenue Marketing feature that drafts and sends personalized outbound
+      emails on behalf of sellers using 6AI.
+  - term: Intelligent Workflows
+    definition: Cross-channel automation engine that triggers campaigns, alerts, and plays based
+      on Signalverse signals.
