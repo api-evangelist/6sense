@@ -1,115 +1,169 @@
 # 6sense (6sense)
 
-6sense is an AI-powered account-based marketing (ABM) and B2B intent data platform. Its Revenue AI platform combines firmographic, technographic, and intent signals — the Signalverse — with 6AI to identify in-market accounts, score and prioritize them, deanonymize web traffic, enrich contacts, and orchestrate Revenue Marketing and Sales Intelligence workflows. Public APIs surface company identification, firmographics, predictive scoring, people enrichment, and people search.
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml)
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml)
+## Scope
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+- **Access:** 3rd-Party
 
 ## Tags
 
- - ABM, Account-Based Marketing, Intent Data, B2B, Predictive Analytics, Revenue, Sales Intelligence, AI, Marketing Technology
-
-## Timestamps
-
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+- ABM
+- Account-Based Marketing
+- Intent Data
+- B2B
+- Predictive Analytics
+- Revenue
+- Sales Intelligence
+- AI
+- Marketing Technology
 
 ## APIs
 
 ### 6sense Company Identification API
-Identify a company from a visitor IP address. Returns firmographics, product-level intent scoring, buying stage, profile fit, the 6QA flag, and segment membership. Powers web deanonymization.
 
-**Host:** `https://epsilon.6sense.com`
+Identify a company from a visitor IP address and return firmographics, product-level intent scoring, buying stage, profile fit, 6QA flag, and segment membership. Powers 6sense's web deanonymization use case.
 
-- [OpenAPI](openapi/6sense-company-identification-api-openapi.yml)
-- [JSON Schema — Company](json-schema/6sense-company-schema.json)
-- [JSON Schema — Score](json-schema/6sense-score-schema.json)
-- [Naftiko Capability — Company Identification](capabilities/company-identification.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+
+#### Tags
+
+- ABM
+- Intent
+- Web Deanonymization
+- B2B
+
+#### Properties
+
+- [Documentation](https://api.6sense.com/docs/)
+- [Documentation](https://support.6sense.com/docs/6sense-api-overview)
+- [OpenAPI](openapi/6sense-company-identification-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-company-identification-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-company-identification-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/6sense-company-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/6sense-score-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/6sense-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 
 ### 6sense Company Firmographics API
-Enrich a company by email or domain. Returns industry, employee/revenue ranges, SIC/NAICS classification, address, and segment membership.
 
-**Host:** `https://api.6sense.com`
+Enrich a company by email or domain. Returns industry, employee and revenue ranges, SIC/NAICS classification, address, and segment membership.
 
-- [OpenAPI](openapi/6sense-company-firmographics-api-openapi.yml)
-- [Naftiko Capability — Company Firmographics](capabilities/company-firmographics.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+
+#### Tags
+
+- ABM
+- Firmographics
+- Enrichment
+
+#### Properties
+
+- [Documentation](https://api.6sense.com/docs/)
+- [OpenAPI](openapi/6sense-company-firmographics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-company-firmographics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-company-firmographics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/6sense-company-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### 6sense Lead Scoring API
-Returns predictive product-level scoring for a contact — company intent score, buying stage, profile fit, contact-level intent score, and contact grade — driven by 6sense's predictive analytics models.
 
-**Host:** `https://scribe.6sense.com`
+Returns predictive product-level scoring for a contact — company intent score and buying stage, profile fit, contact-level intent score, and contact grade — driven by 6sense's predictive analytics models.
 
-- [OpenAPI](openapi/6sense-lead-scoring-api-openapi.yml)
-- [Naftiko Capability — Lead Scoring](capabilities/lead-scoring.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+
+#### Tags
+
+- ABM
+- Scoring
+- Intent
+- Predictive Analytics
+
+#### Properties
+
+- [Documentation](https://api.6sense.com/docs/)
+- [OpenAPI](openapi/6sense-lead-scoring-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-lead-scoring-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-lead-scoring-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/6sense-score-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### 6sense Lead Scoring And Firmographics API
-Combined endpoint returning firmographic enrichment, predictive scoring, and segment membership for a contact in one response.
 
-**Host:** `https://scribe.6sense.com`
+Combined endpoint that returns firmographic enrichment, predictive scoring, and segment membership for a contact in a single response.
 
-- [OpenAPI](openapi/6sense-lead-scoring-firmographics-api-openapi.yml)
-- [Naftiko Capability — Lead Scoring + Firmographics](capabilities/lead-scoring-firmographics.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+
+#### Tags
+
+- ABM
+- Scoring
+- Firmographics
+- Intent
+
+#### Properties
+
+- [Documentation](https://api.6sense.com/docs/)
+- [OpenAPI](openapi/6sense-lead-scoring-firmographics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-lead-scoring-firmographics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-lead-scoring-firmographics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### 6sense People Enrichment API
-Batch enrich up to 25 contacts per request keyed by email, LinkedIn URL, or 6sense peopleId. Returns profile data (job, location, skills, education) and embedded company firmographics. Up to 20 QPS per customer.
 
-**Host:** `https://api.6sense.com`
+Batch enrich up to 25 contact records per request keyed by email, LinkedIn URL, or 6sense peopleId. Returns rich profile data (job, location, skills, education) and embedded company firmographics. Up to 20 QPS per customer.
 
-- [OpenAPI](openapi/6sense-people-enrichment-api-openapi.yml)
-- [JSON Schema — Contact](json-schema/6sense-contact-schema.json)
-- [Naftiko Capability — People Enrichment](capabilities/people-enrichment.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+
+#### Tags
+
+- Enrichment
+- People
+- Contacts
+- B2B
+
+#### Properties
+
+- [Documentation](https://api.6sense.com/docs/)
+- [OpenAPI](openapi/6sense-people-enrichment-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-people-enrichment-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-people-enrichment-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/6sense-contact-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### 6sense People Search API
-Search contacts at a target company by domain with optional filters (job title, function, level, location, industry). Includes a dictionary endpoint for valid filter values.
 
-**Host:** `https://api.6sense.com`
+Search contacts at a target company by domain with optional job-title, function, level, location, and industry filters. Includes a dictionary endpoint exposing valid filter values.
 
-- [OpenAPI](openapi/6sense-people-search-api-openapi.yml)
-- [Naftiko Capability — People Search](capabilities/people-search.yaml)
+- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
 
-## Authentication
+#### Tags
 
-All endpoints use token-based authentication via the `Authorization` header:
+- Search
+- People
+- Contacts
 
-```
-Authorization: Token <api_token>
-```
+#### Properties
 
-## Solutions
-
-- **AI-Powered Account-Based Marketing** — Identify in-market accounts and orchestrate ABM at scale using 6AI and the Signalverse.
-- **Web Deanonymization** — Resolve anonymous website traffic to companies.
-- **Predictive Lead and Account Scoring** — Real-time per-product scoring tied to buying stage.
-- **B2B Data Enrichment** — Company and contact enrichment via on-demand and bulk APIs.
-- **Revenue Marketing Automation** — AI Email Agents, Audience Builder, Digital Advertising, Intelligent Workflows.
-- **Sales Intelligence** — Sales Copilot, Account Prioritization, List Builder, Alerts, Chrome Extension.
-
-## Operational Surface
-
-- [Plans / Pricing](plans/6sense-plans-pricing.yml) — API Commons Plans 0.1 (contract pricing; tiers reconciled from public marketing pages).
-- [Rate Limits](rate-limits/6sense-rate-limits.yml) — API Commons Rate Limits 0.1 (100 RPM defaults; People Enrichment 20 QPS).
-- [FinOps](finops/6sense-finops.yml) — FOCUS 1.3-aligned FinOps definition for the Revenue AI subscription model.
-- [Vocabulary](vocabulary/6sense-vocabulary.yml) — Domain terms (6QA, Signalverse, Buying Stage, Profile Fit, etc.).
-- [JSON-LD Context](json-ld/6sense-context.jsonld) — Linked-data semantics for Company, Contact, Score, and Segment.
+- [Documentation](https://api.6sense.com/docs/)
+- [OpenAPI](openapi/6sense-people-search-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/6sense-people-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/6sense-people-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Website](https://6sense.com)
-- [Revenue AI Platform](https://6sense.com/platform)
-- [API Portal](https://api.6sense.com/docs/)
-- [API Overview](https://support.6sense.com/docs/6sense-api-overview)
-- [Knowledge Base](https://support.6sense.com)
+- [Documentation](https://6sense.com/platform)
+- [Portal](https://api.6sense.com/docs/)
+- [Documentation](https://support.6sense.com/docs/6sense-api-overview)
+- [Support](https://support.6sense.com)
+- [Case Studies](https://6sense.com/customers)
 - [Blog](https://6sense.com/blog)
-- [Customers](https://6sense.com/customers)
 - [LinkedIn](https://www.linkedin.com/company/6sense)
-- [6si GitHub Org](https://github.com/6si)
+- [Github](https://github.com/6si)
 - [Pricing](https://6sense.com/pricing)
-
-## Integrations
-
-Salesforce, HubSpot, Marketo, Eloqua, Pardot, Microsoft Dynamics, LinkedIn, Slack, Outreach, Salesloft, Snowflake (Data Pack ingest), and the 6sense web pixel.
+- [Plans](plans/6sense-plans-pricing.yml)
+- [Rate Limits](rate-limits/6sense-rate-limits.yml)
+- [Fin Ops](finops/6sense-finops.yml)
+- [Vocabulary](vocabulary/6sense-vocabulary.yml)
+- [JSON-LD](json-ld/6sense-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 
 ## Maintainers
 
-- Kin Lane — [info@apievangelist.com](mailto:info@apievangelist.com)
+**FN:** Kin Lane
+**Email:** info@apievangelist.com
