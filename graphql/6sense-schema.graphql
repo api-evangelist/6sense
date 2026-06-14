@@ -1,0 +1,1020 @@
+"""
+6sense Revenue AI Platform — Conceptual GraphQL Schema
+Derived from the 6sense REST API documentation at https://docs.6sense.com/ and https://api.6sense.com/docs/
+Covers: account identification, intent data, firmographic/technographic enrichment,
+predictive scoring, segmentation, campaigns, people enrichment, and integrations.
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum BuyingStageEnum {
+  TARGET
+  AWARENESS
+  CONSIDERATION
+  DECISION
+  PURCHASE
+}
+
+enum IntentStageEnum {
+  AWARENESS
+  CONSIDERATION
+  DECISION
+}
+
+enum ContactLevelEnum {
+  IC
+  MANAGER
+  DIRECTOR
+  VP
+  C_SUITE
+  FOUNDER
+}
+
+enum CampaignStatusEnum {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  ARCHIVED
+}
+
+enum VerificationStatusEnum {
+  VERIFIED
+  UNVERIFIED
+  RISKY
+  INVALID
+  UNKNOWN
+}
+
+enum SegmentTypeEnum {
+  ACCOUNT
+  CONTACT
+  DYNAMIC
+  STATIC
+}
+
+enum IntegrationTypeEnum {
+  SALESFORCE
+  HUBSPOT
+  MARKETO
+  ELOQUA
+  PARDOT
+  MICROSOFT_DYNAMICS
+  LINKEDIN
+  SLACK
+  OUTREACH
+  SALESLOFT
+  SEGMENT
+  SNOWFLAKE
+  OTHER
+}
+
+enum ReportTypeEnum {
+  INTENT
+  CAMPAIGN_PERFORMANCE
+  ATTRIBUTION
+  SEGMENT_ACTIVITY
+  PIPELINE
+}
+
+# ---------------------------------------------------------------------------
+# Account Types
+# ---------------------------------------------------------------------------
+
+"""Core company record resolved from an IP address or domain."""
+type Account {
+  id: ID!
+  name: String
+  domain: String
+  ip: String
+  country: String
+  state: String
+  city: String
+  industry: String
+  employeeRange: String
+  revenueRange: String
+  isAnonymous: Boolean
+  is6QA: Boolean
+  buyingStage: BuyingStageEnum
+  score: AccountScore
+  profile: AccountProfile
+  intent: AccountIntent
+  segments: [Segment]
+  keywords: [AccountKeyword]
+  details: AccountDetails
+  updatedAt: DateTime
+}
+
+"""Extended account metadata including enrichment and identification fields."""
+type AccountDetails {
+  id: ID!
+  accountId: ID!
+  naicsCode: String
+  sicCode: String
+  annualRevenue: Float
+  employeeCount: Int
+  foundedYear: Int
+  stockTicker: String
+  stockExchange: String
+  linkedinUrl: String
+  twitterHandle: String
+  phone: String
+  address: String
+  postalCode: String
+  countryCode: String
+  technographics: [CompanyTechnographic]
+  firmographic: CompanyFirmographic
+}
+
+"""Aggregated sentiment signals for an account."""
+type AccountSentiment {
+  accountId: ID!
+  domain: String
+  overallSentiment: Float
+  positiveMentions: Int
+  negativeMentions: Int
+  neutralMentions: Int
+  topics: [Topic]
+  computedAt: DateTime
+}
+
+"""Product-level intent and fit scores for an account."""
+type AccountScore {
+  accountId: ID!
+  product: String
+  intentScore: Float
+  profileScore: Float
+  combinedScore: Float
+  grade: String
+  percentile: Int
+  modelVersion: String
+  scoredAt: DateTime
+}
+
+"""Ideal customer profile fit assessment for an account."""
+type AccountProfile {
+  accountId: ID!
+  product: String
+  fitScore: Float
+  fitGrade: String
+  matchedCriteria: [String]
+  missedCriteria: [String]
+  icp: Boolean
+}
+
+"""Keyword-level intent signals for an account."""
+type AccountKeyword {
+  accountId: ID!
+  keyword: String!
+  volume: Int
+  trend: Float
+  firstSeenAt: DateTime
+  lastSeenAt: DateTime
+  topics: [Topic]
+}
+
+"""Aggregated intent activity for an account."""
+type AccountIntent {
+  accountId: ID!
+  domain: String
+  product: String
+  intentScore: Float
+  buyingStage: BuyingStageEnum
+  signals: [IntentSignal]
+  topics: [Topic]
+  weeklyTrend: Float
+  computedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Intent Types
+# ---------------------------------------------------------------------------
+
+"""Detailed intent topic and signal breakdown."""
+type IntentDetails {
+  id: ID!
+  accountId: ID
+  domain: String
+  product: String
+  topics: [TopicDetails]
+  signals: [IntentSignal]
+  totalSignals: Int
+  intentScore: Float
+  buyingStage: BuyingStageEnum
+  period: String
+  computedAt: DateTime
+}
+
+"""Individual intent event or research signal."""
+type IntentSignal {
+  id: ID!
+  accountId: ID
+  domain: String
+  keyword: String
+  topic: String
+  source: String
+  signalType: String
+  volume: Int
+  date: DateTime
+  country: String
+  stage: IntentStageEnum
+}
+
+"""Numeric intent score with scoring context."""
+type IntentScore {
+  accountId: ID
+  contactId: ID
+  product: String
+  score: Float
+  grade: String
+  percentile: Int
+  trend: Float
+  buyingStage: BuyingStageEnum
+  scoredAt: DateTime
+}
+
+"""Multi-product intent profile across topics for an account or contact."""
+type IntentProfile {
+  id: ID!
+  accountId: ID
+  products: [IntentScore]
+  topTopics: [TopicSignal]
+  aggregateScore: Float
+  computedAt: DateTime
+}
+
+"""Stage of intent journey for a prospect."""
+type IntentStage {
+  id: ID!
+  accountId: ID!
+  product: String
+  stage: IntentStageEnum
+  enteredAt: DateTime
+  daysInStage: Int
+  previousStage: IntentStageEnum
+}
+
+"""6sense buying stage classification for an account."""
+type BuyingStage {
+  accountId: ID!
+  product: String
+  stage: BuyingStageEnum
+  confidence: Float
+  enteredAt: DateTime
+  predictedCloseDate: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Segment Types
+# ---------------------------------------------------------------------------
+
+"""Named account or contact segment."""
+type Segment {
+  id: ID!
+  name: String!
+  type: SegmentTypeEnum
+  description: String
+  memberCount: Int
+  accountCount: Int
+  contactCount: Int
+  isActive: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: SegmentDetails
+}
+
+"""Segment configuration, filters, and counts."""
+type SegmentDetails {
+  segmentId: ID!
+  filters: JSON
+  includedSegments: [ID]
+  excludedSegments: [ID]
+  autoRefresh: Boolean
+  refreshFrequency: String
+  lastRefreshedAt: DateTime
+  estimatedReach: Int
+}
+
+"""Account or contact membership record in a segment."""
+type SegmentMember {
+  segmentId: ID!
+  memberId: ID!
+  memberType: String
+  domain: String
+  addedAt: DateTime
+  source: String
+}
+
+# ---------------------------------------------------------------------------
+# Contact Types
+# ---------------------------------------------------------------------------
+
+"""Person / lead / contact record."""
+type Contact {
+  id: ID!
+  email: String
+  linkedinUrl: String
+  peopleId: String
+  firstName: String
+  lastName: String
+  fullName: String
+  title: String
+  jobFunction: String
+  level: ContactLevelEnum
+  company: Company
+  location: String
+  country: String
+  details: ContactDetails
+  verification: ContactVerification
+  intent: ContactIntent
+  score: AccountScore
+}
+
+"""Enriched contact profile with skills, education, and job history."""
+type ContactDetails {
+  contactId: ID!
+  skills: [String]
+  education: [JSON]
+  workHistory: [JSON]
+  languages: [String]
+  certifications: [String]
+  bio: String
+  twitterHandle: String
+  githubHandle: String
+  phone: String
+  directDial: String
+  mobile: String
+  seniority: String
+  department: String
+  inferredSalaryRange: String
+}
+
+"""Email verification status and confidence for a contact."""
+type ContactVerification {
+  contactId: ID!
+  email: String
+  status: VerificationStatusEnum
+  confidence: Float
+  isDeliverable: Boolean
+  isCatchAll: Boolean
+  isDisposable: Boolean
+  verifiedAt: DateTime
+}
+
+"""Intent signals attributed to a contact's company."""
+type ContactIntent {
+  contactId: ID!
+  accountDomain: String
+  product: String
+  intentScore: Float
+  buyingStage: BuyingStageEnum
+  signals: [IntentSignal]
+  computedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Company Types
+# ---------------------------------------------------------------------------
+
+"""Company entity with firmographic fields."""
+type Company {
+  id: ID!
+  name: String
+  domain: String
+  industry: String
+  employeeRange: String
+  revenueRange: String
+  country: String
+  state: String
+  city: String
+  is6QA: Boolean
+  buyingStage: BuyingStageEnum
+  details: CompanyDetails
+  firmographic: CompanyFirmographic
+  technographics: [CompanyTechnographic]
+  keywords: [CompanyKeyword]
+}
+
+"""Full enrichment: SIC, NAICS, headcount, revenue range, and more."""
+type CompanyDetails {
+  companyId: ID!
+  legalName: String
+  dba: String
+  naicsCode: String
+  naicsDescription: String
+  sicCode: String
+  sicDescription: String
+  employeeCount: Int
+  annualRevenue: Float
+  currencyCode: String
+  foundedYear: Int
+  publicOrPrivate: String
+  stockTicker: String
+  stockExchange: String
+  parentCompany: String
+  subsidiaries: [String]
+  address: String
+  postalCode: String
+  phone: String
+  fax: String
+  linkedinUrl: String
+  twitterHandle: String
+  facebookUrl: String
+  crunchbaseUrl: String
+}
+
+"""Industry, size, geography, and classification fields."""
+type CompanyFirmographic {
+  companyId: ID!
+  industryGroup: String
+  subIndustry: String
+  segment: String
+  marketCap: Float
+  headcountGrowthRate: Float
+  revenueGrowthRate: Float
+  region: String
+  metro: String
+  geoCode: String
+  isEnterprise: Boolean
+  isMidMarket: Boolean
+  isSMB: Boolean
+}
+
+"""Installed technologies detected for a company."""
+type CompanyTechnographic {
+  companyId: ID!
+  technology: String!
+  category: String
+  vendor: String
+  confidence: Float
+  firstDetectedAt: DateTime
+  lastDetectedAt: DateTime
+}
+
+"""Research keywords associated with a company."""
+type CompanyKeyword {
+  companyId: ID!
+  keyword: String!
+  volume: Int
+  trend: Float
+  intentStage: IntentStageEnum
+  lastSeenAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Campaign Types
+# ---------------------------------------------------------------------------
+
+"""ABM advertising or nurture campaign."""
+type Campaign {
+  id: ID!
+  name: String!
+  status: CampaignStatusEnum
+  objective: String
+  startDate: DateTime
+  endDate: DateTime
+  budget: Float
+  spend: Float
+  impressions: Int
+  clicks: Int
+  reach: Int
+  details: CampaignDetails
+  ads: [AdDetails]
+  impressionMetrics: CampaignImpressions
+  clickMetrics: CampaignClicks
+}
+
+"""Targeting, budget, schedule, and creative configuration for a campaign."""
+type CampaignDetails {
+  campaignId: ID!
+  targetSegments: [Segment]
+  excludedSegments: [Segment]
+  geographies: [String]
+  industries: [String]
+  jobFunctions: [String]
+  levels: [String]
+  dailyBudgetCap: Float
+  bidStrategy: String
+  frequency: String
+  creativeTypes: [String]
+  landingPageUrl: String
+  utmParameters: JSON
+}
+
+"""Ad units associated with a campaign."""
+type CampaignAds {
+  campaignId: ID!
+  ads: [AdDetails]
+  totalAds: Int
+  activeAds: Int
+}
+
+"""Impression metrics for a campaign."""
+type CampaignImpressions {
+  campaignId: ID!
+  totalImpressions: Int
+  uniqueAccountsReached: Int
+  avgFrequency: Float
+  impressionsByDate: [JSON]
+  impressionsBySegment: [JSON]
+}
+
+"""Click metrics for a campaign."""
+type CampaignClicks {
+  campaignId: ID!
+  totalClicks: Int
+  uniqueClicks: Int
+  ctr: Float
+  clicksByDate: [JSON]
+  clicksByAd: [JSON]
+}
+
+"""Individual ad creative with performance metrics."""
+type AdDetails {
+  id: ID!
+  campaignId: ID!
+  name: String
+  format: String
+  width: Int
+  height: Int
+  imageUrl: String
+  destinationUrl: String
+  impressions: Int
+  clicks: Int
+  ctr: Float
+  spend: Float
+  status: String
+  createdAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Audience Types
+# ---------------------------------------------------------------------------
+
+"""Built audience for targeting in campaigns."""
+type Audience {
+  id: ID!
+  name: String!
+  description: String
+  estimatedSize: Int
+  accountCount: Int
+  contactCount: Int
+  isActive: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  details: AudienceDetails
+}
+
+"""Audience configuration and match counts."""
+type AudienceDetails {
+  audienceId: ID!
+  sourceSegments: [Segment]
+  buyingStageFilter: [BuyingStageEnum]
+  intentScoreMin: Float
+  profileScoreMin: Float
+  includeAnonymous: Boolean
+  integrationSyncStatus: JSON
+  lastSyncedAt: DateTime
+}
+
+"""Target account or contact within an audience."""
+type AudienceTarget {
+  audienceId: ID!
+  targetId: ID!
+  targetType: String
+  domain: String
+  email: String
+  addedAt: DateTime
+  matchedCriteria: [String]
+}
+
+# ---------------------------------------------------------------------------
+# Prediction Types
+# ---------------------------------------------------------------------------
+
+"""Predictive model output for an account or contact."""
+type Prediction {
+  id: ID!
+  accountId: ID
+  contactId: ID
+  product: String!
+  score: Float
+  grade: String
+  percentile: Int
+  buyingStage: BuyingStageEnum
+  confidence: Float
+  details: PredictionDetails
+  model: PredictionModel
+  scoredAt: DateTime
+}
+
+"""Model features, weights, and confidence for a prediction."""
+type PredictionDetails {
+  predictionId: ID!
+  topFeatures: [JSON]
+  featureWeights: JSON
+  intentContribution: Float
+  firmographicContribution: Float
+  behavioralContribution: Float
+  engagementContribution: Float
+  explanation: String
+}
+
+"""Model definition and training metadata."""
+type PredictionModel {
+  id: ID!
+  name: String
+  product: String
+  version: String
+  trainedAt: DateTime
+  accuracy: Float
+  auc: Float
+  features: [String]
+  targetVariable: String
+}
+
+# ---------------------------------------------------------------------------
+# Keyword / Topic Types
+# ---------------------------------------------------------------------------
+
+"""Keyword research aggregate for intent analysis."""
+type KeywordResearch {
+  id: ID!
+  keyword: String!
+  monthlyVolume: Int
+  trend: Float
+  competition: Float
+  relatedKeywords: [String]
+  topics: [Topic]
+  intentStage: IntentStageEnum
+  updatedAt: DateTime
+}
+
+"""Intent topic cluster."""
+type Topic {
+  id: ID!
+  name: String!
+  description: String
+  keywords: [String]
+  signalCount: Int
+  details: TopicDetails
+}
+
+"""Topic definition, related keywords, and volume."""
+type TopicDetails {
+  topicId: ID!
+  category: String
+  relatedTopics: [String]
+  avgMonthlySignals: Int
+  peakSignalMonth: String
+  industryRelevance: [String]
+  updatedAt: DateTime
+}
+
+"""Individual research signal mapped to a topic."""
+type TopicSignal {
+  id: ID!
+  topicId: ID!
+  accountId: ID
+  domain: String
+  keyword: String
+  source: String
+  volume: Int
+  date: DateTime
+  country: String
+}
+
+# ---------------------------------------------------------------------------
+# Suppression Types
+# ---------------------------------------------------------------------------
+
+"""Suppression list definition."""
+type Suppression {
+  id: ID!
+  name: String
+  description: String
+  accountCount: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  accounts: [SuppressedAccount]
+}
+
+"""Account excluded from targeting via a suppression list."""
+type SuppressedAccount {
+  suppressionId: ID!
+  accountId: ID
+  domain: String
+  reason: String
+  addedAt: DateTime
+  expiresAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Team / Admin Types
+# ---------------------------------------------------------------------------
+
+"""Organizational team within the 6sense platform."""
+type Team {
+  id: ID!
+  name: String!
+  description: String
+  memberCount: Int
+  details: TeamDetails
+  createdAt: DateTime
+}
+
+"""Team members, roles, and permissions."""
+type TeamDetails {
+  teamId: ID!
+  members: [JSON]
+  roles: [String]
+  permissions: [String]
+  defaultSegments: [Segment]
+  defaultProducts: [String]
+}
+
+"""API key metadata (secret value is never returned)."""
+type APIKey {
+  id: ID!
+  name: String
+  prefix: String
+  scopes: [String]
+  teamId: ID
+  createdAt: DateTime
+  lastUsedAt: DateTime
+  expiresAt: DateTime
+  isActive: Boolean
+}
+
+"""Authentication token record."""
+type Token {
+  id: ID!
+  tokenType: String
+  scope: String
+  expiresAt: DateTime
+  issuedAt: DateTime
+  teamId: ID
+}
+
+# ---------------------------------------------------------------------------
+# Integration Types
+# ---------------------------------------------------------------------------
+
+"""Generic integration connector record."""
+type Integration {
+  id: ID!
+  type: IntegrationTypeEnum!
+  name: String
+  isActive: Boolean
+  lastSyncedAt: DateTime
+  syncStatus: String
+  config: JSON
+}
+
+"""Salesforce CRM sync configuration."""
+type SalesforceIntegration {
+  id: ID!
+  instanceUrl: String
+  syncDirection: String
+  syncedObjects: [String]
+  fieldMappings: JSON
+  lastSyncedAt: DateTime
+  syncStatus: String
+  errorCount: Int
+}
+
+"""HubSpot CRM sync configuration."""
+type HubSpotIntegration {
+  id: ID!
+  portalId: String
+  syncDirection: String
+  syncedObjects: [String]
+  fieldMappings: JSON
+  lastSyncedAt: DateTime
+  syncStatus: String
+  errorCount: Int
+}
+
+"""Segment CDP integration configuration."""
+type SegmentIntegration {
+  id: ID!
+  writeKey: String
+  sourceId: String
+  syncedEvents: [String]
+  lastSyncedAt: DateTime
+  syncStatus: String
+}
+
+# ---------------------------------------------------------------------------
+# Reporting Types
+# ---------------------------------------------------------------------------
+
+"""Generated analytics report."""
+type Report {
+  id: ID!
+  name: String!
+  type: ReportTypeEnum
+  createdAt: DateTime
+  generatedAt: DateTime
+  details: ReportDetails
+  attribution: [Attribution]
+}
+
+"""Report configuration, filters, and output columns."""
+type ReportDetails {
+  reportId: ID!
+  dateRange: JSON
+  filters: JSON
+  dimensions: [String]
+  metrics: [String]
+  segments: [Segment]
+  products: [String]
+  format: String
+  rowCount: Int
+  data: JSON
+}
+
+"""Revenue or pipeline attribution record."""
+type Attribution {
+  id: ID!
+  accountId: ID
+  contactId: ID
+  opportunityId: String
+  opportunityName: String
+  pipeline: Float
+  revenue: Float
+  closeDate: DateTime
+  touchpoints: [JSON]
+  attributionModel: String
+  campaignContribution: Float
+  intentContribution: Float
+  computedAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Input Types
+# ---------------------------------------------------------------------------
+
+input ContactFilterInput {
+  jobFunctions: [String]
+  levels: [String]
+  locations: [String]
+  industries: [String]
+  limit: Int
+  offset: Int
+}
+
+input SegmentInput {
+  name: String!
+  type: SegmentTypeEnum!
+  description: String
+  filters: JSON
+  includedSegments: [ID]
+  excludedSegments: [ID]
+  autoRefresh: Boolean
+}
+
+input CampaignInput {
+  name: String!
+  objective: String
+  startDate: DateTime
+  endDate: DateTime
+  budget: Float
+  targetSegments: [ID]
+  excludedSegments: [ID]
+  geographies: [String]
+}
+
+input SuppressionInput {
+  suppressionId: ID
+  domain: String
+  accountId: ID
+  reason: String
+  expiresAt: DateTime
+}
+
+# ---------------------------------------------------------------------------
+# Query Root
+# ---------------------------------------------------------------------------
+
+type Query {
+  """Resolve and enrich an account by IP address or domain."""
+  account(ip: String, domain: String): Account
+
+  """Fetch intent signals and buying stage for an account."""
+  accountIntent(domain: String!, product: String): AccountIntent
+
+  """Fetch buying stage classification for an account and product."""
+  buyingStage(domain: String!, product: String!): BuyingStage
+
+  """Fetch an enriched contact by email, LinkedIn URL, or 6sense peopleId."""
+  contact(email: String, linkedinUrl: String, peopleId: String): Contact
+
+  """Batch-enrich up to 25 contacts."""
+  contacts(inputs: [JSON!]!): [Contact]
+
+  """Search contacts at a company domain with optional filters."""
+  searchContacts(domain: String!, filters: ContactFilterInput): [Contact]
+
+  """Fetch a segment definition."""
+  segment(id: ID!): Segment
+
+  """List all segments."""
+  segments: [Segment]
+
+  """Fetch segment members."""
+  segmentMembers(segmentId: ID!, limit: Int, offset: Int): [SegmentMember]
+
+  """Fetch a campaign with metrics."""
+  campaign(id: ID!): Campaign
+
+  """List campaigns."""
+  campaigns(status: CampaignStatusEnum): [Campaign]
+
+  """Fetch predictive score for a contact or account."""
+  prediction(domain: String, contactEmail: String, product: String!): Prediction
+
+  """Fetch a report by ID."""
+  report(id: ID!): Report
+
+  """List reports."""
+  reports(type: ReportTypeEnum): [Report]
+
+  """Fetch an intent topic."""
+  topic(id: ID!): Topic
+
+  """List intent topics."""
+  topics: [Topic]
+
+  """Fetch keyword research data."""
+  keywordResearch(keyword: String!): KeywordResearch
+
+  """Fetch an audience."""
+  audience(id: ID!): Audience
+
+  """List audiences."""
+  audiences: [Audience]
+
+  """Fetch team details."""
+  team(id: ID!): Team
+
+  """List integrations."""
+  integrations: [Integration]
+
+  """List API keys for the current team."""
+  apiKeys: [APIKey]
+
+  """Fetch suppression list."""
+  suppression(id: ID!): Suppression
+
+  """List suppression lists."""
+  suppressions: [Suppression]
+}
+
+# ---------------------------------------------------------------------------
+# Mutation Root
+# ---------------------------------------------------------------------------
+
+type Mutation {
+  """Create a new segment."""
+  createSegment(input: SegmentInput!): Segment
+
+  """Update an existing segment."""
+  updateSegment(id: ID!, input: SegmentInput!): Segment
+
+  """Delete a segment."""
+  deleteSegment(id: ID!): Boolean
+
+  """Create a new campaign."""
+  createCampaign(input: CampaignInput!): Campaign
+
+  """Update an existing campaign."""
+  updateCampaign(id: ID!, input: CampaignInput!): Campaign
+
+  """Pause a campaign."""
+  pauseCampaign(id: ID!): Campaign
+
+  """Resume a paused campaign."""
+  resumeCampaign(id: ID!): Campaign
+
+  """Add an account to a suppression list."""
+  addSuppression(input: SuppressionInput!): SuppressedAccount
+
+  """Remove an account from a suppression list."""
+  removeSuppression(suppressionId: ID!, domain: String!): Boolean
+
+  """Generate a new API key."""
+  createAPIKey(name: String!, scopes: [String]): APIKey
+
+  """Revoke an API key."""
+  revokeAPIKey(id: ID!): Boolean
+}
