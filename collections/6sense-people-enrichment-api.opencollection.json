@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense People Enrichment API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrich People Records",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.6sense.com/v2/enrichment/people",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Batch enrich up to 25 contacts per request."
+    }
+  ],
+  "bundled": true
+}

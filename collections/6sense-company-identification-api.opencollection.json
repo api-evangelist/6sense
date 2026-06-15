@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense Company Identification API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get Company Details By IP",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://epsilon.6sense.com/v3/company/details",
+        "headers": [
+          {
+            "name": "EpsilonCookie",
+            "value": ""
+          },
+          {
+            "name": "X-6s-CustomID",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "ip",
+            "value": "",
+            "type": "query",
+            "description": "Visitor IP address (IPv4 or IPv6)."
+          }
+        ]
+      },
+      "docs": "Identify a company from an IP address. Returns firmographics, scoring, buying stage, profile fit, and segment membership."
+    }
+  ],
+  "bundled": true
+}

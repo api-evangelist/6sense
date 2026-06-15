@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense Lead Scoring API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Score A Lead",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://scribe.6sense.com/v2/people/score",
+        "body": {
+          "type": "form-urlencoded",
+          "data": [
+            {
+              "name": "email",
+              "value": ""
+            },
+            {
+              "name": "country",
+              "value": ""
+            },
+            {
+              "name": "website",
+              "value": ""
+            },
+            {
+              "name": "company",
+              "value": ""
+            },
+            {
+              "name": "title",
+              "value": ""
+            },
+            {
+              "name": "leadsource",
+              "value": ""
+            },
+            {
+              "name": "firstname",
+              "value": ""
+            },
+            {
+              "name": "lastname",
+              "value": ""
+            },
+            {
+              "name": "role",
+              "value": ""
+            },
+            {
+              "name": "industry",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "docs": "Returns predictive scores per product for a contact."
+    }
+  ],
+  "bundled": true
+}

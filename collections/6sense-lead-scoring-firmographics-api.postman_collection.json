@@ -1,0 +1,243 @@
+{
+  "item": [
+    {
+      "id": "b84acae9-fa0e-4288-aa31-cb9ae29b7788",
+      "name": "Get Lead Scoring And Firmographics",
+      "request": {
+        "name": "Get Lead Scoring And Firmographics",
+        "description": {
+          "content": "Returns firmographics, scoring, and segment membership for a contact.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "people",
+            "full"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "email",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "country",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "website",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "company",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "title",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "leadsource",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "firstname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "lastname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "role",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "industry",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "130a8a5b-2dc2-4b29-bc88-fa489e0df53b",
+          "name": "Combined response returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "website",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"company\": {\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"countryISOCode\": \"string\",\n    \"state\": \"string\",\n    \"city\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"companyPhone\": \"string\",\n    \"industry\": \"string\",\n    \"employeeRange\": \"string\",\n    \"revenueRange\": \"string\",\n    \"employeeCount\": 235,\n    \"annualRevenue\": 0.38942582785583824,\n    \"titleLevel\": \"string\",\n    \"titleFunction\": \"string\",\n    \"sicdescription\": \"string\",\n    \"siccode\": \"string\",\n    \"naicscode\": \"string\",\n    \"naicsdescription\": \"string\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 2432,\n      \"company_buying_stage\": \"Purchase\",\n      \"company_profile_score\": 1850,\n      \"company_profile_fit\": \"Moderate\",\n      \"contact_intent_score\": 5867,\n      \"contact_grade\": \"B\",\n      \"contact_profile_score\": 7524,\n      \"contact_profile_fit\": \"Weak\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 1714,\n      \"company_buying_stage\": \"Awareness\",\n      \"company_profile_score\": 9632,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 2987,\n      \"contact_grade\": \"A\",\n      \"contact_profile_score\": 674,\n      \"contact_profile_fit\": \"Weak\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      7049,\n      2368\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 4053,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 2746,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://scribe.6sense.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d144dfbe-3bae-4b5e-9a8b-11e2ba14146e",
+    "name": "6sense Lead Scoring And Firmographics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Combined endpoint that returns both firmographic enrichment and predictive lead scoring in a\nsingle response. Use when you need both surfaces for a single contact.\n\n\nContact Support:\n Name: 6sense API Support",
+      "type": "text/plain"
+    }
+  }
+}

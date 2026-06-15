@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "c1b2a007-39f9-4506-ad7f-e4a24eac89ff",
+      "name": "Enrich Company By Email Or Domain",
+      "request": {
+        "name": "Enrich Company By Email Or Domain",
+        "description": {
+          "content": "Returns firmographic data for a company given an email or domain.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v1",
+            "enrichment",
+            "company"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "email",
+              "value": "<string>",
+              "description": "Email address (required if no domain)."
+            },
+            {
+              "disabled": false,
+              "key": "domain",
+              "value": "<string>",
+              "description": "Company domain (required if no email)."
+            },
+            {
+              "disabled": false,
+              "key": "country",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "company",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "industry",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "title",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "role",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "firstname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "lastname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "leadsource",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6cbb2c4d-e68c-4019-905f-0d7807fc0a00",
+          "name": "Company firmographics returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "enrichment",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Email address (required if no domain).",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Company domain (required if no email).",
+                    "type": "text/plain"
+                  },
+                  "key": "domain",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"company\": {\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"industry\": \"string\",\n    \"country\": \"string\",\n    \"countryISOCode\": \"string\",\n    \"region\": \"string\",\n    \"state\": \"string\",\n    \"city\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"companyPhone\": \"string\",\n    \"employeeCount\": \"string\",\n    \"employeeRange\": \"string\",\n    \"annualRevenue\": \"string\",\n    \"revenueRange\": \"string\",\n    \"siccode\": \"string\",\n    \"sicdescription\": \"string\",\n    \"naicscode\": \"string\",\n    \"naicsdescription\": \"string\",\n    \"titleLevel\": \"string\",\n    \"titleFunction\": \"string\"\n  },\n  \"segments\": {\n    \"ids\": [\n      5442,\n      1421\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 2031,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 4503,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "85c4ed55-2bd3-4e75-b79b-d1d3c1721d8d",
+          "name": "Unauthorized.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "enrichment",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Email address (required if no domain).",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Company domain (required if no email).",
+                    "type": "text/plain"
+                  },
+                  "key": "domain",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "76561771-bd9e-4ec0-b3aa-48d15306bfb1",
+          "name": "Company not found.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "enrichment",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Email address (required if no domain).",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Company domain (required if no email).",
+                    "type": "text/plain"
+                  },
+                  "key": "domain",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "73d3cd02-f33f-4985-828a-50ea4168c630",
+          "name": "Rate limit exceeded.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v1",
+                "enrichment",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Email address (required if no domain).",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Company domain (required if no email).",
+                    "type": "text/plain"
+                  },
+                  "key": "domain",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.6sense.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "11263f21-7603-4ec0-aec7-a1fd35ae8e08",
+    "name": "6sense Company Firmographics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Returns company firmographics based on email or domain. Includes industry, employee/revenue\nranges, SIC/NAICS codes, and 6sense segment membership when applicable.\n\n\nContact Support:\n Name: 6sense API Support",
+      "type": "text/plain"
+    }
+  }
+}

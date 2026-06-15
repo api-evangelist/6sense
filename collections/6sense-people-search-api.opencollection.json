@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense People Search API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search People By Company",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.6sense.com/v2/people/search",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Returns contact profiles matching the supplied domain and filters."
+    },
+    {
+      "info": {
+        "name": "Get People Search Filter Dictionary",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.6sense.com/v2/people/search/dictionary"
+      },
+      "docs": "Returns valid filter values for job title, function, level, industry, and other facets."
+    }
+  ],
+  "bundled": true
+}

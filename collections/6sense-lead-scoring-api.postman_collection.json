@@ -1,0 +1,243 @@
+{
+  "item": [
+    {
+      "id": "433a05f6-4469-41a2-b90e-bed6a72f7586",
+      "name": "Score A Lead",
+      "request": {
+        "name": "Score A Lead",
+        "description": {
+          "content": "Returns predictive scores per product for a contact.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "people",
+            "score"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "email",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "country",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "website",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "company",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "title",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "leadsource",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "firstname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "lastname",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "role",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "industry",
+              "value": "<string>"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b7de8cba-ca50-4050-91ed-def167cb2d3b",
+          "name": "Scoring returned.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "score"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ",
+                    "type": "text/plain"
+                  },
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "website",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 7,\n      \"company_buying_stage\": \"Target\",\n      \"company_profile_score\": 76,\n      \"company_profile_fit\": \"Weak\",\n      \"contact_intent_score\": 57,\n      \"contact_grade\": \"B\",\n      \"contact_profile_score\": 83,\n      \"contact_profile_fit\": \"Strong\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 90,\n      \"company_buying_stage\": \"Consideration\",\n      \"company_profile_score\": 82,\n      \"company_profile_fit\": \"Weak\",\n      \"contact_intent_score\": 53,\n      \"contact_grade\": \"D\",\n      \"contact_profile_score\": 7,\n      \"contact_profile_fit\": \"Strong\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://scribe.6sense.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a9eec049-ee45-49a0-bbab-830c296e1d40",
+    "name": "6sense Lead Scoring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Returns predictive product-level lead scoring for a contact: company intent score, buying stage,\nprofile fit, and contact-level intent and grade derived from 6sense's predictive models.\n\n\nContact Support:\n Name: 6sense API Support",
+      "type": "text/plain"
+    }
+  }
+}

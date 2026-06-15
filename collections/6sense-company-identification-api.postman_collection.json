@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "74486e4b-8611-47dd-b86e-c6e1047252ed",
+      "name": "Get Company Details By IP",
+      "request": {
+        "name": "Get Company Details By IP",
+        "description": {
+          "content": "Identify a company from an IP address. Returns firmographics, scoring, buying stage, profile fit, and segment membership.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v3",
+            "company",
+            "details"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "ip",
+              "value": "<string>",
+              "description": "(Required) Visitor IP address (IPv4 or IPv6)."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "6sense visitor tracking cookie.",
+            "key": "EpsilonCookie",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Custom client-supplied identifier for tracking.",
+            "key": "X-6s-CustomID",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "30715fe2-b15d-4bb8-b368-9b7778e9cc7c",
+          "name": "Company identified.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v3",
+                "company",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ip",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "disabled": false,
+                "description": "6sense visitor tracking cookie.",
+                "key": "EpsilonCookie",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Custom client-supplied identifier for tracking.",
+                "key": "X-6s-CustomID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"company\": {\n    \"company_match\": \"Non-actionable Match\",\n    \"additional_comment\": \"string\",\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"country_iso_code\": \"string\",\n    \"state\": \"string\",\n    \"state_code\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"zip\": \"string\",\n    \"phone\": \"string\",\n    \"industry\": \"string\",\n    \"industry_v2\": [\n      {\n        \"industry\": \"string\",\n        \"subindustry\": \"string\"\n      },\n      {\n        \"industry\": \"string\",\n        \"subindustry\": \"string\"\n      }\n    ],\n    \"employee_range\": \"string\",\n    \"employee_count\": 1655,\n    \"revenue_range\": \"string\",\n    \"annual_revenue\": 6698.7556150915625,\n    \"is_blacklisted\": true,\n    \"is_6qa\": true,\n    \"geoIP_country\": \"string\",\n    \"geoIP_state\": \"string\",\n    \"geoIP_city\": \"string\",\n    \"sic\": \"string\",\n    \"sic_description\": \"string\",\n    \"naics\": \"string\",\n    \"naics_description\": \"string\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"product_display_name\": \"string\",\n      \"is_6qa\": true,\n      \"intent_score\": 7951,\n      \"buying_stage\": \"Purchase\",\n      \"profile_score\": 7459,\n      \"profile_fit\": \"Weak\"\n    },\n    {\n      \"product\": \"string\",\n      \"product_display_name\": \"string\",\n      \"is_6qa\": false,\n      \"intent_score\": 5185,\n      \"buying_stage\": \"Consideration\",\n      \"profile_score\": 8906,\n      \"profile_fit\": \"Strong\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      2590,\n      3924\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 860,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 8398,\n        \"name\": \"string\"\n      }\n    ]\n  },\n  \"confidence\": \"Very High\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "81371297-d349-47be-acff-23096b30d211",
+          "name": "Unauthorized.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v3",
+                "company",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ip",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "disabled": false,
+                "description": "6sense visitor tracking cookie.",
+                "key": "EpsilonCookie",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Custom client-supplied identifier for tracking.",
+                "key": "X-6s-CustomID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "efcbb584-58ff-42fd-a320-bd1d4eb35c00",
+          "name": "No company match.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v3",
+                "company",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ip",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "disabled": false,
+                "description": "6sense visitor tracking cookie.",
+                "key": "EpsilonCookie",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Custom client-supplied identifier for tracking.",
+                "key": "X-6s-CustomID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7b85749f-51c5-48dd-be2c-6208ecf9c71d",
+          "name": "Rate limit exceeded.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v3",
+                "company",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ip",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "disabled": false,
+                "description": "6sense visitor tracking cookie.",
+                "key": "EpsilonCookie",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Custom client-supplied identifier for tracking.",
+                "key": "X-6s-CustomID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://epsilon.6sense.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f2c366de-e610-4516-a3c2-05f11c4594db",
+    "name": "6sense Company Identification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Identifies anonymous website visitors by IP address, returning company firmographics,\nproduct-level intent scores, buying stage, profile fit, and segment membership.\n\n\nContact Support:\n Name: 6sense API Support",
+      "type": "text/plain"
+    }
+  }
+}

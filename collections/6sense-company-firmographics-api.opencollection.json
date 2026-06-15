@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense Company Firmographics API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrich Company By Email Or Domain",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.6sense.com/v1/enrichment/company",
+        "body": {
+          "type": "form-urlencoded",
+          "data": [
+            {
+              "name": "email",
+              "value": ""
+            },
+            {
+              "name": "domain",
+              "value": ""
+            },
+            {
+              "name": "country",
+              "value": ""
+            },
+            {
+              "name": "company",
+              "value": ""
+            },
+            {
+              "name": "industry",
+              "value": ""
+            },
+            {
+              "name": "title",
+              "value": ""
+            },
+            {
+              "name": "role",
+              "value": ""
+            },
+            {
+              "name": "firstname",
+              "value": ""
+            },
+            {
+              "name": "lastname",
+              "value": ""
+            },
+            {
+              "name": "leadsource",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "docs": "Returns firmographic data for a company given an email or domain."
+    }
+  ],
+  "bundled": true
+}
