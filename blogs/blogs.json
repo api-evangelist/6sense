@@ -2,14 +2,13 @@
   "repo": "6sense",
   "feeds": [
     {
-      "source": "https://6sense.com/blog/feed/",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://6sense.com/blog",
-      "error": "HTTPError"
+      "feed_url": "https://6sense.com/blog/feed/",
+      "title": "6sense Blog",
+      "saved": 0,
+      "note": "Feed resolves as valid RSS but contains no <item> entries (lastBuildDate 2026-05-14). HTML listing top posts dated 2026-05-12/13, all older than prior fetch cutoff 2026-06-14."
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-21T17:00:00Z"
 }
