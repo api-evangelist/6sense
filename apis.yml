@@ -124,6 +124,12 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: TrustCenter
+  url: security/6sense-trust-center.yml
+- type: DomainSecurity
+  url: security/6sense-domain-security.yml
+- type: Authentication
+  url: authentication/6sense-authentication.yml
 - url: https://6sense.com
   type: Website
 - url: https://6sense.com/platform

@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/6sense-company-firmographics-api-openapi.yml, openapi/6sense-company-identification-api-openapi.yml,
+  openapi/6sense-lead-scoring-api-openapi.yml, openapi/6sense-lead-scoring-firmographics-api-openapi.yml,
+  openapi/6sense-people-enrichment-api-openapi.yml, openapi/6sense-people-search-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: TokenAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Token-based auth. Format: `Token <api_token>`.'
+  sources:
+  - openapi/6sense-company-firmographics-api-openapi.yml
+  - openapi/6sense-company-identification-api-openapi.yml
+  - openapi/6sense-lead-scoring-api-openapi.yml
+  - openapi/6sense-lead-scoring-firmographics-api-openapi.yml
+  - openapi/6sense-people-enrichment-api-openapi.yml
+  - openapi/6sense-people-search-api-openapi.yml
