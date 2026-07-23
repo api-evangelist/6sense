@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: 6sense Firmographics Company People API
+  version: '3'
+  description: 'Returns company firmographics based on email or domain. Includes industry, employee/revenue
+
+    ranges, SIC/NAICS codes, and 6sense segment membership when applicable.
+
+    '
+  contact:
+    name: 6sense API Support
+    url: https://api.6sense.com/docs/
+servers:
+- url: https://api.6sense.com
+  description: 6sense API Production
+security:
+- TokenAuth: []
+tags:
+- name: People
+paths:
+  /v2/people/score:
+    post:
+      summary: Score A Lead
+      description: Returns predictive scores per product for a contact.
+      operationId: scoreLead
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - email
+              - country
+              properties:
+                email:
+                  type: string
+                country:
+                  type: string
+                website:
+                  type: string
+                company:
+                  type: string
+                title:
+                  type: string
+                leadsource:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                role:
+                  type: string
+                industry:
+                  type: string
+      responses:
+        '200':
+          description: Scoring returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoringResponse'
+      tags:
+      - People
+  /v2/people/full:
+    post:
+      summary: Get Lead Scoring And Firmographics
+      description: Returns firmographics, scoring, and segment membership for a contact.
+      operationId: getFullLeadData
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - email
+              - country
+              properties:
+                email:
+                  type: string
+                country:
+                  type: string
+                website:
+                  type: string
+                company:
+                  type: string
+                title:
+                  type: string
+                leadsource:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                role:
+                  type: string
+                industry:
+                  type: string
+      responses:
+        '200':
+          description: Combined response returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullLeadResponse'
+      tags:
+      - People
+  /v2/people/search:
+    post:
+      summary: Search People By Company
+      description: Returns contact profiles matching the supplied domain and filters.
+      operationId: searchPeople
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeopleSearchRequest'
+      responses:
+        '200':
+          description: Search results returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeopleSearchResponse'
+      tags:
+      - People
+  /v2/people/search/dictionary:
+    get:
+      summary: Get People Search Filter Dictionary
+      description: Returns valid filter values for job title, function, level, industry, and other facets.
+      operationId: getSearchDictionary
+      responses:
+        '200':
+          description: Dictionary returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+      tags:
+      - People
+components:
+  schemas:
+    FullLeadResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Score_2'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    PersonSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        fullName:
+          type: string
+        jobTitle:
+          type: string
+        jobFunction:
+          type: string
+        jobLevel:
+          type: string
+        location:
+          type: string
+        linkedinUrl:
+          type: string
+        hasEmail:
+          type: boolean
+        hasPhone:
+          type: boolean
+        hasMobilePhone:
+          type: boolean
+    PeopleSearchResponse:
+      type: object
+      properties:
+        people:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonSummary'
+        totalResults:
+          type: integer
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+    Company:
+      type: object
+      properties:
+        companyId:
+          type: string
+        domain:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        countryISOCode:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        streetAddress:
+          type: string
+        postalCode:
+          type: string
+        companyPhone:
+          type: string
+        industry:
+          type: string
+        employeeRange:
+          type: string
+        revenueRange:
+          type: string
+        employeeCount:
+          type: integer
+        annualRevenue:
+          type: number
+        titleLevel:
+          type: string
+        titleFunction:
+          type: string
+        sicdescription:
+          type: string
+        siccode:
+          type: string
+        naicscode:
+          type: string
+        naicsdescription:
+          type: string
+    ScoringResponse:
+      type: object
+      properties:
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Score'
+    Score_2:
+      type: object
+      properties:
+        product:
+          type: string
+        company_intent_score:
+          type: integer
+        company_buying_stage:
+          type: string
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
+        company_profile_score:
+          type: integer
+        company_profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+        contact_intent_score:
+          type: integer
+        contact_grade:
+          type: string
+          enum:
+          - A
+          - B
+          - C
+          - D
+        contact_profile_score:
+          type: integer
+        contact_profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+    PeopleSearchRequest:
+      type: object
+      required:
+      - domain
+      properties:
+        domain:
+          type: string
+        jobTitle:
+          type: string
+        jobFunction:
+          type: string
+        jobLevel:
+          type: string
+        location:
+          type: string
+        industry:
+          type: string
+        limit:
+          type: integer
+    Score:
+      type: object
+      properties:
+        product:
+          type: string
+        company_intent_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        company_buying_stage:
+          type: string
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
+        company_profile_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        company_profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+        contact_intent_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        contact_grade:
+          type: string
+          enum:
+          - A
+          - B
+          - C
+          - D
+        contact_profile_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        contact_profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based auth. Format: `Token <api_token>`.'

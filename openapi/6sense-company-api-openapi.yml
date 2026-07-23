@@ -1,18 +1,22 @@
 openapi: 3.0.3
 info:
-  title: 6sense Company Identification API
+  title: 6sense Firmographics Company API
   version: '3'
-  description: |
-    Identifies anonymous website visitors by IP address, returning company firmographics,
-    product-level intent scores, buying stage, profile fit, and segment membership.
+  description: 'Returns company firmographics based on email or domain. Includes industry, employee/revenue
+
+    ranges, SIC/NAICS codes, and 6sense segment membership when applicable.
+
+    '
   contact:
     name: 6sense API Support
     url: https://api.6sense.com/docs/
 servers:
-- url: https://epsilon.6sense.com
-  description: 6sense Epsilon Production
+- url: https://api.6sense.com
+  description: 6sense API Production
 security:
 - TokenAuth: []
+tags:
+- name: Company
 paths:
   /v3/company/details:
     get:
@@ -51,34 +55,39 @@ paths:
           description: No company match.
         '429':
           description: Rate limit exceeded.
+      tags:
+      - Company
 components:
-  securitySchemes:
-    TokenAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: 'Token-based auth. Format: `Token <api_token>`.'
   schemas:
-    CompanyDetailsResponse:
+    Segments:
       type: object
       properties:
-        company:
-          $ref: '#/components/schemas/Company'
-        scores:
+        ids:
           type: array
           items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-        confidence:
-          type: string
-          enum: [Very High, High, Moderate, Low]
+            type: integer
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
     Company:
       type: object
       properties:
         company_match:
           type: string
-          enum: [Match, Non-actionable Match, No Match]
+          enum:
+          - Match
+          - Non-actionable Match
+          - No Match
         additional_comment:
           type: string
         companyId:
@@ -155,29 +164,41 @@ components:
           type: integer
         buying_stage:
           type: string
-          enum: [Purchase, Decision, Consideration, Awareness, Target]
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
         profile_score:
           type: integer
         profile_fit:
           type: string
-          enum: [Strong, Moderate, Weak]
-    Segments:
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+    CompanyDetailsResponse:
       type: object
       properties:
-        ids:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
           type: array
           items:
-            type: integer
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+        confidence:
+          type: string
+          enum:
+          - Very High
+          - High
+          - Moderate
+          - Low
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token-based auth. Format: `Token <api_token>`.'
