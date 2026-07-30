@@ -1,114 +1,75 @@
 aid: 6sense
 url: https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml
 apis:
-- aid: 6sense:6sense-company-identification-api
-  name: 6sense Company Identification API
-  tags:
-  - ABM
-  - Intent
-  - Web Deanonymization
-  - B2B
+- aid: 6sense:6sense-company-api
+  name: 6sense Company API
+  description: The Company API from 6sense — 1 operation(s) for company.
   humanURL: https://api.6sense.com/docs/
-  properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: https://support.6sense.com/docs/6sense-api-overview
-    type: Documentation
-  - url: openapi/6sense-company-identification-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/6sense-company-schema.json
-    type: JSONSchema
-  - url: json-schema/6sense-score-schema.json
-    type: JSONSchema
-  - url: json-ld/6sense-context.jsonld
-    type: JSONLD
-  - url: graphql/6sense-graphql.md
-    type: GraphQL
-  description: Identify a company from a visitor IP address and return firmographics,
-    product-level intent scoring, buying stage, profile fit, 6QA flag, and segment
-    membership. Powers 6sense's web deanonymization use case.
-- aid: 6sense:6sense-company-firmographics-api
-  name: 6sense Company Firmographics API
   tags:
-  - ABM
-  - Firmographics
-  - Enrichment
-  humanURL: https://api.6sense.com/docs/
+  - Company
   properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: openapi/6sense-company-firmographics-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/6sense-company-schema.json
-    type: JSONSchema
-  description: Enrich a company by email or domain. Returns industry, employee and
-    revenue ranges, SIC/NAICS classification, address, and segment membership.
-- aid: 6sense:6sense-lead-scoring-api
-  name: 6sense Lead Scoring API
-  tags:
-  - ABM
-  - Scoring
-  - Intent
-  - Predictive Analytics
+  - type: OpenAPI
+    url: openapi/6sense-company-api-openapi.yml
+  - type: Documentation
+    url: https://api.6sense.com/docs/
+  - type: Documentation
+    url: https://support.6sense.com/docs/6sense-api-overview
+  - type: JSONSchema
+    url: json-schema/6sense-company-schema.json
+  - type: JSONSchema
+    url: json-schema/6sense-score-schema.json
+  - type: JSONLD
+    url: json-ld/6sense-context.jsonld
+  - type: GraphQL
+    url: graphql/6sense-graphql.md
+  - type: JSONSchema
+    url: json-schema/6sense-contact-schema.json
+- aid: 6sense:6sense-enrichment-api
+  name: 6sense Enrichment API
+  description: The Enrichment API from 6sense — 2 operation(s) for enrichment.
   humanURL: https://api.6sense.com/docs/
-  properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: openapi/6sense-lead-scoring-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/6sense-score-schema.json
-    type: JSONSchema
-  description: Returns predictive product-level scoring for a contact — company intent
-    score and buying stage, profile fit, contact-level intent score, and contact grade
-    — driven by 6sense's predictive analytics models.
-- aid: 6sense:6sense-lead-scoring-firmographics-api
-  name: 6sense Lead Scoring And Firmographics API
-  tags:
-  - ABM
-  - Scoring
-  - Firmographics
-  - Intent
-  humanURL: https://api.6sense.com/docs/
-  properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: openapi/6sense-lead-scoring-firmographics-api-openapi.yml
-    type: OpenAPI
-  description: Combined endpoint that returns firmographic enrichment, predictive
-    scoring, and segment membership for a contact in a single response.
-- aid: 6sense:6sense-people-enrichment-api
-  name: 6sense People Enrichment API
   tags:
   - Enrichment
-  - People
-  - Contacts
-  - B2B
-  humanURL: https://api.6sense.com/docs/
   properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: openapi/6sense-people-enrichment-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/6sense-contact-schema.json
-    type: JSONSchema
-  description: Batch enrich up to 25 contact records per request keyed by email, LinkedIn
-    URL, or 6sense peopleId. Returns rich profile data (job, location, skills, education)
-    and embedded company firmographics. Up to 20 QPS per customer.
-- aid: 6sense:6sense-people-search-api
-  name: 6sense People Search API
+  - type: OpenAPI
+    url: openapi/6sense-enrichment-api-openapi.yml
+  - type: Documentation
+    url: https://api.6sense.com/docs/
+  - type: Documentation
+    url: https://support.6sense.com/docs/6sense-api-overview
+  - type: JSONSchema
+    url: json-schema/6sense-company-schema.json
+  - type: JSONSchema
+    url: json-schema/6sense-score-schema.json
+  - type: JSONLD
+    url: json-ld/6sense-context.jsonld
+  - type: GraphQL
+    url: graphql/6sense-graphql.md
+  - type: JSONSchema
+    url: json-schema/6sense-contact-schema.json
+- aid: 6sense:6sense-people-api
+  name: 6sense People API
+  description: The People API from 6sense — 4 operation(s) for people.
+  humanURL: https://api.6sense.com/docs/
   tags:
-  - Search
   - People
-  - Contacts
-  humanURL: https://api.6sense.com/docs/
   properties:
-  - url: https://api.6sense.com/docs/
-    type: Documentation
-  - url: openapi/6sense-people-search-api-openapi.yml
-    type: OpenAPI
-  description: Search contacts at a target company by domain with optional job-title,
-    function, level, location, and industry filters. Includes a dictionary endpoint
-    exposing valid filter values.
+  - type: OpenAPI
+    url: openapi/6sense-people-api-openapi.yml
+  - type: Documentation
+    url: https://api.6sense.com/docs/
+  - type: Documentation
+    url: https://support.6sense.com/docs/6sense-api-overview
+  - type: JSONSchema
+    url: json-schema/6sense-company-schema.json
+  - type: JSONSchema
+    url: json-schema/6sense-score-schema.json
+  - type: JSONLD
+    url: json-ld/6sense-context.jsonld
+  - type: GraphQL
+    url: graphql/6sense-graphql.md
+  - type: JSONSchema
+    url: json-schema/6sense-contact-schema.json
 name: 6sense
 tags:
 - ABM
@@ -121,7 +82,20 @@ tags:
 - AI
 - Marketing Technology
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/6sense.png
 access: 3rd-Party
 common:
 - type: AgenticAccess
