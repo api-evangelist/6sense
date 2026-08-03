@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: 6sense People Enrichment API
+  version: '2'
+  description: |
+    Batch contact enrichment. Submit up to 25 records per request keyed by email, LinkedIn URL, or
+    6sense peopleId, and receive enriched contact and embedded company data.
+  contact:
+    name: 6sense API Support
+    url: https://api.6sense.com/docs/
+servers:
+- url: https://api.6sense.com
+  description: 6sense API Production
+security:
+- TokenAuth: []
+paths:
+  /v2/enrichment/people:
+    post:
+      summary: Enrich People Records
+      description: Batch enrich up to 25 contacts per request.
+      operationId: enrichPeople
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 25
+              items:
+                $ref: '#/components/schemas/EnrichmentRequest'
+      responses:
+        '200':
+          description: Enriched contacts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrichmentResponse'
+        '401':
+          description: Unauthorized.
+        '422':
+          description: Validation error.
+        '429':
+          description: Rate limit exceeded (default 20 QPS).
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    EnrichmentRequest:
+      type: object
+      description: At least one of email, linkedInUrl, or peopleId is required.
+      properties:
+        email:
+          type: string
+        linkedInUrl:
+          type: string
+        peopleId:
+          type: string
+        referenceKeys:
+          type: object
+          additionalProperties:
+            type: string
+    EnrichmentResponse:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedContact'
+    EnrichedContact:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        emailConfidence:
+          type: string
+          enum: [A+, A, B, C]
+        fullName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
+        jobFunction:
+          type: string
+        jobLevel:
+          type: string
+        jobSeniority:
+          type: string
+        phone:
+          type: string
+        mobilePhone:
+          type: string
+        linkedinUrl:
+          type: string
+        linkedinId:
+          type: string
+        twitterHandle:
+          type: string
+        location:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        education:
+          type: array
+          items:
+            type: object
+            properties:
+              schoolName:
+                type: string
+              degrees:
+                type: array
+                items:
+                  type: string
+              startDate:
+                type: string
+              endDate:
+                type: string
+              schoolWebsite:
+                type: string
+              schoolLocation:
+                type: string
+        company:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            domain:
+              type: string
+            country:
+              type: string
+            state:
+              type: string
+            city:
+              type: string
+            industry:
+              type: string
+            employees:
+              type: integer
+        referenceKeys:
+          type: object
+          additionalProperties:
+            type: string

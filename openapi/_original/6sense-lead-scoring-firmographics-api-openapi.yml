@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: 6sense Lead Scoring And Firmographics API
+  version: '2'
+  description: |
+    Combined endpoint that returns both firmographic enrichment and predictive lead scoring in a
+    single response. Use when you need both surfaces for a single contact.
+  contact:
+    name: 6sense API Support
+    url: https://api.6sense.com/docs/
+servers:
+- url: https://scribe.6sense.com
+  description: 6sense Scribe Production
+security:
+- TokenAuth: []
+paths:
+  /v2/people/full:
+    post:
+      summary: Get Lead Scoring And Firmographics
+      description: Returns firmographics, scoring, and segment membership for a contact.
+      operationId: getFullLeadData
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - email
+              - country
+              properties:
+                email:
+                  type: string
+                country:
+                  type: string
+                website:
+                  type: string
+                company:
+                  type: string
+                title:
+                  type: string
+                leadsource:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                role:
+                  type: string
+                industry:
+                  type: string
+      responses:
+        '200':
+          description: Combined response returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullLeadResponse'
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    FullLeadResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Score'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    Company:
+      type: object
+      properties:
+        companyId:
+          type: string
+        domain:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        countryISOCode:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        streetAddress:
+          type: string
+        postalCode:
+          type: string
+        companyPhone:
+          type: string
+        industry:
+          type: string
+        employeeRange:
+          type: string
+        revenueRange:
+          type: string
+        employeeCount:
+          type: integer
+        annualRevenue:
+          type: number
+        titleLevel:
+          type: string
+        titleFunction:
+          type: string
+        sicdescription:
+          type: string
+        siccode:
+          type: string
+        naicscode:
+          type: string
+        naicsdescription:
+          type: string
+    Score:
+      type: object
+      properties:
+        product:
+          type: string
+        company_intent_score:
+          type: integer
+        company_buying_stage:
+          type: string
+          enum: [Purchase, Decision, Consideration, Awareness, Target]
+        company_profile_score:
+          type: integer
+        company_profile_fit:
+          type: string
+          enum: [Strong, Moderate, Weak]
+        contact_intent_score:
+          type: integer
+        contact_grade:
+          type: string
+          enum: [A, B, C, D]
+        contact_profile_score:
+          type: integer
+        contact_profile_fit:
+          type: string
+          enum: [Strong, Moderate, Weak]
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string

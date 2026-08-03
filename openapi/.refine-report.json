@@ -1,0 +1,18 @@
+{
+  "provider": "6sense",
+  "sources": [
+    "6sense-company-api-openapi.yml",
+    "6sense-enrichment-api-openapi.yml",
+    "6sense-people-api-openapi.yml"
+  ],
+  "outputs": [
+    "6sense-company-api-openapi.yml",
+    "6sense-enrichment-api-openapi.yml",
+    "6sense-people-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
