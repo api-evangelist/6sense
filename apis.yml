@@ -5,11 +5,14 @@ apis:
   name: 6sense Company API
   description: The Company API from 6sense — 1 operation(s) for company.
   humanURL: https://api.6sense.com/docs/
+  baseURL: https://epsilon.6sense.com
   tags:
   - Company
   properties:
   - type: OpenAPI
     url: openapi/6sense-company-api-openapi.yml
+  - type: Overlay
+    url: overlays/6sense-company-overlay.yaml
   - type: Documentation
     url: https://api.6sense.com/docs/
   - type: Documentation
@@ -20,19 +23,20 @@ apis:
     url: json-schema/6sense-score-schema.json
   - type: JSONLD
     url: json-ld/6sense-context.jsonld
-  - type: GraphQL
-    url: graphql/6sense-graphql.md
   - type: JSONSchema
     url: json-schema/6sense-contact-schema.json
 - aid: 6sense:6sense-enrichment-api
   name: 6sense Enrichment API
   description: The Enrichment API from 6sense — 2 operation(s) for enrichment.
   humanURL: https://api.6sense.com/docs/
+  baseURL: https://api.6sense.com
   tags:
   - Enrichment
   properties:
   - type: OpenAPI
     url: openapi/6sense-enrichment-api-openapi.yml
+  - type: Overlay
+    url: overlays/6sense-enrichment-overlay.yaml
   - type: Documentation
     url: https://api.6sense.com/docs/
   - type: Documentation
@@ -43,19 +47,20 @@ apis:
     url: json-schema/6sense-score-schema.json
   - type: JSONLD
     url: json-ld/6sense-context.jsonld
-  - type: GraphQL
-    url: graphql/6sense-graphql.md
   - type: JSONSchema
     url: json-schema/6sense-contact-schema.json
 - aid: 6sense:6sense-people-api
   name: 6sense People API
   description: The People API from 6sense — 4 operation(s) for people.
   humanURL: https://api.6sense.com/docs/
+  baseURL: https://api.6sense.com
   tags:
   - People
   properties:
   - type: OpenAPI
     url: openapi/6sense-people-api-openapi.yml
+  - type: Overlay
+    url: overlays/6sense-people-overlay.yaml
   - type: Documentation
     url: https://api.6sense.com/docs/
   - type: Documentation
@@ -66,11 +71,68 @@ apis:
     url: json-schema/6sense-score-schema.json
   - type: JSONLD
     url: json-ld/6sense-context.jsonld
-  - type: GraphQL
-    url: graphql/6sense-graphql.md
   - type: JSONSchema
     url: json-schema/6sense-contact-schema.json
+- aid: 6sense:6sense-scribe-api
+  name: 6sense Scribe Scoring and Segments API
+  description: Scribe — "The Score Keeper". The only OpenAPI 6sense publishes itself,
+    served anonymously at https://scribe.6sense.com/openapi.json. Covers 12 operations
+    across people scoring, people/company enrichment, the product list, and the
+    partner-only Segments API (list segments, list segment member accounts, validate
+    access). Harvested verbatim 2026-08-13.
+  humanURL: https://api.6sense.com/docs/
+  baseURL: https://scribe.6sense.com
+  tags:
+  - Scoring
+  - Segments
+  - Enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/6sense-scribe-openapi.json
+  - type: Overlay
+    url: overlays/6sense-scribe-overlay.yaml
+  - type: Documentation
+    url: https://api.6sense.com/docs/
+  - type: APIReference
+    url: https://api.6sense.com/docs/
+- aid: 6sense:6sense-mcp
+  name: 6sense MCP Server
+  description: Hosted remote Model Context Protocol server at https://api.6sense.com/mcp
+    (beta). Read-only retrieval of Revvy AI-powered 6sense insights — account
+    insights, 6QA trends, keyword performance, ad campaign performance, website
+    activity and segment discovery — for Claude, ChatGPT and Microsoft Copilot
+    Studio. Per-user OAuth 2.1 with dynamic client registration and PKCE; single
+    scope mcp:use.
+  humanURL: https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
+  baseURL: https://api.6sense.com/mcp
+  tags:
+  - MCP
+  - Agents
+  - AI
+  properties:
+  - type: MCPServer
+    url: mcp/6sense-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/6sense-tool-crosswalk.yml
+  - type: OAuthScopes
+    url: scopes/6sense-scopes.yml
+  - type: Documentation
+    url: https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
+  - type: GettingStarted
+    url: https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
 name: 6sense
+description: 6sense Insights is a B2B revenue AI platform that identifies in-market
+  accounts from anonymous buying signals and orchestrates marketing and sales against
+  them. Its Signalverse intent graph, Master Company Database of roughly 76 million
+  company accounts and predictive models power account-based marketing, advertising,
+  AI email agents and sales intelligence. For developers, 6sense exposes six HTTP
+  data APIs across three hosts — Company Identification, Company Firmographics, Lead
+  Scoring, Lead Scoring and Firmographics, People Enrichment and People Search — plus
+  the acquired AI Email (Saleswhale) API with a signed webhook surface, and a hosted
+  remote MCP server at api.6sense.com/mcp for agent access. Access is token-based and
+  metered against contract-year credit pools rather than list-priced plans.
+created: '2026-05-25'
+modified: '2026-08-13'
 tags:
 - ABM
 - Account-Based Marketing
@@ -149,6 +211,78 @@ common:
 - url: json-ld/6sense-context.jsonld
   name: JSON-LD Context
   type: JSONLD
+- type: MCPServer
+  url: mcp/6sense-mcp.yml
+  name: 6sense MCP Server
+- type: ToolCrosswalk
+  url: mcp/6sense-tool-crosswalk.yml
+  name: MCP to REST Tool Crosswalk
+- type: WellKnown
+  url: well-known/6sense-well-known.yml
+  name: Well-Known Discovery Probe
+- type: OAuthScopes
+  url: scopes/6sense-scopes.yml
+  name: OAuth Scopes
+- type: LLMsTxt
+  url: llms/6sense-llms.txt
+  name: llms.txt
+- type: Conventions
+  url: conventions/6sense-conventions.yml
+  name: API Conventions
+- type: ErrorCatalog
+  url: errors/6sense-problem-types.yml
+  name: Error Catalog
+- type: Lifecycle
+  url: lifecycle/6sense-lifecycle.yml
+  name: API Lifecycle
+- type: StatusPage
+  url: https://status.6sense.com/
+  name: 6sense Status
+- type: Deprecation
+  url: https://api.6sense.com/docs/
+  name: Versioning and Deprecation Policy
+- type: ChangeLog
+  url: changelog/6sense-changelog.yml
+  name: Change Log
+- type: ChangeLog
+  url: https://support.6sense.com/docs/product-release-notes
+  name: Product Release Notes
+- type: Conformance
+  url: conformance/6sense-conformance.yml
+  name: Standards Conformance
+- type: Compliance
+  url: https://trust.6sense.com/
+  name: Compliance and Certifications
+- type: Webhooks
+  url: asyncapi/6sense-ai-email-webhooks.yml
+  name: AI Email Webhooks
+- type: AgentSkill
+  url: skills/_index.yml
+  name: Agent Skills
+- type: DataModel
+  url: data-model/6sense-data-model.yml
+  name: Data Model
+- type: Components
+  url: components/6sense-components.yml
+  name: Embeddable Components
+- type: Packages
+  url: packages/6sense-packages.yml
+  name: Packages and SDK Survey
+- type: APIReference
+  url: https://api.6sense.com/docs/
+  name: 6sense API Reference
+- type: GettingStarted
+  url: https://support.6sense.com/docs/api-credits-api-tokens
+  name: Credits and Tokens for APIs
+- type: TermsOfService
+  url: https://6sense.com/terms-of-use/
+  name: Terms of Use
+- type: Login
+  url: https://login.6sense.com/
+  name: 6sense Login
+- type: GitHubOrganization
+  url: https://github.com/6si
+  name: 6si GitHub Organization
 solutions:
 - name: AI-Powered Account-Based Marketing
   description: Identify in-market accounts, orchestrate omnichannel ABM campaigns,
@@ -187,3 +321,9 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
+
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 28
+  pass: local-v1
