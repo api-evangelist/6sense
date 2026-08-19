@@ -1,5 +1,6 @@
 aid: 6sense
 url: https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 apis:
 - aid: 6sense:6sense-company-api
   name: 6sense Company API
