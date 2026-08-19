@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: searched
+source: registry searches against npm, PyPI, RubyGems, crates.io, Maven Central and the GitHub org github.com/6si
+package_count: 0
+official_package_count: 0
+note: >-
+  6sense publishes NO first-party client libraries in any public package registry.
+  This is a measured absence, not an unchecked one: every registry below was
+  queried directly and the results are recorded. The 6sense API Portal ships
+  copy-paste code samples (cURL, XHR, Postman, NodeJS, Python) instead of an SDK,
+  and github.com/6si — 6sense's own GitHub organisation, already linked from
+  apis.yml — contains only forks of third-party infrastructure projects (Milvus,
+  Hadoop, Spark, TiDB, Presto, Bazel rules) with no 6sense client library among
+  them. Integration is expected to happen through the pre-built CRM/MAP
+  connectors and the WebTag rather than through code.
+
+packages: []
+
+third_party:
+  note: >-
+    Recorded so a future run does not mistake these for first-party. All three are
+    published by adopt.ai or an individual, not by 6sense, and none is referenced
+    by 6sense documentation. 6sense's own MCP server is a hosted remote endpoint
+    (https://api.6sense.com/mcp), not an npm package — see mcp/6sense-mcp.yml.
+  packages:
+  - language: javascript
+    registry: npm
+    name: adoptai-sixsense-mcp
+    url: https://www.npmjs.com/package/adoptai-sixsense-mcp
+    version: 0.2.21
+    published: '2026-04-27'
+    official: false
+    publisher: hmshuv-adopt (adopt.ai)
+    repository: https://github.com/adoptai/mcp-generator
+    note: Generated MCP wrapper by adopt.ai; unaffiliated with 6sense.
+  - language: javascript
+    registry: npm
+    name: adoptai-6sense-mcp
+    url: https://www.npmjs.com/package/adoptai-6sense-mcp
+    version: 1.0.0
+    published: '2026-03-06'
+    official: false
+    publisher: hmshuv-adopt (adopt.ai)
+    note: Superseded by adoptai-sixsense-mcp.
+  - language: javascript
+    registry: npm
+    name: 6sense-mcp
+    url: https://www.npmjs.com/package/6sense-mcp
+    version: 0.1.0
+    published: '2026-04-26'
+    official: false
+    publisher: zleventer
+    repository: null
+    note: >-
+      Single 0.1.0 release, no repository, no homepage, no organisation scope.
+      Individual publisher, not 6sense.
+  - language: javascript
+    registry: npm
+    name: 6sense
+    url: https://www.npmjs.com/package/6sense
+    version: 1.1.5
+    published: '2018-07-24'
+    official: false
+    note: >-
+      Name collision only. "Counting wifi/bluetooth devices" — part of the
+      unrelated 6element/pheromon IoT project. Nothing to do with 6sense Insights.
+
+distributed_not_packaged:
+- name: 6sense WebTag 2.0
+  kind: javascript-tag
+  registry: cdn
+  version: null
+  published: null
+  official: true
+  url: https://support.6sense.com/docs/set-up-6sense-webtag-20-1
+  note: >-
+    First-party client-side JavaScript, but it is not distributed through any
+    registry or as a versioned, pinnable URL. The snippet (script id
+    "6senseWebTag") is GENERATED per tenant inside the 6sense platform WebTag
+    Configurations UI and pasted inline into the customer's pages, so there is no
+    metadata endpoint to query and no version a consumer can pin or verify.
+    version and published are null because there is nothing to read, not because
+    they were not checked. See components/6sense-components.yml.
+
+registries_checked:
+- registry: npm
+  url: https://registry.npmjs.org/-/v1/search?text=6sense
+  status: 200
+  first_party_found: 0
+- registry: pypi
+  probes:
+  - {name: 6sense, status: 404}
+  - {name: sixsense, status: 404}
+  - {name: sixsense-api, status: 404}
+  - {name: sixsense-python, status: 404}
+  first_party_found: 0
+- registry: rubygems
+  probes:
+  - {name: sixsense, status: 404}
+  first_party_found: 0
+- registry: crates.io
+  probes:
+  - {name: sixsense, status: 403}
+  first_party_found: 0
+  note: crates.io returned 403 to an unauthenticated query; absence there is unverified.
+- registry: maven-central
+  url: https://search.maven.org/solrsearch/select?q=6sense
+  first_party_found: 0
+- registry: github
+  url: https://github.com/6si
+  repos_listed: 100
+  first_party_client_libraries: 0
+  note: All public repos are forks of third-party infrastructure projects.
+
+gaps:
+- No official SDK in any language.
+- No CLI.
+- No versioned, pinnable distribution for the one piece of first-party client code that exists (WebTag).

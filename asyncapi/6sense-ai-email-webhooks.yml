@@ -1,0 +1,129 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.saleswhale.com/
+spec_type: WebhookCatalog
+note: >-
+  The only event surface 6sense publishes sits on the acquired AI Email product
+  (formerly Conversational Email, formerly Saleswhale), documented at
+  docs.saleswhale.com and linked from 6sense's own knowledge base as "the API
+  documentation" for AI Email. Ownership is the acquisition case: 6sense acquired
+  Saleswhale in 2022 and still serves that product's reference from the legacy
+  domain — see https://support.6sense.com/docs/6sense-conversational-email-overview-of-api,
+  which points customers there directly. The core 6sense data APIs
+  (identification, enrichment, scoring, search) publish NO webhooks, no streaming
+  surface and no AsyncAPI; they are strictly request/response.
+
+delivery:
+  transport: http
+  method: POST
+  target: customer-configured Target URL
+  configuration: AI Email app > Account Settings > webhook Target URL
+  content_type: application/json
+  acknowledgement:
+    expected_status: 200
+    note: Any status other than 200 is treated as a failed delivery.
+  retries:
+    attempts: 4
+    strategy: exponential backoff
+    note: Up to 4 additional delivery attempts after the initial failure.
+  ordering: not guaranteed
+  latency_note: A small delay between the real-world action and webhook delivery is documented for email.sent.
+
+security:
+  scheme: hmac-sha256-query-signature
+  signature_location: query parameter
+  parameters:
+  - name: signature
+    description: SHA256 HMAC hexdigest.
+  - name: timestamp
+    description: Unix timestamp of when the webhook was sent.
+  computation: >-
+    HMAC-SHA256 hexdigest keyed with the account's Saleswhale API key, over the
+    string "<timestamp>.<raw request body>" — note the literal period separator
+    and that the RAW body must be used, not a re-serialized parse.
+  verification_guidance:
+  - Use a constant-time string comparison to protect against timing attacks.
+  - Check that the difference between now and the timestamp parameter is within your own tolerance (replay window).
+  note: >-
+    Signature and timestamp arrive as QUERY parameters rather than headers, which
+    is unusual and means they can land in access logs. The scheme itself is sound.
+
+envelope:
+  fields:
+  - name: event_name
+    type: string
+    description: Name of the event that triggered the request.
+  - name: event_time
+    type: string
+    format: iso8601
+    description: Timestamp of when the webhook was triggered.
+  - name: event_payload
+    type: object
+    description: Event-specific body.
+
+events:
+- name: conversation.ended
+  description: >-
+    Fired when a Conversation reaches a terminal state. Can fire MORE THAN ONCE
+    for the same conversation — a conversation can re-enter a terminal state
+    after a late lead reply or a human-review completion, so consumers must be
+    prepared for repeat deliveries on one conversation id.
+  payload_root: conversation
+  payload_fields:
+  - conversation.id
+  - conversation.started_at
+  - conversation.handover_rep
+  - conversation.leads[]
+  - conversation.status
+  - conversation.enrolment
+  terminal_statuses:
+  - Bounced
+  - Human Review
+  - Not Interested
+  - Qualified
+  - Stopped Responding
+  - Unresponsive
+  - Cancelled
+  note: >-
+    leads[] may contain multiple people when the lead CCs or refers a colleague.
+    is_main marks the last person who replied; is_original marks the person the
+    conversation started with.
+- name: email.sent
+  description: Fired when the AI email agent sends an email to a lead.
+  payload_root: email
+  payload_fields:
+  - email.to[]
+  - email.cc[]
+  - email.from
+  - email.snippet
+  - email.subject
+  - email.created_at
+  - email.conversation_id
+  note: snippet is truncated to a maximum of 117 characters.
+- name: lead.marked_do_not_contact
+  description: >-
+    Fired when a lead is marked Do Not Contact, or do_not_contact is set to true.
+    Marking a lead DNC cannot be reverted.
+  payload_root: lead
+  payload_fields:
+  - lead.id
+  - lead.email
+  - lead.first_name
+  - lead.last_name
+  - lead.job_title
+  - lead.follow_up_at
+  - lead.account_name
+  - lead.lead_owner
+  - lead.do_not_contact
+  - lead.custom_attribute_values[]
+  compliance_note: >-
+    This is the suppression signal. Downstream systems should treat it as
+    authoritative and irreversible.
+
+asyncapi_document: asyncapi/6sense-ai-email-asyncapi.yml
+
+gaps:
+- No AsyncAPI document is published by the provider.
+- No event catalogue or webhook surface for the core identification/enrichment/scoring APIs.
+- No webhook replay or event-history endpoint.
+- No event id in the envelope, so deduplication of the documented repeat conversation.ended deliveries must key on conversation.id plus status.

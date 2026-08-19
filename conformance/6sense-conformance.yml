@@ -1,0 +1,143 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.6sense.com/docs/, https://trust.6sense.com/, well-known/6sense-oauth-authorization-server.json
+docs:
+- https://trust.6sense.com/
+- https://api.6sense.com/docs/
+- https://support.6sense.com/docs/privacy-security-and-compliance
+note: >-
+  Two very different conformance stories in one vendor. The REST data APIs are
+  plain HTTP+JSON with a bespoke error envelope and no cross-cutting standard
+  adopted beyond OpenAPI itself. The agent surface, by contrast, is standards-
+  dense: the MCP server implements RFC 8414, RFC 9728, PKCE and dynamic client
+  registration correctly, which is more OAuth machinery than the rest of the
+  product line has combined.
+
+standards:
+- id: openapi
+  name: OpenAPI Specification
+  conforms: true
+  version: 3.0.1
+  evidence: >-
+    Provider-published, anonymously readable OpenAPI 3.0.1 at
+    https://scribe.6sense.com/openapi.json (HTTP 200), covering 12 operations on
+    the Scribe scoring/segments service. Saved verbatim at
+    openapi/6sense-scribe-openapi.json.
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    Hosted remote MCP server at https://api.6sense.com/mcp, documented for Claude,
+    ChatGPT and Microsoft Copilot Studio. Responds to an unauthenticated request
+    with a spec-correct 401 + WWW-Authenticate resource_metadata challenge.
+  release_stage: beta
+- id: oauth2
+  name: OAuth 2.0 / 2.1
+  conforms: true
+  scope: MCP server only
+  evidence: >-
+    authorization_code + PKCE (S256), client_credentials, refresh_token, CIBA,
+    JWT-bearer and token-exchange grants advertised in the authorization server
+    metadata. Not used by any REST data API.
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence: 'https://api.6sense.com/.well-known/oauth-authorization-server — HTTP 200, application/json.'
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence: >-
+    https://api.6sense.com/.well-known/oauth-protected-resource/mcp — HTTP 200,
+    and correctly advertised from the WWW-Authenticate header of a 401.
+- id: rfc7636
+  name: PKCE
+  conforms: true
+  evidence: code_challenge_methods_supported [S256].
+- id: rfc7591
+  name: OAuth 2.0 Dynamic Client Registration
+  conforms: true
+  evidence: registration_endpoint present in the authorization server metadata.
+- id: dpop
+  name: OAuth 2.0 Demonstrating Proof of Possession (RFC 9449)
+  conforms: true
+  evidence: dpop_signing_alg_values_supported advertises 10 algorithms.
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration returned 404 on every host. The agentic
+    authorization server does emit OIDC-shaped claims and a userinfo_endpoint, but
+    no OIDC discovery document is published.
+- id: rfc9457
+  name: Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    Errors use a bespoke {"status","message"} envelope, not application/problem+json.
+    See errors/6sense-problem-types.yml.
+- id: rfc8594
+  name: Sunset HTTP Header
+  conforms: false
+  evidence: >-
+    A deprecation policy is stated in prose in the API Portal but no Sunset or
+    Deprecation response header is documented or observed.
+- id: rfc9116
+  name: security.txt
+  conforms: false
+  evidence: '/.well-known/security.txt returned 404 on api, epsilon and scribe hosts.'
+- id: rfc6749-scopes
+  name: Fine-grained OAuth scopes
+  conforms: false
+  evidence: A single coarse scope, mcp:use. Entitlement is enforced by platform role instead.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published. A real webhook surface exists on the AI
+    Email product and is catalogued at asyncapi/6sense-ai-email-webhooks.yml.
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json returned 404 on
+    api.6sense.com, epsilon.6sense.com and scribe.6sense.com.
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: /graphql returned 404 on all three API hosts.
+- id: json-schema
+  name: JSON Schema
+  conforms: true
+  evidence: OpenAPI 3.0 schema objects; JSON Schema documents derived at json-schema/.
+- id: rate-limit-headers
+  name: RateLimit header fields for HTTP
+  conforms: false
+  evidence: No RateLimit-* or X-RateLimit-* headers documented; limits are prose only.
+- id: idempotency-key
+  name: Idempotency-Key header
+  conforms: false
+  evidence: No idempotency key accepted anywhere in the estate.
+
+compliance:
+  published: true
+  trust_center: https://trust.6sense.com/
+  certifications:
+  - SOC 2
+  - ISO 27001
+  - GDPR
+  privacy_docs:
+  - https://support.6sense.com/docs/privacy-security-and-compliance
+  - https://support.6sense.com/docs/contacts-and-compliance
+  regimes_addressed:
+  - GDPR
+  - CCPA
+  data_subject_rights: >-
+    6sense operates a downstream opt-out/deletion propagation process: when an
+    individual requests deletion or opt-out, 6sense flows the request to customers
+    who received that contact's data, and customers are contractually required to
+    delete unless they hold an independent legal basis.
+  contractual_gating: >-
+    Contact Data features cannot be enabled until Contact Data compliance language
+    is in the customer's MSA or Order Form, including bans on using the data for
+    credit, employment, insurance or eligibility decisions, on creating consumer
+    reports, and on resale to third parties.
+  detail: security/6sense-trust-center.yml

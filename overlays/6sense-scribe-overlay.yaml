@@ -1,0 +1,103 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for 6sense Scribe (Scoring & Segments) API
+  version: 1.0.0
+extends: openapi/6sense-scribe-openapi.json
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/6sense-scribe-openapi.json plus the artifacts in this repo
+  note: Non-destructive. Records API Evangelist cross-artifact links and captured runtime semantics; the
+    original spec is never mutated.
+  ownership_check: 'PASSED. Fetched from https://scribe.6sense.com/openapi.json (HTTP 200, application/json).
+    The spec identifies itself as 6sense''s: info.contact.url https://6sense.com/, info.contact.email
+    support@6sense.com, info.termsOfService https://6sense.com/terms-of-use/. servers[] is absent, so
+    the fetch host is the base — and scribe.6sense.com is independently confirmed as a 6sense API host
+    by the 6sense API Portal, which documents POST https://scribe.6sense.com/v2/people/score and /v2/people/full
+    as the Lead Scoring and Lead Scoring + Firmographics endpoints. No sibling-brand or third-party signal
+    anywhere in the document.'
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: 6sense
+    x-apievangelist-aid: 6sense
+    x-apievangelist-profile: https://apis.io/provider/6sense/
+    x-apievangelist-artifacts:
+      authentication: authentication/6sense-authentication.yml
+      conventions: conventions/6sense-conventions.yml
+      errors: errors/6sense-problem-types.yml
+      lifecycle: lifecycle/6sense-lifecycle.yml
+      rate-limits: rate-limits/6sense-rate-limits.yml
+      data-model: data-model/6sense-data-model.yml
+      mcp: mcp/6sense-mcp.yml
+- target: $.info
+  update:
+    x-apievangelist-credit-model: Calls may consume contract-year API Credits or 6sense Credits. See plans/6sense-plans-pricing.yml.
+      HTTP 402 means the credit pool is exhausted and is NOT retryable.
+- target: $
+  update:
+    x-apievangelist-error-envelope:
+      shape: '{"status": "error", "message": "..."}'
+      rfc9457: false
+      catalog: errors/6sense-problem-types.yml
+- target: $
+  update:
+    x-apievangelist-rate-limit:
+      requests_per_minute: 100
+      status_on_exhaustion: 429
+      status_on_quota_exhaustion: 402
+      headers: none published
+      catalog: rate-limits/6sense-rate-limits.yml
+- target: $
+  update:
+    x-apievangelist-idempotency:
+      supported: false
+      note: 6sense accepts no idempotency key anywhere in the estate.
+- target: $.paths['/v1/enrichment/company'].post
+  update:
+    x-apievangelist-operation-id: companyFirmographics
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v1/scoring/people'].post
+  update:
+    x-apievangelist-operation-id: score
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v2/people/enrichment'].post
+  update:
+    x-apievangelist-operation-id: getEnrichment
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v2/people/score'].post
+  update:
+    x-apievangelist-operation-id: getScore
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v2/people/full'].post
+  update:
+    x-apievangelist-operation-id: getScoreAndEnrichment
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v2/people'].post
+  update:
+    x-apievangelist-operation-id: scoreV2
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v1/company/products'].get
+  update:
+    x-apievangelist-operation-id: getProductsList
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/company/v1/segment/{segment_id}'].get
+  update:
+    x-apievangelist-operation-id: getAccountsList
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/company/v1/segments'].get
+  update:
+    x-apievangelist-operation-id: getSegments
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v1/company/segment/{segment_id}'].get
+  update:
+    x-apievangelist-operation-id: getAccountsList_1
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v1/company/segments'].get
+  update:
+    x-apievangelist-operation-id: getSegments_1
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v1/company/validate_access/segments'].get
+  update:
+    x-apievangelist-operation-id: validateSegment
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml

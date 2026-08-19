@@ -144,3 +144,23 @@ The schema is a conceptual representation derived from the 6sense public API doc
 - https://docs.6sense.com/
 - https://api.6sense.com/docs/
 - https://support.6sense.com/docs/6sense-api-overview
+
+---
+
+## Probe result — 2026-08-13
+
+API Evangelist probed `POST /graphql` with an introspection query against every
+6sense API host:
+
+| Host | Status |
+|---|---|
+| `https://api.6sense.com/graphql` | 404 |
+| `https://scribe.6sense.com/graphql` | 404 |
+| `https://epsilon.6sense.com/graphql` | 404 |
+
+**6sense operates no GraphQL endpoint.** This document and
+`graphql/6sense-schema.graphql` are a conceptual model of the 6sense domain
+authored by API Evangelist from the REST documentation — they are not a 6sense
+contract and cannot be called. The `type: GraphQL` pointer was removed from
+`apis.yml` on 2026-08-13 because it asserted an API surface the provider does not
+publish.

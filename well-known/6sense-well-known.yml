@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every apis.yml + OpenAPI servers[] host
+note: >-
+  Two real documents were returned. api.6sense.com serves RFC 8414 OAuth
+  Authorization Server Metadata and RFC 9728 OAuth Protected Resource Metadata,
+  both of which describe the 6sense remote MCP server at https://api.6sense.com/mcp
+  (scopes_supported: mcp:use). No security.txt, api-catalog, ai-plugin.json or
+  agent card is served on any host. 6sense.com itself sits behind a Cloudflare
+  bot challenge and answered 403 "Just a moment..." to every probe, so absence on
+  the marketing host is unproven rather than measured. support.6sense.com is a
+  Document360 SPA that answers a 200/404 HTML shell for arbitrary paths; those are
+  recorded as misses, not documents.
+hosts:
+- host: https://api.6sense.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: 6sense-oauth-authorization-server.json
+    spec: RFC 8414
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    content_type: application/json
+    file: 6sense-oauth-protected-resource-mcp.json
+    spec: RFC 9728
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://epsilon.6sense.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://scribe.6sense.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://6sense.com
+  note: Cloudflare interstitial — every path returned 403 "Just a moment...". Not a measured absence.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+- host: https://support.6sense.com
+  note: >-
+    Document360 SPA catch-all. Returns an HTML application shell for arbitrary
+    /.well-known/* paths; treated as a miss per the soft-200 rule.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+summary:
+  documents_found: 2
+  security_txt: false
+  agent_card: false
+  api_catalog: false
+  openid_configuration: false
+  oauth_metadata: true

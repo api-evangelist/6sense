@@ -1,0 +1,196 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.6sense.com/docs/
+docs:
+- https://api.6sense.com/docs/
+- https://support.6sense.com/docs/api-credits-api-tokens
+- https://docs.saleswhale.com/
+note: >-
+  Cross-cutting request/response semantics for the 6sense API estate. The estate
+  is not one API — it is four separately-versioned data APIs on three hosts plus
+  an acquired product on a fourth, and the conventions differ between them. Where
+  they differ, both are recorded rather than averaged.
+
+authentication:
+  style: api-key-header
+  header: Authorization
+  format: 'Token <api_token>'
+  scope: org-level, per API group
+  oauth: MCP server only (scope mcp:use)
+  detail: authentication/6sense-authentication.yml
+
+hosts:
+  note: >-
+    There is no single API host. The base URL is a function of which product you
+    are calling and is not derivable from the path.
+  map:
+  - host: https://epsilon.6sense.com
+    apis:
+    - Company Identification API (GET /v3/company/details)
+  - host: https://scribe.6sense.com
+    apis:
+    - Lead Scoring API (POST /v2/people/score)
+    - Lead Scoring and Firmographics API (POST /v2/people/full)
+    - Segments API (GET /v1/company/segments, /v1/company/segment/{segment_id})
+    openapi: https://scribe.6sense.com/openapi.json
+  - host: https://api.6sense.com
+    apis:
+    - Company Firmographics API (POST /v1/enrichment/company)
+    - People Enrichment API (POST /v2/enrichment/people)
+    - People Search API (POST /v2/people/search)
+    - MCP server (POST /mcp)
+  - host: https://engage-api.saleswhale.com
+    apis:
+    - AI Email API (/api/v2/...)
+
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key is documented or accepted anywhere in the 6sense estate.
+    This is low-risk for the read/enrichment APIs, which are effectively
+    idempotent GET-like POSTs, but it IS a real gap on the AI Email API where
+    "Create a Lead" and "Create an Enrolment" are state-changing and a retried
+    POST can double-enrol a lead. 6sense mitigates this with server-side
+    enrolment restrictions (a lead cannot be enrolled twice into the same campaign
+    or topic, or while a conversation is ongoing) rather than with an
+    idempotency contract.
+  mitigation: server-side enrolment uniqueness rules
+  detail: https://docs.saleswhale.com/
+
+pagination:
+  core_apis:
+    style: none
+    note: >-
+      The core data APIs are not paginated. People Search returns a bounded
+      result set governed by a "limit" property in the request body plus a
+      totalResults count; People Enrichment is capped at 25 records per request.
+  ai_email_api:
+    style: page-number
+    params:
+    - name: page
+      type: integer
+      description: Page to return. First page is 1.
+    - name: per_page
+      type: integer
+      description: Maximum number of objects per page.
+    response_envelope: meta
+    response_fields:
+    - current_page
+    - next_page
+    - prev_page
+    - total_pages
+    - total_count
+    supported_routes:
+    - List Conversations
+    - List all Campaigns
+    source: https://docs.saleswhale.com/
+
+batching:
+  supported: true
+  operations:
+  - operation: enrichPeople
+    endpoint: POST https://api.6sense.com/v2/enrichment/people
+    max_items: 25
+    note: Request body is an array; each item needs one of email, linkedInUrl or peopleId.
+  reference_keys:
+    supported: true
+    field: referenceKeys
+    description: >-
+      A caller-supplied string map echoed back on each enriched contact. This is
+      how you correlate a batch response to your own records — there is no ordering
+      guarantee documented, so use referenceKeys rather than array position.
+
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/sparse-fieldset parameter. Response shape is instead
+    controlled ADMINISTRATIVELY, per token, from the platform: "API Settings"
+    toggles whether Segments and Scores are included in Company Identification,
+    Company Firmographics, Lead Scoring and Lead Scoring + Firmographics
+    responses. Both toggles are secure-by-default (off). An agent therefore cannot
+    request score or segment data at call time, and the same request can return
+    different shapes for two tokens in the same org.
+  control: per-token platform setting
+  default: withheld
+  docs: https://support.6sense.com/docs/api-settings-segments-and-score-configurations-for-apis
+
+metadata:
+  custom_headers:
+  - header: X-6s-CustomID
+    direction: request
+    description: Client-supplied identifier for tracking, accepted by the Company Identification API.
+  - header: EpsilonCookie
+    direction: request
+    description: 6sense visitor tracking cookie, accepted by the Company Identification API.
+
+request_tracing:
+  request_id_header: null
+  documented: false
+  observed: >-
+    Live 401 responses from api.6sense.com embed a long opaque reference token
+    inline in the plain-text body ("reference: api.6sense.com/trace/..."). It is
+    not documented, not a header, and not a JSON field, so it cannot be relied on
+    programmatically — but it is what support will ask for.
+  ai_email_api: >-
+    Error objects carry a per-error "id" suitable for support correlation.
+
+versioning:
+  style: uri-path
+  detail: lifecycle/6sense-lifecycle.yml
+
+error_envelope:
+  shape: '{"status": "error", "message": "..."}'
+  rfc9457: false
+  detail: errors/6sense-problem-types.yml
+
+rate_limit_signaling:
+  headers: none documented
+  status_on_exhaustion: 429
+  status_on_quota_exhaustion: 402
+  retry_after: not documented
+  note: >-
+    No RateLimit-* or X-RateLimit-* headers are published, so an agent cannot read
+    remaining budget from a response and must model the documented limits blind.
+  detail: rate-limits/6sense-rate-limits.yml
+
+content_types:
+  request:
+  - application/json
+  - application/x-www-form-urlencoded
+  response:
+  - application/json
+  note: >-
+    Inconsistent by vintage. The older form-encoded operations (enrichCompany,
+    scoreLead, getFullLeadData) take application/x-www-form-urlencoded; the newer
+    ones (enrichPeople, searchPeople) take application/json. Both live under the
+    same token and the same portal.
+
+credits:
+  model: pre-purchased contract-year credit pools
+  pools:
+  - name: API Credits
+    consumed_by:
+    - Company Identification API
+    rule: 1 matched company = 1 API Credit; repeat identification of the same IP still counts.
+  - name: 6sense Credits
+    consumed_by:
+    - People Enrichment API
+    - Company Firmographics API
+    - Lead Scoring and Firmographics API
+    rule: 1 successfully enriched record = 1 credit; unmatched records consume nothing.
+  no_credit:
+  - People Search API
+  - Lead Scoring API
+  exhaustion_behaviour: >-
+    API stops serving on exhaustion by default; an org can opt into overage
+    billing with the "Allow APIs to work when credits are exhausted" setting.
+  detail: plans/6sense-plans-pricing.yml
+
+cross_links:
+  authentication: authentication/6sense-authentication.yml
+  scopes: scopes/6sense-scopes.yml
+  errors: errors/6sense-problem-types.yml
+  lifecycle: lifecycle/6sense-lifecycle.yml
+  rate_limits: rate-limits/6sense-rate-limits.yml
+  webhooks: asyncapi/6sense-ai-email-webhooks.yml

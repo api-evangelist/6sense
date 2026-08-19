@@ -1,0 +1,1 @@
+{"authorization_servers":["https://auth.6sense.com/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN"],"bearer_methods_supported":["header"],"resource":"https://api.6sense.com/mcp","resource_documentation":"https://api.6sense.com/docs","scopes_supported":["mcp:use"]}

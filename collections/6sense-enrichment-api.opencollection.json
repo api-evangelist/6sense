@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "6sense Firmographics Company Enrichment API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrichment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich Company By Email Or Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.6sense.com/v1/enrichment/company",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "domain",
+                  "value": ""
+                },
+                {
+                  "name": "country",
+                  "value": ""
+                },
+                {
+                  "name": "company",
+                  "value": ""
+                },
+                {
+                  "name": "industry",
+                  "value": ""
+                },
+                {
+                  "name": "title",
+                  "value": ""
+                },
+                {
+                  "name": "role",
+                  "value": ""
+                },
+                {
+                  "name": "firstname",
+                  "value": ""
+                },
+                {
+                  "name": "lastname",
+                  "value": ""
+                },
+                {
+                  "name": "leadsource",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Returns firmographic data for a company given an email or domain."
+        },
+        {
+          "info": {
+            "name": "Enrich People Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.6sense.com/v2/enrichment/people",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch enrich up to 25 contacts per request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

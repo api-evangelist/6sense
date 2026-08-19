@@ -1,0 +1,117 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.6sense.com/docs/
+docs:
+- https://api.6sense.com/docs/
+- https://support.6sense.com/docs/product-release-notes
+- https://docs.saleswhale.com/
+
+versioning:
+  scheme: uri-path
+  docs: https://api.6sense.com/docs/
+  note: >-
+    Each API carries its own major version in the path (/v1/, /v2/, /v3/) and
+    advances independently. 6sense publishes a per-API "current stable version"
+    table and keeps at least one prior version documented and callable for
+    several of them, so older versions coexist with current ones rather than
+    being removed on release.
+  current:
+  - api: Company Identification API
+    version: v3
+    path_prefix: /v3/company/details
+    host: epsilon.6sense.com
+  - api: Company Firmographics API
+    version: v3
+    previous_name: Lead Enrichment API
+    documented_older_version: v2
+    host: api.6sense.com
+  - api: Lead Scoring API
+    version: v2
+    host: scribe.6sense.com
+  - api: Lead Scoring and Firmographics API
+    version: v2
+    previous_name: Lead Enrichment and Scoring API
+    host: scribe.6sense.com
+  - api: People Enrichment API
+    version: v2
+    documented_older_version: v1
+    host: api.6sense.com
+  - api: People Search API
+    version: v2
+    documented_older_version: v1
+    host: api.6sense.com
+  - api: AI Email API
+    version: v2
+    documented_older_version: v1
+    host: engage-api.saleswhale.com
+
+deprecation:
+  policy_url: https://api.6sense.com/docs/
+  policy_published: true
+  policy_text: >-
+    "Each API will show the list of versions supported. You may receive timely
+    notifications to upgrade the APIs to the latest stable version as we will
+    deprecate the older versions which are no longer recommended to use."
+  mechanism: email/CSM notification
+  sunset_header: false
+  deprecation_header: false
+  notice_period: unpublished
+  note: >-
+    A deprecation policy exists and is stated in the API Portal, but it is a prose
+    commitment rather than a machine-readable one. No RFC 8594 Sunset or
+    Deprecation response header is documented, no notice window is quantified,
+    and no dated end-of-life schedule is published for any version. An agent
+    cannot detect an impending version retirement from the wire.
+
+deprecated_operations: []
+
+status_page:
+  url: https://status.6sense.com/
+  platform: Atlassian Statuspage
+  http_status: 200
+  components_tracked: true
+  note: Probed 2026-08-13; returns a live component/incident board.
+
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment is published. 6sense sells on annual
+    enterprise contracts and availability terms sit in the Main Services
+    Agreement rather than on a public page.
+
+release_notes:
+  product:
+    url: https://support.6sense.com/docs/product-release-notes
+    cadence: roughly quarterly, dated
+    latest: '2026-08-12'
+  data_refresh:
+    url: https://support.6sense.com/docs/monthly-company-data-refresh-release-notes-1
+    cadence: monthly
+    latest: '2026-07'
+    note: >-
+      Unusually, 6sense publishes a monthly changelog for the DATA rather than the
+      code — accounts created, junk domains removed, fields refreshed, regional
+      match-rate lift. For a data provider that is the release note that matters.
+  api:
+    url: https://docs.saleswhale.com/
+    scope: AI Email API only
+    latest: '2023-01-17'
+    note: >-
+      The only dated, per-change API changelog 6sense publishes covers the
+      acquired Saleswhale surface and has not been updated since January 2023.
+      The core data APIs have no changelog at all — version changes surface only
+      as a new number in the portal's version table.
+  detail: changelog/6sense-changelog.yml
+
+beta_program:
+  terms_url: https://support.6sense.com/docs/beta-services-terms-during-the-beta-period
+  in_beta:
+  - 6sense MCP server (https://api.6sense.com/mcp)
+  - Recommended leads for Advertising campaigns
+
+gaps:
+- No Sunset or Deprecation response headers.
+- No quantified deprecation notice period.
+- No public SLA or uptime target.
+- No changelog for the core data APIs.

@@ -1,0 +1,323 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/6sense-company-api-openapi.yml, openapi/6sense-enrichment-api-openapi.yml,
+  openapi/6sense-people-api-openapi.yml, openapi/6sense-scribe-openapi.json
+docs:
+- https://api.6sense.com/docs/
+- https://support.6sense.com/docs/6sense-company-accounts
+note: >-
+  Entity graph derived from the $ref links and id-reference fields in the four
+  OpenAPI documents in openapi/, enriched with identifier semantics from the API
+  Portal and the Company Accounts knowledge-base page. The estate has no
+  resource-URL model — nothing is addressable by id, every operation is a lookup
+  keyed on an external identifier (IP address, email, domain, LinkedIn URL) — so
+  the relationships below are response-composition relationships rather than REST
+  resource links.
+
+identifiers:
+- field: companyId
+  entity: Company
+  type: string
+  issued_by: 6sense Master Company Database (MCD)
+  addressable: false
+  note: >-
+    Returned on every company response but there is no GET /company/{companyId}.
+    You cannot fetch a company by its 6sense id; the domain is the working key.
+- field: peopleId
+  entity: Contact
+  type: string
+  issued_by: 6sense
+  addressable: false
+  note: >-
+    Returned by searchPeople as PersonSummary.id and accepted as INPUT by
+    enrichPeople. This is the one genuine two-step id flow in the estate:
+    People Search returns ids and booleans (hasEmail, hasPhone), People Enrichment
+    exchanges an id for the actual contact details and burns a credit.
+- field: segment_id
+  entity: Segment
+  type: integer
+  addressable: true
+  note: >-
+    The only path-addressable resource in the estate —
+    GET /v1/company/segment/{segment_id} on the Scribe host. Partner-token only.
+- field: domain
+  entity: Company
+  type: string
+  role: primary practical key
+- field: email
+  entity: Contact
+  type: string
+  role: primary practical key
+- field: referenceKeys
+  entity: Contact
+  type: map<string,string>
+  role: caller-supplied correlation key echoed back on batch enrichment
+
+entities:
+- name: Company
+  aliases:
+  - Account
+  description: >-
+    A company record from the 6sense Master Company Database. Refreshed monthly;
+    roughly 76.2M country-level accounts as of the July 2026 refresh.
+  schemas:
+  - openapi/6sense-company-api-openapi.yml#/components/schemas/Company
+  - openapi/6sense-enrichment-api-openapi.yml#/components/schemas/Company
+  - openapi/6sense-people-api-openapi.yml#/components/schemas/Company
+  key_fields:
+  - companyId
+  - domain
+  - name
+  field_groups:
+    firmographic:
+    - industry
+    - industry_v2
+    - employee_range
+    - employee_count
+    - revenue_range
+    - annual_revenue
+    classification:
+    - sic
+    - sic_description
+    - naics
+    - naics_description
+    geography:
+    - region
+    - country
+    - country_iso_code
+    - state
+    - city
+    - address
+    - zip
+    geoip:
+    - geoIP_country
+    - geoIP_state
+    - geoIP_city
+    match_quality:
+    - company_match
+    - additional_comment
+    - is_blacklisted
+    - is_6qa
+  warning: >-
+    Field naming is NOT consistent across the estate. The Company Identification
+    response uses snake_case (employee_range, country_iso_code, sic_description)
+    while the Enrichment and People responses use camelCase (employeeRange,
+    countryISOCode, sicdescription). A client cannot reuse one Company parser
+    across the three APIs.
+
+- name: ProductScore
+  aliases:
+  - Score
+  description: >-
+    Predictive scoring for one company or contact against ONE product. Always an
+    array — a customer with several products gets one row per product, so there
+    is no single "the score" for an account.
+  schemas:
+  - openapi/6sense-company-api-openapi.yml#/components/schemas/ProductScore
+  - openapi/6sense-people-api-openapi.yml#/components/schemas/Score
+  - openapi/6sense-people-api-openapi.yml#/components/schemas/Score_2
+  key_fields:
+  - product
+  - product_display_name
+  enums:
+    buying_stage:
+    - Purchase
+    - Decision
+    - Consideration
+    - Awareness
+    - Target
+    profile_fit:
+    - Strong
+    - Moderate
+    - Weak
+    contact_grade:
+    - A
+    - B
+    - C
+    - D
+  measures:
+  - intent_score (0-100)
+  - profile_score (0-100)
+  - company_intent_score
+  - company_profile_score
+  - contact_intent_score
+  - contact_profile_score
+  - is_6qa
+  visibility: >-
+    Withheld unless the per-token Score setting is enabled in API Settings.
+
+- name: Segment
+  description: A named account or contact segment published from the 6sense platform.
+  schemas:
+  - openapi/6sense-company-api-openapi.yml#/components/schemas/Segments
+  key_fields:
+  - id
+  - name
+  visibility: >-
+    Withheld unless the per-token Segments setting is enabled in API Settings.
+  operations:
+  - openapi/6sense-scribe-openapi.json#getSegments
+  - openapi/6sense-scribe-openapi.json#getAccountsList
+  - openapi/6sense-scribe-openapi.json#validateSegment
+
+- name: Contact
+  aliases:
+  - Lead
+  - Person
+  description: An individual business contact, enriched or searched.
+  schemas:
+  - openapi/6sense-enrichment-api-openapi.yml#/components/schemas/EnrichedContact
+  - openapi/6sense-people-api-openapi.yml#/components/schemas/PersonSummary
+  key_fields:
+  - id
+  - email
+  - linkedinUrl
+  - peopleId
+  field_groups:
+    identity:
+    - fullName
+    - firstName
+    - lastName
+    - location
+    role:
+    - jobTitle
+    - jobFunction
+    - jobLevel
+    - jobSeniority
+    contactability:
+    - email
+    - emailConfidence
+    - phone
+    - mobilePhone
+    social:
+    - linkedinUrl
+    - linkedinId
+    - twitterHandle
+    profile:
+    - skills
+    - education
+  enums:
+    emailConfidence:
+    - A+
+    - A
+    - B
+    - C
+  privacy_note: >-
+    This entity is personal data. Its availability is contractually gated — see
+    conformance/6sense-conformance.yml compliance.contractual_gating — and
+    6sense propagates opt-out and deletion requests downstream to customers.
+
+- name: PersonSummary
+  description: >-
+    The reduced Contact projection returned by People Search. Deliberately withholds
+    the contact details and returns only hasEmail / hasPhone / hasMobilePhone
+    booleans, so search is free and enrichment costs a credit.
+  schemas:
+  - openapi/6sense-people-api-openapi.yml#/components/schemas/PersonSummary
+
+- name: Education
+  description: Nested school/degree history on an enriched contact.
+  schemas:
+  - openapi/6sense-enrichment-api-openapi.yml#/components/schemas/EnrichedContact
+
+- name: Product
+  description: >-
+    A customer-configured product line that predictive models score against.
+    Listed by getProductsList on the Scribe host.
+  operations:
+  - openapi/6sense-scribe-openapi.json#getProductsList
+
+relationships:
+- from: CompanyDetailsResponse
+  to: Company
+  type: has_one
+  via: company
+  source: openapi/6sense-company-api-openapi.yml
+- from: CompanyDetailsResponse
+  to: ProductScore
+  type: has_many
+  via: scores
+  source: openapi/6sense-company-api-openapi.yml
+- from: CompanyDetailsResponse
+  to: Segment
+  type: has_one
+  via: segments
+  source: openapi/6sense-company-api-openapi.yml
+- from: FirmographicsResponse
+  to: Company
+  type: has_one
+  via: company
+  source: openapi/6sense-enrichment-api-openapi.yml
+- from: FirmographicsResponse
+  to: Segment
+  type: has_one
+  via: segments
+  source: openapi/6sense-enrichment-api-openapi.yml
+- from: FullLeadResponse
+  to: Company
+  type: has_one
+  via: company
+  source: openapi/6sense-people-api-openapi.yml
+- from: FullLeadResponse
+  to: ProductScore
+  type: has_many
+  via: scores
+  source: openapi/6sense-people-api-openapi.yml
+- from: FullLeadResponse
+  to: Segment
+  type: has_one
+  via: segments
+  source: openapi/6sense-people-api-openapi.yml
+- from: ScoringResponse
+  to: ProductScore
+  type: has_many
+  via: scores
+  source: openapi/6sense-people-api-openapi.yml
+- from: EnrichmentResponse
+  to: Contact
+  type: has_many
+  via: contacts
+  source: openapi/6sense-enrichment-api-openapi.yml
+- from: Contact
+  to: Company
+  type: belongs_to
+  via: company
+  source: openapi/6sense-enrichment-api-openapi.yml
+- from: Contact
+  to: Education
+  type: has_many
+  via: education
+  source: openapi/6sense-enrichment-api-openapi.yml
+- from: PeopleSearchResponse
+  to: PersonSummary
+  type: has_many
+  via: people
+  source: openapi/6sense-people-api-openapi.yml
+- from: PersonSummary
+  to: Contact
+  type: has_one
+  via: id -> peopleId
+  binding: cross-api
+  source: >-
+    searchPeople returns PersonSummary.id; enrichPeople accepts it as peopleId.
+    The only id handoff between two 6sense operations.
+- from: Segment
+  to: Company
+  type: has_many
+  via: segment_id
+  source: openapi/6sense-scribe-openapi.json#getAccountsList
+- from: ProductScore
+  to: Product
+  type: belongs_to
+  via: product
+  source: openapi/6sense-scribe-openapi.json#getProductsList
+
+resolution_keys:
+  ip_to_company: getCompanyDetails
+  email_or_domain_to_company: enrichCompany
+  email_to_score: scoreLead
+  email_to_company_and_score: getFullLeadData
+  domain_to_people: searchPeople
+  peopleId_or_email_or_linkedin_to_contact: enrichPeople
+
+render: null

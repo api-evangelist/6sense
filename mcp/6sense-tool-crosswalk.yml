@@ -1,0 +1,136 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/6sense-mcp.yml, openapi/6sense-scribe-openapi.json, openapi/6sense-company-api-openapi.yml,
+  openapi/6sense-enrichment-api-openapi.yml, openapi/6sense-people-api-openapi.yml
+note: >-
+  The live MCP tools/list is OAuth-gated (HTTP 401), so no tool NAMES were
+  observed. Rows below are keyed on the CAPABILITIES 6sense publishes on its MCP
+  overview page, mapped by semantics onto real operationIds verified present in
+  the specs in openapi/. Confidence is set accordingly and no tool name is
+  asserted as the server's own. The headline finding is a genuine surface
+  divergence: the 6sense MCP server projects Revvy AI reporting/analytics over the
+  Revenue Marketing platform, while the public REST APIs are record-level
+  enrichment and scoring. The two surfaces barely overlap.
+
+surfaces:
+  openapi:
+  - file: openapi/6sense-scribe-openapi.json
+    source: https://scribe.6sense.com/openapi.json
+    status: provider-published, anonymous, HTTP 200
+    operations: 12
+  - file: openapi/6sense-company-api-openapi.yml
+    status: curated from the 6sense API Portal
+    operations: 1
+  - file: openapi/6sense-enrichment-api-openapi.yml
+    status: curated from the 6sense API Portal
+    operations: 2
+  - file: openapi/6sense-people-api-openapi.yml
+    status: curated from the 6sense API Portal
+    operations: 4
+  graphql:
+    endpoint: null
+    status: none
+    note: >-
+      /graphql returned 404 on api.6sense.com, scribe.6sense.com and
+      epsilon.6sense.com. graphql/6sense-graphql.md in this repo is a conceptual
+      model authored by API Evangelist, not a 6sense endpoint, and is not a
+      crosswalk source.
+  mcp:
+    url: https://api.6sense.com/mcp
+    status: gated
+    note: tools/list returns HTTP 401; OAuth scope mcp:use required.
+
+crosswalk:
+- tool: account-insights
+  category: reporting
+  rest:
+  - getCompanyDetails
+  - companyFirmographics
+  binding: rest
+  confidence: low
+  note: >-
+    Partial overlap only. The REST operations return firmographics plus product
+    scores for one company; the MCP capability is described as a narrative
+    account brief over activity and engagement signals, which has no public REST
+    equivalent.
+- tool: account-filtering-and-segment-discovery
+  category: reporting
+  rest:
+  - getSegments
+  - getSegments_1
+  - getAccountsList
+  - getAccountsList_1
+  - validateSegment
+  binding: rest
+  confidence: medium
+  note: >-
+    The Segments operations in the Scribe spec list segments and enumerate their
+    member accounts, which is the closest REST analogue to segment discovery.
+    6sense documents the Segments API token as partner-only and not
+    self-serviceable from the platform UI.
+
+mcp_only:
+- tool: 6qa-trend-analysis
+  reason: >-
+    6QA volume over time and un-engaged 6QA accounts are computed inside the
+    Revenue Marketing platform. No public REST operation returns 6QA history; the
+    is_6qa boolean on the Company schema is point-in-time only.
+- tool: keyword-performance
+  reason: Intent keyword performance and trend data have no public REST endpoint.
+- tool: ad-campaign-performance
+  reason: Advertising campaign metrics have no public REST endpoint.
+- tool: website-activity
+  reason: >-
+    Site-visit and page-view aggregation is a platform report. The Company
+    Identification API resolves a single IP to a company; it does not return
+    visit history.
+- tool: market-research
+  reason: Generative research over competitors, personas and market news. No REST backing at all.
+- tool: product-support
+  reason: >-
+    Retrieval over the 6sense knowledge base. The nearest public artifact is
+    https://support.6sense.com/llms.txt, not an API operation.
+
+rest_only:
+- capability: Contact enrichment
+  operations:
+  - enrichPeople
+  - getEnrichment
+  reason: MCP is read-only reporting; it does not expose record-level contact enrichment.
+- capability: Contact search
+  operations:
+  - searchPeople
+  - getSearchDictionary
+  reason: No MCP equivalent documented.
+- capability: Lead scoring
+  operations:
+  - scoreLead
+  - score
+  - getScore
+  - scoreV2
+  - getFullLeadData
+  - getScoreAndEnrichment
+  reason: Predictive lead scoring is not exposed as an MCP capability.
+- capability: Company enrichment
+  operations:
+  - enrichCompany
+  reason: Not exposed as an MCP capability.
+- capability: Product catalog
+  operations:
+  - getProductsList
+  reason: Not exposed as an MCP capability.
+
+coverage:
+  documented_mcp_capabilities: 8
+  capabilities_bound_to_rest: 2
+  mcp_only: 6
+  rest_operations_total: 19
+  rest_operations_with_a_capability: 7
+  rest_only_operations: 12
+  tool_names_observed: 0
+  note: >-
+    rest_operations_total counts the 12 operations in the provider-published
+    Scribe spec plus the 7 in the curated portal specs. Several are duplicates
+    across the two sources (for example companyFirmographics and enrichCompany
+    both describe POST /v1/enrichment/company); the count is of spec operations,
+    not distinct endpoints.

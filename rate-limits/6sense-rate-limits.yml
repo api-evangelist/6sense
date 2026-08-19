@@ -4,8 +4,12 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: 6sense
 providerId: 6sense
 created: '2026-05-25'
-modified: '2026-05-25'
+modified: '2026-08-13'
 reconciled: false
+generated: '2026-08-13'
+method: searched
+source: https://api.6sense.com/docs/
+limit_count: 6
 tags:
   - Rate Limiting
   - Quotas
@@ -21,6 +25,21 @@ responseCodes:
   throttled: 429
   quotaExceeded: 402
 algorithm: fixed-window
+responseHeaders:
+  rateLimitHeaders: []
+  retryAfter: false
+  note: |
+    6sense publishes NO rate-limit response headers. There is no RateLimit-*,
+    no X-RateLimit-*, and no Retry-After on a 429. The only runtime signals an
+    agent gets are the status codes themselves: 429 for throttling and 402 for
+    credit-pool exhaustion. Remaining budget cannot be read from the wire at all;
+    credit balances are visible only in the platform UI under Settings > Credits.
+    This is the single biggest agent-readiness gap in the 6sense API surface —
+    a client must model the documented limits blind and cannot distinguish
+    "nearly out" from "plenty left" until it is refused.
+  statusSemantics:
+    429: Retryable. Rate limit exceeded; back off on your own schedule.
+    402: NOT retryable. Contract-year credit pool exhausted; requires a human to top up or to enable overage billing.
 limits:
   - api: Company Identification API
     endpoint: GET https://epsilon.6sense.com/v3/company/details

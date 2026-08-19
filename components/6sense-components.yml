@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.6sense.com/docs/set-up-6sense-webtag-20-1
+docs:
+- https://support.6sense.com/docs/set-up-6sense-webtag-20-1
+- https://support.6sense.com/docs/webtag-20-guide-install-the-company-identification-api-on-google-tag-manager-and-ga4
+- https://support.6sense.com/docs/webtag-20-guide-install-the-company-identification-api-on-adobe-launch-data-collection
+note: >-
+  6sense ships client-side surfaces but not a component library in the usual
+  sense — there is no element package, no loader script on a public CDN and no
+  npm distribution. Everything below is either a per-tenant generated snippet or
+  a browser extension installed from a vendor store.
+
+families:
+- family: web-tag
+  name: 6sense WebTag 2.0
+  kind: javascript-tag
+  official: true
+  distribution: per-tenant generated snippet, pasted inline
+  loader: null
+  versioned: false
+  element_id: 6senseWebTag
+  description: >-
+    First-party JavaScript tag that identifies anonymous visitors, feeds the
+    Signalverse intent graph, and powers Smart Form Fill and web personalisation.
+    Must be placed on every page including microsites, landing pages and
+    conversion pages.
+  capabilities:
+  - anonymous visitor company identification
+  - page metadata capture (including the HTML meta description value)
+  - Smart Form Fill
+  - Company Identification API client-side invocation
+  deployment_methods:
+  - inline in page HTML (preferred by 6sense)
+  - Google Tag Manager
+  - Adobe Launch / Adobe Data Collection
+  constraints:
+  - 6sense states the WebTag supports HTTP/1.1 only, not HTTP/2.
+  - Not compatible with the legacy 6sense Adobe Launch Extension App; the extension must be replaced.
+  - Requires placement inside the iframe for Salesforce Marketing Cloud Account Engagement (Pardot) forms to drive Smart Form Fill.
+  migration:
+    from: Legacy WebTag 1.0
+    note: >-
+      2.0 replaces 1.0 rather than coexisting; existing tags must be removed. Orgs
+      running the Company Identification API through GTM need a separate migration
+      guide.
+  api_backing: openapi/6sense-company-api-openapi.yml#getCompanyDetails
+  token_note: >-
+    The WebTag generates and manages its own API token. 6sense explicitly warns
+    against creating a Company Identification API token for WebTag 2.0.
+
+- family: browser-extension
+  name: 6sense Chrome Extension
+  kind: browser-extension
+  official: true
+  distribution: Chrome Web Store
+  description: >-
+    Sales Intelligence surface that overlays 6sense account and contact
+    intelligence on LinkedIn and other prospecting surfaces.
+  note: >-
+    Referenced in 6sense product and plan documentation as part of the Sales
+    Intelligence / Team offering. Not a developer-embeddable component.
+
+- family: embedded-forms
+  name: Smart Form Fill
+  kind: hosted-behaviour
+  official: true
+  description: >-
+    Progressive form shortening and auto-population driven by the WebTag and the
+    enrichment APIs. Configured in the platform, not instantiated in code.
+  docs: https://support.6sense.com/docs/data-workflows-versus-smart-form-fills-for-enrichment
+
+not_published:
+- Web component / custom element library
+- npm-distributed UI package
+- Embeddable dashboard or iframe widget with a documented public URL
+- Public CDN loader with a pinnable version

@@ -4,8 +4,23 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: 6sense
 providerId: 6sense
 created: '2026-05-25'
-modified: '2026-05-25'
+modified: '2026-08-13'
 reconciled: false
+generated: '2026-08-13'
+method: searched
+source: https://6sense.com/pricing
+plan_count: 4
+listPricingPublished: false
+pricingNote: |
+  6sense publishes NO list pricing. Every tier below is contract-negotiated and
+  gated by a sales conversation; the named editions are real but no unit price,
+  seat price or credit price is published for any of them. Recorded as
+  price: contact-sales rather than omitted, so the gate itself is measurable.
+  The API-relevant commercial unit is not a plan at all — it is the contract-year
+  credit pool (API Credits for Company Identification, 6sense Credits for the
+  Enrichment APIs), which is why an exhausted pool surfaces as HTTP 402 rather
+  than as a plan limit. See conventions/6sense-conventions.yml and
+  rate-limits/6sense-rate-limits.yml.
 tags:
   - ABM
   - Intent Data

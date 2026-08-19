@@ -1,0 +1,56 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for 6sense Enrichment API
+  version: 1.0.0
+extends: openapi/6sense-enrichment-api-openapi.yml
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/6sense-enrichment-api-openapi.yml plus the artifacts in this repo
+  note: Non-destructive. Records API Evangelist cross-artifact links and captured runtime semantics; the
+    original spec is never mutated.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: 6sense
+    x-apievangelist-aid: 6sense
+    x-apievangelist-profile: https://apis.io/provider/6sense/
+    x-apievangelist-artifacts:
+      authentication: authentication/6sense-authentication.yml
+      conventions: conventions/6sense-conventions.yml
+      errors: errors/6sense-problem-types.yml
+      lifecycle: lifecycle/6sense-lifecycle.yml
+      rate-limits: rate-limits/6sense-rate-limits.yml
+      data-model: data-model/6sense-data-model.yml
+      mcp: mcp/6sense-mcp.yml
+- target: $.info
+  update:
+    x-apievangelist-credit-model: Calls may consume contract-year API Credits or 6sense Credits. See plans/6sense-plans-pricing.yml.
+      HTTP 402 means the credit pool is exhausted and is NOT retryable.
+- target: $
+  update:
+    x-apievangelist-error-envelope:
+      shape: '{"status": "error", "message": "..."}'
+      rfc9457: false
+      catalog: errors/6sense-problem-types.yml
+- target: $
+  update:
+    x-apievangelist-rate-limit:
+      requests_per_minute: 100
+      status_on_exhaustion: 429
+      status_on_quota_exhaustion: 402
+      headers: none published
+      catalog: rate-limits/6sense-rate-limits.yml
+- target: $
+  update:
+    x-apievangelist-idempotency:
+      supported: false
+      note: 6sense accepts no idempotency key anywhere in the estate.
+- target: $.paths['/v1/enrichment/company'].post
+  update:
+    x-apievangelist-operation-id: enrichCompany
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml
+- target: $.paths['/v2/enrichment/people'].post
+  update:
+    x-apievangelist-operation-id: enrichPeople
+    x-apievangelist-agentic-access: agentic-access/6sense-agentic-access.yml

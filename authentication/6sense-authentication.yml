@@ -1,23 +1,145 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/6sense-company-firmographics-api-openapi.yml, openapi/6sense-company-identification-api-openapi.yml,
-  openapi/6sense-lead-scoring-api-openapi.yml, openapi/6sense-lead-scoring-firmographics-api-openapi.yml,
-  openapi/6sense-people-enrichment-api-openapi.yml, openapi/6sense-people-search-api-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/6sense-scribe-openapi.json, openapi/6sense-company-api-openapi.yml,
+  openapi/6sense-enrichment-api-openapi.yml, openapi/6sense-people-api-openapi.yml,
+  well-known/6sense-oauth-authorization-server.json
+docs:
+- https://api.6sense.com/docs/
+- https://support.6sense.com/docs/api-credits-api-tokens
+- https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
+note: >-
+  6sense runs three separate authentication regimes, and which one applies is
+  decided by which product you are calling — not by which endpoint. The public
+  data APIs use a 40-character org-level API token in the Authorization header;
+  the remote MCP server uses per-user OAuth 2.1 with dynamic client registration;
+  and the acquired AI Email (Saleswhale) API uses a token passed as a query
+  parameter or JSON body property, which is the weakest of the three.
+
 summary:
   types:
   - apiKey
+  - oauth2
   api_key_in:
   - header
+  - query
+  - body
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+
 schemes:
 - name: TokenAuth
   type: apiKey
   in: header
   parameter: Authorization
-  description: 'Token-based auth. Format: `Token <api_token>`.'
+  format: 'Token <api_token>'
+  description: >-
+    Org-level 6sense API token, a randomly generated 40-character alphanumeric
+    key. Tokens are scoped to an API GROUP rather than to endpoints or data:
+    a Company Identification token only works on the Company Identification API,
+    a 6sense Credits token only on the Enrichment APIs, and so on.
+  token_groups:
+  - group: Company Identification API
+    self_service: true
+    credit_model: API Credits
+    extras: Allowed-domains allowlist can be attached to restrict where the token may be used.
+  - group: 6sense Credits (Enrichment)
+    self_service: true
+    credit_model: 6sense Credits
+    applies_to:
+    - People Enrichment API
+    - Company Firmographics API
+    - Lead Scoring and Firmographics API
+  - group: Lead Scoring API
+    self_service: true
+    credit_model: none
+    requires: Predictive or Advanced package
+  - group: Segments API
+    self_service: false
+    credit_model: none
+    note: Issued only to approved partners over email or a support ticket; never visible in the platform UI.
+  - group: Sales Intelligence App
+    self_service: false
+    credit_model: none
+    note: Revenue AI for Sales customers only; obtained through support.
+  management:
+    console: 6sense platform Settings > API Token management
+    roles_write:
+    - Primary Admin
+    - Admin
+    - Operations
+    roles_read:
+    - Marketing
+    - View only
+    roles_none:
+    - Insights
+    - Sales
+    rotation_guidance: 6sense recommends rotating API tokens every 90 days.
+    revocation: Tokens can be deleted from the console; usage history is retained for 12 months.
+    limit: No published cap on the number of tokens per org.
   sources:
-  - openapi/6sense-company-firmographics-api-openapi.yml
-  - openapi/6sense-company-identification-api-openapi.yml
-  - openapi/6sense-lead-scoring-api-openapi.yml
-  - openapi/6sense-lead-scoring-firmographics-api-openapi.yml
-  - openapi/6sense-people-enrichment-api-openapi.yml
-  - openapi/6sense-people-search-api-openapi.yml
+  - openapi/6sense-scribe-openapi.json
+  - openapi/6sense-company-api-openapi.yml
+  - openapi/6sense-enrichment-api-openapi.yml
+  - openapi/6sense-people-api-openapi.yml
+
+- name: API_KEY
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: >-
+    The securityScheme name used in the provider-published Scribe OpenAPI at
+    https://scribe.6sense.com/openapi.json. Same credential and same header as
+    TokenAuth above; only the scheme name differs between the published spec and
+    the API Portal documentation.
+  sources:
+  - openapi/6sense-scribe-openapi.json
+
+- name: 6sense Agentic OAuth (MCP)
+  type: oauth2
+  description: >-
+    Per-user OAuth for the remote MCP server at https://api.6sense.com/mcp.
+    Discovered anonymously via RFC 9728 protected-resource metadata advertised in
+    the WWW-Authenticate header of an unauthenticated MCP request. Supports
+    dynamic client registration, PKCE (S256) and DPoP.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/authorize
+    tokenUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/token
+    scopes:
+      mcp:use: Call the 6sense MCP server on behalf of the consenting user.
+  - flow: clientCredentials
+    tokenUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/token
+  detail: scopes/6sense-scopes.yml
+  sources:
+  - well-known/6sense-oauth-authorization-server.json
+  - well-known/6sense-oauth-protected-resource-mcp.json
+
+- name: Saleswhale token (AI Email)
+  type: apiKey
+  in: query
+  parameter: token
+  alternate_in: body
+  alternate_parameter: token
+  description: >-
+    The AI Email (formerly Conversational Email, formerly Saleswhale) API at
+    https://engage-api.saleswhale.com/api/{version}/ authenticates with a token
+    passed either as a ?token= query parameter or as a top-level "token" property
+    in the JSON request body. There is no header-based option documented. A query
+    parameter credential is logged by intermediaries and proxies by default, so
+    this is materially weaker than the header token used by the core data APIs.
+  docs: https://docs.saleswhale.com/
+  sources:
+  - https://docs.saleswhale.com/
+
+security_posture:
+  transport: HTTPS only on all hosts probed (TLS 1.3).
+  server_side_only: >-
+    6sense explicitly requires the Enrichment APIs to be server-to-server and
+    warns the token must never be exposed on a public domain. The Company
+    Identification API is the deliberate exception — it is designed for
+    client-side use inside the WebTag, which is why it is the only token group
+    that can be pinned to an allowed-domain list.
+  default_deny_on_settings: >-
+    Score and Segment detail are withheld by default on API token settings and
+    must be explicitly enabled per token.

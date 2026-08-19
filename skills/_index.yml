@@ -1,0 +1,43 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/ specs in this repo plus https://api.6sense.com/docs/ and https://support.6sense.com/
+note: >-
+  Packaged agent skills for the marquee 6sense flows. Every step is grounded in an
+  operationId verified present in the specs in openapi/ (or, for the MCP skill, in
+  the probed .well-known documents in well-known/). Nothing is invented. Where the
+  live contract is auth-gated — the MCP tool list — the skill says so rather than
+  guessing.
+skills:
+- file: 6sense-identify-website-visitor.md
+  name: Identify an anonymous website visitor
+  description: Resolve a visitor IP to a company, firmographics, buying stage and segment membership.
+  api: openapi/6sense-company-api-openapi.yml
+  host: https://epsilon.6sense.com
+  operations:
+  - getCompanyDetails
+- file: 6sense-enrich-and-score-a-lead.md
+  name: Enrich and score an inbound lead
+  description: Turn a form-fill email into firmographics plus product-level predictive scores, choosing the cheapest operation that answers the question.
+  api: openapi/6sense-people-api-openapi.yml
+  hosts:
+  - https://scribe.6sense.com
+  - https://api.6sense.com
+  operations:
+  - getFullLeadData
+  - scoreLead
+  - enrichCompany
+- file: 6sense-find-and-enrich-contacts.md
+  name: Find contacts at an account and enrich them
+  description: Free search to shortlist people, then a batched credit-consuming enrichment keyed on referenceKeys.
+  api: openapi/6sense-people-api-openapi.yml
+  host: https://api.6sense.com
+  operations:
+  - getSearchDictionary
+  - searchPeople
+  - enrichPeople
+- file: 6sense-connect-the-mcp-server.md
+  name: Connect an agent to the 6sense MCP server
+  description: OAuth-authorize a remote MCP client against https://api.6sense.com/mcp and understand the read-only, Revvy-scoped boundary.
+  api: mcp/6sense-mcp.yml
+  endpoint: https://api.6sense.com/mcp
+  operations: []

@@ -1,0 +1,128 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
+docs:
+- https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
+- https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
+- https://support.6sense.com/docs/set-up-the-6sense-mcp-in-chatgpt
+- https://support.6sense.com/docs/set-up-the-6sense-mcp-in-ms-copilot
+
+deployment:
+  mode: remote
+  endpoint: https://api.6sense.com/mcp
+  auth: oauth
+  verified: probed
+  note: >-
+    Verified by probe, not by vendor claim. POST tools/list to
+    https://api.6sense.com/mcp returned HTTP 401 with
+    WWW-Authenticate: Bearer resource_metadata="https://api.6sense.com/.well-known/oauth-protected-resource/mcp",
+    and that metadata document (HTTP 200) names resource
+    https://api.6sense.com/mcp with scopes_supported [mcp:use]. No stdio package
+    is published by 6sense; the npm packages matching "6sense mcp"
+    (6sense-mcp, adoptai-sixsense-mcp, adoptai-6sense-mcp) are third-party and
+    are recorded in packages/6sense-packages.yml as unofficial.
+
+server:
+  name: 6sense MCP
+  transport: http
+  url: https://api.6sense.com/mcp
+  release_stage: beta
+  beta_terms: https://support.6sense.com/docs/beta-services-terms-during-the-beta-period
+  read_only: true
+  clients_documented:
+  - Claude (custom connector)
+  - ChatGPT
+  - Microsoft Copilot Studio
+
+authorization:
+  scheme: OAuth 2.1 authorization code + PKCE
+  protected_resource_metadata: https://api.6sense.com/.well-known/oauth-protected-resource/mcp
+  authorization_server_metadata: https://api.6sense.com/.well-known/oauth-authorization-server
+  issuer: https://auth.6sense.com/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN
+  scopes:
+  - mcp:use
+  dynamic_client_registration: true
+  code_challenge_methods:
+  - S256
+  bearer_methods:
+  - header
+  per_user_consent: true
+  note: >-
+    Authorization is per user. Docs state each user must individually authorize,
+    and access is scoped to the data that user can already see in 6sense.
+
+tools:
+  introspection: gated
+  introspection_evidence:
+    method: tools/list
+    url: https://api.6sense.com/mcp
+    http_status: 401
+    body: >-
+      Your API token is invalid or auth token is invalid or missing
+      authorization header.
+  note: >-
+    The live tool list and its inputSchemas require an authenticated OAuth
+    session, so no tool names or schemas are recorded here. What follows is the
+    provider-documented CAPABILITY surface from the MCP overview page, not a
+    tools/list response. Tool names below are NOT asserted — only the scenarios
+    6sense publishes.
+  documented_capabilities:
+  - capability: Account insights
+    category: reporting
+    description: Account activity, engagement and buying signals for a named account.
+    example_query: What are the most important things to know about this account before our team engages?
+  - capability: 6QA trend analysis
+    category: reporting
+    description: 6sense Qualified Account volume over time, accounts without follow-up, trend comparison.
+    example_query: Which accounts became 6QA in the last two weeks that we haven't engaged yet?
+  - capability: Keyword performance
+    category: reporting
+    description: Top-performing intent keywords, keyword trends, intent gaps.
+    example_query: Show me keywords where intent has increased significantly in the last 30 days.
+  - capability: Ad campaign performance
+    category: reporting
+    description: Impressions, engagement and performance by predictive buying stage.
+    example_query: How is display spend performing against accounts in the Decision stage?
+  - capability: Website activity
+    category: reporting
+    description: Accounts that visited the site, pages viewed, engagement behaviour.
+    example_query: Show most engaged accounts by website visits in the last 30 days.
+  - capability: Account filtering and segment discovery
+    category: reporting
+    description: Segment membership exploration and filter-based account discovery; links into the Segments UI.
+    example_query: Show me accounts in the Decision stage in my ICP that visited pricing this month.
+  - capability: Market research
+    category: research
+    description: Competitor analysis, industry trends, persona and GTM recommendations, market/company news summaries.
+    example_query: Within my company's industry, what are the highest-priority problems our target customers are trying to solve?
+  - capability: Product support
+    category: support
+    description: How-to, troubleshooting and product questions about 6sense itself.
+    example_query: How do I set up a mapping profile to enrich contacts in CRM?
+
+constraints:
+  read_only: true
+  writes_supported: false
+  entitlement: Revenue Marketing platform access required; Sales Intelligence-only orgs get limited data during beta.
+  coverage_note: >-
+    6sense states MCP exposes the same data and capabilities as Revvy AI, not the
+    full 6sense data estate, and does not execute actions or modify data.
+
+x-evidence:
+  fetched: '2026-08-13'
+  probes:
+  - url: https://api.6sense.com/mcp
+    method: POST tools/list
+    http_status: 401
+    www_authenticate: Bearer resource_metadata="https://api.6sense.com/.well-known/oauth-protected-resource/mcp"
+  - url: https://api.6sense.com/.well-known/oauth-protected-resource/mcp
+    http_status: 200
+    content_type: application/json
+  - url: https://api.6sense.com/.well-known/oauth-authorization-server
+    http_status: 200
+    content_type: application/json
+  - url: https://mcp.6sense.com/mcp
+    http_status: 404
+  - url: https://api.6sense.com/sse
+    http_status: 404

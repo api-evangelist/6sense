@@ -1,0 +1,156 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.6sense.com/docs/
+docs:
+- https://api.6sense.com/docs/
+- https://docs.saleswhale.com/
+format: custom
+rfc9457: false
+note: >-
+  6sense does not use RFC 9457 problem+json. Errors are returned as a plain JSON
+  object with a "status" discriminator and a human-readable "message"; there is no
+  machine-readable error code, no type URI and no field-level pointer, so an agent
+  has to string-match the message to distinguish "no match found" from "bad
+  input". The one 6sense-specific status worth wiring for is 402 Quota Exhausted,
+  which is a commercial exhaustion signal rather than a rate limit and is NOT
+  retryable — retrying will not clear it.
+
+envelope:
+  shape: '{"status": "error", "message": "<human readable>"}'
+  fields:
+  - name: status
+    type: string
+    values:
+    - error
+  - name: message
+    type: string
+    description: Human-readable description. Not stable, not enumerated, not machine-parseable.
+  error_code: null
+  error_type_uri: null
+  request_id: null
+  examples:
+  - '{"status": "error", "message": "Email ID is mandatory and can''t be blank"}'
+  - '{"status": "error", "message": "No data found. Please contact 6sense support, if you think this is an unexpected error."}'
+
+problems:
+- status: 400
+  title: Bad request
+  description: >-
+    Required fields cannot be blank. Check the request for errors, fix them, then
+    retry.
+  retryable: false
+  retry_guidance: Do not repeat the request without modifying it.
+  source: https://api.6sense.com/docs/
+- status: 401
+  title: Unauthorized
+  description: >-
+    Your API token is invalid or auth token is invalid or missing authorization
+    header.
+  retryable: false
+  retry_guidance: Fix the Authorization header; confirm the token belongs to the right API group.
+  source: https://api.6sense.com/docs/
+- status: 402
+  title: Quota Exhausted
+  description: >-
+    Your allocated quota is exhausted. Upgrade or top up the API limit through
+    your CSM, or enable "Allow APIs to work when credits are exhausted" in API
+    settings to continue on overage billing.
+  retryable: false
+  commercial: true
+  note: >-
+    The distinguishing 6sense error. Credits are contract-year allocations, so a
+    402 can persist for months. Agents must escalate to a human rather than back
+    off and retry.
+  source: https://api.6sense.com/docs/
+- status: 403
+  title: Forbidden
+  description: You do not have the appropriate user rights to access the request.
+  retryable: false
+  retry_guidance: Do not repeat the request.
+  source: https://api.6sense.com/docs/
+- status: 404
+  title: Not found
+  description: >-
+    The resource does not exist. On the enrichment and identification APIs this is
+    also how "no company/contact match" is signalled, so a 404 is frequently a
+    normal, expected outcome rather than a fault.
+  retryable: false
+  semantic_note: >-
+    Do not treat 404 as an error condition on getCompanyDetails, enrichCompany or
+    enrichPeople — it is the documented no-match result.
+  source_operation:
+  - openapi/6sense-company-api-openapi.yml#getCompanyDetails
+  - openapi/6sense-enrichment-api-openapi.yml#enrichCompany
+  source: https://api.6sense.com/docs/
+- status: 422
+  title: Validation error
+  description: A validation error occurred.
+  retryable: false
+  source_operation:
+  - openapi/6sense-enrichment-api-openapi.yml#enrichPeople
+  source: https://api.6sense.com/docs/
+- status: 429
+  title: Too Many Requests
+  description: >-
+    You have sent too many requests in a given amount of time ("rate limit").
+    Please try again later.
+  retryable: true
+  retry_guidance: >-
+    Back off and retry. No Retry-After header is documented; the published limit is
+    100 requests per minute on the core APIs and 20 requests per second on People
+    Enrichment, so a fixed-window assumption is the only guidance available.
+  source: https://api.6sense.com/docs/
+- status: 500
+  title: Internal Server Error
+  description: >-
+    Something went wrong with the 6sense API. These errors are logged on the 6sense
+    side; contact support to resolve.
+  retryable: true
+  covers:
+  - 50X
+  source: https://api.6sense.com/docs/
+
+success_codes:
+- status: 200
+  title: OK
+- status: 201
+  title: Created
+- status: 204
+  title: No content
+
+ai_email_api:
+  note: >-
+    The acquired AI Email (Saleswhale) API uses a DIFFERENT and materially better
+    error envelope than the core 6sense APIs — an errors[] array with a per-error
+    id suitable for support correlation.
+  base_url: https://engage-api.saleswhale.com/api/{version}/
+  envelope: '{"errors": [{"id": "<opaque id>", "message": "<human readable>", "status": "<snake_case status>"}]}'
+  example: '{"errors": [{"id": "ffcf2b4c1076be36ba841535103503", "message": "Lead 41552 does not exist.", "status": "unprocessable_entity"}]}'
+  statuses:
+  - status: 200
+    title: OK
+  - status: 201
+    title: Created
+  - status: 400
+    title: Bad Request
+    description: Missing properties.
+  - status: 401
+    title: Unauthorized
+    description: Your API key is invalid.
+  - status: 422
+    title: Unprocessable Entity
+    description: Validation error, e.g. duplicated record.
+  - status: 429
+    title: Too Many Requests
+    description: Rate limit exceeded. Limit is 5 requests per second.
+    retryable: true
+  - status: 500
+    title: Internal Server Error
+  support_contact: support@saleswhale.com
+  source: https://docs.saleswhale.com/
+
+gaps:
+- No stable machine-readable error code or type URI on the core APIs.
+- No request/trace id in the documented error envelope (one IS present in live 401 bodies from api.6sense.com as an inline "reference:" string, but it is undocumented and not a JSON field).
+- No Retry-After header documented on 429.
+- Two incompatible error envelopes across one vendor's product line.

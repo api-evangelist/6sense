@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "6d28e6ac-cdd3-424c-a642-da883e41477b",
+      "name": "People",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "327493e6-b1b3-4bcb-8dd1-93c4111b5f61",
+          "name": "Score A Lead",
+          "request": {
+            "name": "Score A Lead",
+            "description": {
+              "content": "Returns predictive scores per product for a contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "score"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "website",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db8f7122-bc1d-408e-b9d9-d59fcfce78db",
+              "name": "Scoring returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "people",
+                    "score"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "website",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "leadsource",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "lastname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "role",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 87,\n      \"company_buying_stage\": \"Target\",\n      \"company_profile_score\": 8,\n      \"company_profile_fit\": \"Weak\",\n      \"contact_intent_score\": 88,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 5,\n      \"contact_profile_fit\": \"Strong\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 23,\n      \"company_buying_stage\": \"Consideration\",\n      \"company_profile_score\": 46,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 16,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 38,\n      \"contact_profile_fit\": \"Moderate\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46bf85b3-6356-42df-8467-e9eaaa8451dc",
+          "name": "Get Lead Scoring And Firmographics",
+          "request": {
+            "name": "Get Lead Scoring And Firmographics",
+            "description": {
+              "content": "Returns firmographics, scoring, and segment membership for a contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "website",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leadsource",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastname",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "674920f5-1900-491e-b7e4-8070c293dded",
+              "name": "Combined response returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "people",
+                    "full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "website",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "leadsource",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "firstname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "lastname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "role",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"company\": {\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"countryISOCode\": \"string\",\n    \"state\": \"string\",\n    \"city\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"companyPhone\": \"string\",\n    \"industry\": \"string\",\n    \"employeeRange\": \"string\",\n    \"revenueRange\": \"string\",\n    \"employeeCount\": 913,\n    \"annualRevenue\": 4900.591273225188,\n    \"titleLevel\": \"string\",\n    \"titleFunction\": \"string\",\n    \"sicdescription\": \"string\",\n    \"siccode\": \"string\",\n    \"naicscode\": \"string\",\n    \"naicsdescription\": \"string\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 411,\n      \"company_buying_stage\": \"Consideration\",\n      \"company_profile_score\": 2230,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 3594,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 1050,\n      \"contact_profile_fit\": \"Strong\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 9767,\n      \"company_buying_stage\": \"Decision\",\n      \"company_profile_score\": 6831,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 8421,\n      \"contact_grade\": \"B\",\n      \"contact_profile_score\": 7789,\n      \"contact_profile_fit\": \"Moderate\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      2758,\n      5481\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 342,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 2629,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0053c7d0-b14c-4362-82e5-7dcefc28812c",
+          "name": "Search People By Company",
+          "request": {
+            "name": "Search People By Company",
+            "description": {
+              "content": "Returns contact profiles matching the supplied domain and filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b543fa4f-7c83-4e26-9ba0-854b444923ac",
+              "name": "Search results returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "people",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"people\": [\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"location\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"hasEmail\": true,\n      \"hasPhone\": true,\n      \"hasMobilePhone\": false\n    },\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"location\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"hasEmail\": true,\n      \"hasPhone\": false,\n      \"hasMobilePhone\": false\n    }\n  ],\n  \"totalResults\": 1333\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a17a0bd-4bee-4e38-855f-5f063a3e5c6d",
+          "name": "Get People Search Filter Dictionary",
+          "request": {
+            "name": "Get People Search Filter Dictionary",
+            "description": {
+              "content": "Returns valid filter values for job title, function, level, industry, and other facets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "people",
+                "search",
+                "dictionary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74ee39a6-2ec5-4d15-ac6b-d0bfba1a8412",
+              "name": "Dictionary returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "people",
+                    "search",
+                    "dictionary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.6sense.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8094b5a8-e1a0-4cc5-9d21-9763b5712815",
+    "name": "6sense Firmographics Company People API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Returns company firmographics based on email or domain. Includes industry, employee/revenue\nranges, SIC/NAICS codes, and 6sense segment membership when applicable.\n\n\nContact Support:\n Name: 6sense API Support",
+      "type": "text/plain"
+    }
+  }
+}

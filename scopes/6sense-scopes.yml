@@ -1,0 +1,74 @@
+generated: '2026-08-13'
+method: probed
+source: https://api.6sense.com/.well-known/oauth-authorization-server
+docs: https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
+note: >-
+  6sense declares no oauth2 securityScheme in any published OpenAPI — the REST
+  APIs are API-token only. The OAuth surface below is real but exists solely for
+  the 6sense remote MCP server: it was read from the live RFC 8414 Authorization
+  Server Metadata and RFC 9728 Protected Resource Metadata documents served
+  anonymously from api.6sense.com, both saved verbatim in well-known/. Exactly
+  one scope is advertised. No scope reference page is published; the docs describe
+  authorization as a per-user consent screen rather than a scope catalog.
+
+schemes:
+- name: 6sense Agentic OAuth (MCP)
+  type: oauth2
+  source: well-known/6sense-oauth-authorization-server.json
+  issuer: https://auth.6sense.com/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN
+  protected_resource: https://api.6sense.com/mcp
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/authorize
+    tokenUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/token
+    pkce: S256
+  - flow: clientCredentials
+    tokenUrl: https://auth.6sense.com/oauth2/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/token
+  additional_grant_types:
+  - refresh_token
+  - urn:openid:params:grant-type:ciba
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  - urn:ietf:params:oauth:grant-type:token-exchange
+  endpoints:
+    registration: https://auth.6sense.com/v1/mgmt/mcp/client/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN/register
+    revocation: https://auth.6sense.com/oauth2/v1/apps/P32lusHUPY06hG8MJtqJnKEmq7hJ/revoke
+    userinfo: https://auth.6sense.com/oauth2/v1/apps/P32lusHUPY06hG8MJtqJnKEmq7hJ/userinfo
+    jwks: https://auth.6sense.com/P32lusHUPY06hG8MJtqJnKEmq7hJ/.well-known/jwks.json
+    backchannel_authentication: https://auth.6sense.com/oauth2/v1/apps/bc-authorize
+  dynamic_client_registration: true
+  dpop_supported: true
+  token_endpoint_auth_methods:
+  - none
+  - client_secret_basic
+  - client_secret_post
+
+scopes:
+- scope: mcp:use
+  description: >-
+    Authorizes an MCP client to call the 6sense remote MCP server at
+    https://api.6sense.com/mcp on behalf of the consenting user. 6sense does not
+    subdivide this further; the effective permission set is whatever the
+    authorizing user can already see in the 6sense Revenue Marketing platform,
+    and the server is documented as read-only.
+  flows:
+  - authorizationCode
+  sources:
+  - well-known/6sense-oauth-authorization-server.json
+  - well-known/6sense-oauth-protected-resource-mcp.json
+
+authorization_model:
+  granularity: coarse
+  per_user_consent: true
+  inherits_platform_permissions: true
+  note: >-
+    A single coarse scope with entitlement enforced downstream by the user's
+    existing 6sense role. Agents cannot request a narrower grant, and there is no
+    published mapping from scope to data domain.
+
+x-evidence:
+  fetched: '2026-08-13'
+  probes:
+  - url: https://api.6sense.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://api.6sense.com/.well-known/oauth-protected-resource/mcp
+    http_status: 200
