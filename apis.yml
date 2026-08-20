@@ -109,6 +109,10 @@ apis:
   tags:
   - MCP
   - Agents
+  - Artificial Intelligence
+  tags_raw:
+  - MCP
+  - Agents
   - AI
   properties:
   - type: MCPServer
@@ -135,6 +139,15 @@ description: 6sense Insights is a B2B revenue AI platform that identifies in-mar
 created: '2026-05-25'
 modified: '2026-08-13'
 tags:
+- Account Based Marketing
+- Intent Data
+- B2B
+- Predictive Analytics
+- Revenue
+- Sales Intelligence
+- Artificial Intelligence
+- Marketing Technology
+tags_raw:
 - ABM
 - Account-Based Marketing
 - Intent Data
