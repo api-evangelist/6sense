@@ -74,36 +74,13 @@ apis:
     url: json-ld/6sense-context.jsonld
   - type: JSONSchema
     url: json-schema/6sense-contact-schema.json
-- aid: 6sense:6sense-scribe-api
-  name: 6sense Scribe Scoring and Segments API
-  description: Scribe — "The Score Keeper". The only OpenAPI 6sense publishes itself,
-    served anonymously at https://scribe.6sense.com/openapi.json. Covers 12 operations
-    across people scoring, people/company enrichment, the product list, and the
-    partner-only Segments API (list segments, list segment member accounts, validate
-    access). Harvested verbatim 2026-08-13.
-  humanURL: https://api.6sense.com/docs/
-  baseURL: https://scribe.6sense.com
-  tags:
-  - Scoring
-  - Segments
-  - Enrichment
-  properties:
-  - type: OpenAPI
-    url: openapi/6sense-scribe-openapi.json
-  - type: Overlay
-    url: overlays/6sense-scribe-overlay.yaml
-  - type: Documentation
-    url: https://api.6sense.com/docs/
-  - type: APIReference
-    url: https://api.6sense.com/docs/
 - aid: 6sense:6sense-mcp
   name: 6sense MCP Server
-  description: Hosted remote Model Context Protocol server at https://api.6sense.com/mcp
-    (beta). Read-only retrieval of Revvy AI-powered 6sense insights — account
-    insights, 6QA trends, keyword performance, ad campaign performance, website
-    activity and segment discovery — for Claude, ChatGPT and Microsoft Copilot
-    Studio. Per-user OAuth 2.1 with dynamic client registration and PKCE; single
-    scope mcp:use.
+  description: >-
+    Hosted remote Model Context Protocol server at https://api.6sense.com/mcp (beta). Read-only retrieval
+    of Revvy AI-powered 6sense insights — account insights, 6QA trends, keyword performance, ad campaign
+    performance, website activity and segment discovery — for Claude, ChatGPT and Microsoft Copilot Studio.
+    Per-user OAuth 2.1 with dynamic client registration and PKCE; single scope mcp:use.
   humanURL: https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
   baseURL: https://api.6sense.com/mcp
   tags:
@@ -125,6 +102,20 @@ apis:
     url: https://support.6sense.com/docs/6sense-model-context-protocol-mcp-1
   - type: GettingStarted
     url: https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
+- aid: 6sense:6sense-scoring-api
+  name: 6sense Scoring API
+  description: The Scoring API from 6sense — 1 operation(s) for scoring.
+  humanURL: https://api.6sense.com/docs/
+  baseURL: https://epsilon.6sense.com
+  tags:
+  - Scoring
+  properties:
+  - type: OpenAPI
+    url: openapi/6sense-scoring-api-openapi.yml
+  - type: Documentation
+    url: https://api.6sense.com/docs/
+  - type: APIReference
+    url: https://api.6sense.com/docs/
 name: 6sense
 description: 6sense Insights is a B2B revenue AI platform that identifies in-market
   accounts from anonymous buying signals and orchestrates marketing and sales against
@@ -174,6 +165,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/6sense.png
 access: 3rd-Party
 common:
+- type: Overlay
+  url: overlays/6sense-scribe-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/6sense-agentic-access.yml
 - type: TrustCenter
