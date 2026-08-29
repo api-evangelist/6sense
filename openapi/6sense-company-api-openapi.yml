@@ -1,20 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: 6sense Firmographics Company API
-  version: '3'
-  description: 'Returns company firmographics based on email or domain. Includes industry, employee/revenue
-
-    ranges, SIC/NAICS codes, and 6sense segment membership when applicable.
-
-    '
-  contact:
-    name: 6sense API Support
-    url: https://api.6sense.com/docs/
+  title: 6sense Company API
+  version: '1.0'
+  description: 'Operations tagged Company across 2 of this provider''s published API definitions: 6sense-company-identification-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.6sense.com
-  description: 6sense API Production
-security:
-- TokenAuth: []
+- url: https://epsilon.6sense.com
+  description: 6sense Epsilon Production
 tags:
 - name: Company
 paths:
@@ -57,8 +48,270 @@ paths:
           description: Rate limit exceeded.
       tags:
       - Company
+      security:
+      - TokenAuth: []
+    servers:
+    - url: https://epsilon.6sense.com
+      description: 6sense Epsilon Production
+  /v1/company/products:
+    get:
+      operationId: getProductsList
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - API_KEY: []
+      tags:
+      - Company
+  /company/v1/segment/{segment_id}:
+    get:
+      operationId: getAccountsList
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentAccountsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+      security:
+      - API_KEY: []
+      tags:
+      - Company
+  /company/v1/segments:
+    get:
+      operationId: getSegments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgToSegmentsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+      security:
+      - API_KEY: []
+      tags:
+      - Company
+  /v1/company/segment/{segment_id}:
+    get:
+      operationId: getAccountsList_1
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentAccountsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+      security:
+      - API_KEY: []
+      tags:
+      - Company
+  /v1/company/segments:
+    get:
+      operationId: getSegments_1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgToSegmentsResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+      security:
+      - API_KEY: []
+      tags:
+      - Company
+  /v1/company/validate_access/segments:
+    get:
+      operationId: validateSegment
+      responses:
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+      security:
+      - API_KEY: []
+      tags:
+      - Company
 components:
   schemas:
+    ProductScore:
+      type: object
+      properties:
+        product:
+          type: string
+        product_display_name:
+          type: string
+        is_6qa:
+          type: boolean
+        intent_score:
+          type: integer
+        buying_stage:
+          type: string
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
+        profile_score:
+          type: integer
+        profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
+    CompanyDetailsResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+        confidence:
+          type: string
+          enum:
+          - Very High
+          - High
+          - Moderate
+          - Low
     Segments:
       type: object
       properties:
@@ -151,54 +404,73 @@ components:
           type: string
         naics_description:
           type: string
-    ProductScore:
+    ProductResponse:
       type: object
       properties:
-        product:
+        org:
           type: string
-        product_display_name:
-          type: string
-        is_6qa:
-          type: boolean
-        intent_score:
-          type: integer
-        buying_stage:
-          type: string
-          enum:
-          - Purchase
-          - Decision
-          - Consideration
-          - Awareness
-          - Target
-        profile_score:
-          type: integer
-        profile_fit:
-          type: string
-          enum:
-          - Strong
-          - Moderate
-          - Weak
-    CompanyDetailsResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Company'
-        scores:
+        products:
           type: array
           items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-        confidence:
+            type: object
+            additionalProperties:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
           type: string
-          enum:
-          - Very High
-          - High
-          - Moderate
-          - Low
+        message:
+          type: string
+    OrgToSegmentsResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        country:
+          type: string
+    SegmentAccountsResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
   securitySchemes:
     TokenAuth:
       type: apiKey
       in: header
       name: Authorization
       description: 'Token-based auth. Format: `Token <api_token>`.'
+    API_KEY:
+      type: apiKey
+      name: Authorization
+      in: header
+x-refined-from:
+- 6sense-company-identification-api-openapi.yml
+- 6sense-scribe-openapi.json

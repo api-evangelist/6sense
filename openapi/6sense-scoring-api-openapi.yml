@@ -1,0 +1,179 @@
+openapi: 3.2.0
+info:
+  title: Scribe Scoring API
+  description: 'Scribe : The Score Keeper'
+  termsOfService: https://6sense.com/terms-of-use/
+  contact:
+    url: https://6sense.com/
+    email: support@6sense.com
+  license: {}
+security:
+- API_KEY:
+  - read
+  - write
+tags:
+- name: Scoring
+paths:
+  /v1/scoring/people:
+    post:
+      operationId: score
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScribeResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - API_KEY: []
+      tags:
+      - Scoring
+components:
+  schemas:
+    ProductScore:
+      type: object
+      properties:
+        product:
+          type: string
+        company_intent_score:
+          type: integer
+          format: int32
+        company_buying_stage:
+          type: string
+        company_profile_score:
+          type: integer
+          format: int32
+        company_profile_fit:
+          type: string
+        contact_intent_score:
+          type: integer
+          format: int32
+        contact_grade:
+          type: string
+        contact_profile_score:
+          type: integer
+          format: int32
+        contact_profile_fit:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    Firmographs:
+      type: object
+      properties:
+        domain:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        country:
+          type: string
+        countryISOCode:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        streetAddress:
+          type: string
+        postalCode:
+          type: string
+        companyPhone:
+          type: string
+        industry:
+          type: string
+        employeeRange:
+          type: string
+        revenueRange:
+          type: string
+        employeeCount:
+          type: string
+        annualRevenue:
+          type: string
+        segments:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        industryV2RankedList:
+          type: array
+          writeOnly: true
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        siccode:
+          type: string
+        naicscode:
+          type: string
+        sicdescription:
+          type: string
+        naicsdescription:
+          type: string
+        naciscode:
+          type: string
+          writeOnly: true
+        industry_v2:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    ScribeResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      name: Authorization
+      in: header

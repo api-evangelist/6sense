@@ -1,18 +1,71 @@
 {
   "provider": "6sense",
   "sources": [
-    "6sense-company-api-openapi.yml",
-    "6sense-enrichment-api-openapi.yml",
-    "6sense-people-api-openapi.yml"
+    "_original/6sense-company-firmographics-api-openapi.yml",
+    "_original/6sense-company-identification-api-openapi.yml",
+    "_original/6sense-lead-scoring-api-openapi.yml",
+    "_original/6sense-lead-scoring-firmographics-api-openapi.yml",
+    "_original/6sense-people-enrichment-api-openapi.yml",
+    "_original/6sense-people-search-api-openapi.yml",
+    "_original/6sense-scribe-openapi.json"
   ],
   "outputs": [
-    "6sense-company-api-openapi.yml",
     "6sense-enrichment-api-openapi.yml",
-    "6sense-people-api-openapi.yml"
+    "6sense-company-api-openapi.yml",
+    "6sense-people-api-openapi.yml",
+    "6sense-scoring-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "6sense-scribe-openapi.json: info.version missing"
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (7 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "6sense-company-firmographics-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-company-firmographics-api-openapi.yml: tagged paths POST /v1/enrichment/company -> Enrichment",
+    "6sense-company-firmographics-api-openapi.yml: declared missing tag: Enrichment",
+    "6sense-company-identification-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-company-identification-api-openapi.yml: tagged paths GET /v3/company/details -> Company",
+    "6sense-company-identification-api-openapi.yml: declared missing tag: Company",
+    "6sense-lead-scoring-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-lead-scoring-api-openapi.yml: tagged paths POST /v2/people/score -> People",
+    "6sense-lead-scoring-api-openapi.yml: declared missing tag: People",
+    "6sense-lead-scoring-firmographics-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-lead-scoring-firmographics-api-openapi.yml: tagged paths POST /v2/people/full -> People",
+    "6sense-lead-scoring-firmographics-api-openapi.yml: declared missing tag: People",
+    "6sense-people-enrichment-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-people-enrichment-api-openapi.yml: tagged paths POST /v2/enrichment/people -> Enrichment",
+    "6sense-people-enrichment-api-openapi.yml: declared missing tag: Enrichment",
+    "6sense-people-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "6sense-people-search-api-openapi.yml: tagged paths POST /v2/people/search -> People",
+    "6sense-people-search-api-openapi.yml: tagged paths GET /v2/people/search/dictionary -> People",
+    "6sense-people-search-api-openapi.yml: declared missing tag: People",
+    "6sense-scribe-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "6sense-scribe-openapi.json: tagged paths POST /v1/enrichment/company -> Enrichment",
+    "6sense-scribe-openapi.json: tagged paths POST /v1/scoring/people -> Scoring",
+    "6sense-scribe-openapi.json: tagged paths POST /v2/people/enrichment -> People",
+    "6sense-scribe-openapi.json: tagged paths POST /v2/people/score -> People",
+    "6sense-scribe-openapi.json: tagged paths POST /v2/people/full -> People",
+    "6sense-scribe-openapi.json: tagged paths POST /v2/people -> People",
+    "6sense-scribe-openapi.json: tagged paths GET /v1/company/products -> Company",
+    "6sense-scribe-openapi.json: tagged paths GET /company/v1/segment/{segment_id} -> Company",
+    "6sense-scribe-openapi.json: tagged paths GET /company/v1/segments -> Company",
+    "6sense-scribe-openapi.json: tagged paths GET /v1/company/segment/{segment_id} -> Company",
+    "6sense-scribe-openapi.json: tagged paths GET /v1/company/segments -> Company",
+    "6sense-scribe-openapi.json: tagged paths GET /v1/company/validate_access/segments -> Company",
+    "6sense-scribe-openapi.json: declared missing tag: Company",
+    "6sense-scribe-openapi.json: declared missing tag: Enrichment",
+    "6sense-scribe-openapi.json: declared missing tag: People",
+    "6sense-scribe-openapi.json: declared missing tag: Scoring",
+    "tag 'Enrichment' spans 3 source specs (6sense-company-firmographics-api-openapi.yml, 6sense-people-enrichment-api-openapi.yml, 6sense-scribe-openapi.json): per-path servers applied",
+    "tag 'Company' spans 2 source specs (6sense-company-identification-api-openapi.yml, 6sense-scribe-openapi.json): per-path servers applied",
+    "tag 'People' spans 4 source specs (6sense-lead-scoring-api-openapi.yml, 6sense-lead-scoring-firmographics-api-openapi.yml, 6sense-people-search-api-openapi.yml, 6sense-scribe-openapi.json): per-path servers applied"
+  ],
+  "skipped": [
+    "6sense-company-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "6sense-enrichment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "6sense-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "6sense-scoring-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
