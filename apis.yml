@@ -177,6 +177,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/6sense.png
 access: 3rd-Party
 common:
+- type: DeveloperPortal
+  url: https://api.6sense.com/docs/
+- type: PrivacyPolicy
+  url: https://6sense.com/privacy-policy/
+- type: Trust
+  url: https://trust.6sense.com/
 - type: Overlay
   url: overlays/6sense-scribe-overlay.yaml
 - type: AgenticAccess
