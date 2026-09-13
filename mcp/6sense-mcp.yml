@@ -7,22 +7,22 @@ docs:
 - https://support.6sense.com/docs/set-up-the-6sense-mcp-in-claude
 - https://support.6sense.com/docs/set-up-the-6sense-mcp-in-chatgpt
 - https://support.6sense.com/docs/set-up-the-6sense-mcp-in-ms-copilot
-
 deployment:
   mode: remote
   endpoint: https://api.6sense.com/mcp
   auth: oauth
   verified: probed
-  note: >-
-    Verified by probe, not by vendor claim. POST tools/list to
-    https://api.6sense.com/mcp returned HTTP 401 with
-    WWW-Authenticate: Bearer resource_metadata="https://api.6sense.com/.well-known/oauth-protected-resource/mcp",
-    and that metadata document (HTTP 200) names resource
-    https://api.6sense.com/mcp with scopes_supported [mcp:use]. No stdio package
-    is published by 6sense; the npm packages matching "6sense mcp"
-    (6sense-mcp, adoptai-sixsense-mcp, adoptai-6sense-mcp) are third-party and
-    are recorded in packages/6sense-packages.yml as unofficial.
-
+  note: 'Verified by probe, not by vendor claim. POST tools/list to https://api.6sense.com/mcp returned
+    HTTP 401 with WWW-Authenticate: Bearer resource_metadata="https://api.6sense.com/.well-known/oauth-protected-resource/mcp",
+    and that metadata document (HTTP 200) names resource https://api.6sense.com/mcp with scopes_supported
+    [mcp:use]. No stdio package is published by 6sense; the npm packages matching "6sense mcp" (6sense-mcp,
+    adoptai-sixsense-mcp, adoptai-6sense-mcp) are third-party and are recorded in packages/6sense-packages.yml
+    as unofficial.'
+  probe_prior: (never probed)
+  probe: gated
+  probe_why: RFC 9728 challenge on the MCP path only
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 server:
   name: 6sense MCP
   transport: http
@@ -34,7 +34,6 @@ server:
   - Claude (custom connector)
   - ChatGPT
   - Microsoft Copilot Studio
-
 authorization:
   scheme: OAuth 2.1 authorization code + PKCE
   protected_resource_metadata: https://api.6sense.com/.well-known/oauth-protected-resource/mcp
@@ -48,24 +47,18 @@ authorization:
   bearer_methods:
   - header
   per_user_consent: true
-  note: >-
-    Authorization is per user. Docs state each user must individually authorize,
-    and access is scoped to the data that user can already see in 6sense.
-
+  note: Authorization is per user. Docs state each user must individually authorize, and access is scoped
+    to the data that user can already see in 6sense.
 tools:
   introspection: gated
   introspection_evidence:
     method: tools/list
     url: https://api.6sense.com/mcp
     http_status: 401
-    body: >-
-      Your API token is invalid or auth token is invalid or missing
-      authorization header.
-  note: >-
-    The live tool list and its inputSchemas require an authenticated OAuth
-    session, so no tool names or schemas are recorded here. What follows is the
-    provider-documented CAPABILITY surface from the MCP overview page, not a
-    tools/list response. Tool names below are NOT asserted — only the scenarios
+    body: Your API token is invalid or auth token is invalid or missing authorization header.
+  note: The live tool list and its inputSchemas require an authenticated OAuth session, so no tool names
+    or schemas are recorded here. What follows is the provider-documented CAPABILITY surface from the
+    MCP overview page, not a tools/list response. Tool names below are NOT asserted — only the scenarios
     6sense publishes.
   documented_capabilities:
   - capability: Account insights
@@ -90,25 +83,26 @@ tools:
     example_query: Show most engaged accounts by website visits in the last 30 days.
   - capability: Account filtering and segment discovery
     category: reporting
-    description: Segment membership exploration and filter-based account discovery; links into the Segments UI.
+    description: Segment membership exploration and filter-based account discovery; links into the Segments
+      UI.
     example_query: Show me accounts in the Decision stage in my ICP that visited pricing this month.
   - capability: Market research
     category: research
-    description: Competitor analysis, industry trends, persona and GTM recommendations, market/company news summaries.
-    example_query: Within my company's industry, what are the highest-priority problems our target customers are trying to solve?
+    description: Competitor analysis, industry trends, persona and GTM recommendations, market/company
+      news summaries.
+    example_query: Within my company's industry, what are the highest-priority problems our target customers
+      are trying to solve?
   - capability: Product support
     category: support
     description: How-to, troubleshooting and product questions about 6sense itself.
     example_query: How do I set up a mapping profile to enrich contacts in CRM?
-
 constraints:
   read_only: true
   writes_supported: false
-  entitlement: Revenue Marketing platform access required; Sales Intelligence-only orgs get limited data during beta.
-  coverage_note: >-
-    6sense states MCP exposes the same data and capabilities as Revvy AI, not the
-    full 6sense data estate, and does not execute actions or modify data.
-
+  entitlement: Revenue Marketing platform access required; Sales Intelligence-only orgs get limited data
+    during beta.
+  coverage_note: 6sense states MCP exposes the same data and capabilities as Revvy AI, not the full 6sense
+    data estate, and does not execute actions or modify data.
 x-evidence:
   fetched: '2026-08-13'
   probes:
