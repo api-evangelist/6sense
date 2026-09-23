@@ -47,6 +47,8 @@ paths:
       - API_KEY: []
       tags:
       - Scoring
+      summary: Score
+      x-summary-source: derived
 components:
   schemas:
     ProductScore:
@@ -74,6 +76,35 @@ components:
           format: int32
         contact_profile_fit:
           type: string
+    ScribeResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
     ErrorResponse:
       type: object
       properties:
@@ -143,35 +174,6 @@ components:
             type: object
             additionalProperties:
               type: string
-    ScribeResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Firmographs'
-        scores:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-    Segments:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
   securitySchemes:
     API_KEY:
       type: apiKey

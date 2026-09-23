@@ -2,68 +2,13 @@ openapi: 3.2.0
 info:
   title: 6sense Enrichment API
   version: '1.0'
-  description: 'Operations tagged Enrichment across 3 of this provider''s published API definitions: 6sense-company-firmographics-api-openapi.yml, 6sense-people-enrichment-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged Enrichment across 2 of this provider''s published API definitions: 6sense-people-enrichment-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.6sense.com
   description: 6sense API Production
 tags:
 - name: Enrichment
 paths:
-  /v1/enrichment/company:
-    post:
-      summary: Enrich Company By Email Or Domain
-      description: Returns firmographic data for a company given an email or domain.
-      operationId: enrichCompany
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              required: []
-              properties:
-                email:
-                  type: string
-                  description: Email address (required if no domain).
-                domain:
-                  type: string
-                  description: Company domain (required if no email).
-                country:
-                  type: string
-                company:
-                  type: string
-                industry:
-                  type: string
-                title:
-                  type: string
-                role:
-                  type: string
-                firstname:
-                  type: string
-                lastname:
-                  type: string
-                leadsource:
-                  type: string
-      responses:
-        '200':
-          description: Company firmographics returned.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FirmographicsResponse'
-        '401':
-          description: Unauthorized.
-        '404':
-          description: Company not found.
-        '429':
-          description: Rate limit exceeded.
-      tags:
-      - Enrichment
-      security:
-      - TokenAuth: []
-    servers:
-    - url: https://api.6sense.com
-      description: 6sense API Production
   /v2/enrichment/people:
     post:
       summary: Enrich People Records
@@ -98,82 +43,43 @@ paths:
     servers:
     - url: https://api.6sense.com
       description: 6sense API Production
+  /v1/enrichment/company:
+    post:
+      operationId: companyFirmographics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScribeEnrichmentResponse'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '402':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - API_KEY: []
+      tags:
+      - Enrichment
+      summary: Company firmographics
+      x-summary-source: derived
 components:
   schemas:
-    Segments:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-    FirmographicsResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Company'
-        segments:
-          $ref: '#/components/schemas/Segments'
-    Company:
-      type: object
-      properties:
-        companyId:
-          type: string
-        domain:
-          type: string
-        name:
-          type: string
-        industry:
-          type: string
-        country:
-          type: string
-        countryISOCode:
-          type: string
-        region:
-          type: string
-        state:
-          type: string
-        city:
-          type: string
-        streetAddress:
-          type: string
-        postalCode:
-          type: string
-        companyPhone:
-          type: string
-        employeeCount:
-          type: string
-        employeeRange:
-          type: string
-        annualRevenue:
-          type: string
-        revenueRange:
-          type: string
-        siccode:
-          type: string
-        sicdescription:
-          type: string
-        naicscode:
-          type: string
-        naicsdescription:
-          type: string
-        titleLevel:
-          type: string
-        titleFunction:
-          type: string
     EnrichedContact:
       type: object
       properties:
@@ -260,6 +166,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    EnrichmentResponse:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedContact'
     EnrichmentRequest:
       type: object
       description: At least one of email, linkedInUrl, or peopleId is required.
@@ -274,13 +187,38 @@ components:
           type: object
           additionalProperties:
             type: string
-    EnrichmentResponse:
+    ErrorResponse:
       type: object
       properties:
-        contacts:
+        status:
+          type: string
+        message:
+          type: string
+    ScribeEnrichmentResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    Segments:
+      type: object
+      properties:
+        ids:
           type: array
           items:
-            $ref: '#/components/schemas/EnrichedContact'
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
     Firmographs:
       type: object
       properties:
@@ -343,49 +281,15 @@ components:
             type: object
             additionalProperties:
               type: string
-    ScribeEnrichmentResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Firmographs'
-        segments:
-          $ref: '#/components/schemas/Segments_2'
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-    Segments_2:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
   securitySchemes:
     TokenAuth:
       type: apiKey
       in: header
       name: Authorization
-      description: 'Token-based auth. Format: `Token <api_token>`.'
     API_KEY:
       type: apiKey
       name: Authorization
       in: header
 x-refined-from:
-- 6sense-company-firmographics-api-openapi.yml
 - 6sense-people-enrichment-api-openapi.yml
 - 6sense-scribe-openapi.json
