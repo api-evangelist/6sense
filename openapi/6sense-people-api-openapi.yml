@@ -199,33 +199,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PersonSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        fullName:
-          type: string
-        jobTitle:
-          type: string
-        jobFunction:
-          type: string
-        jobLevel:
-          type: string
-        location:
-          type: string
-        linkedinUrl:
-          type: string
-        hasEmail:
-          type: boolean
-        hasPhone:
-          type: boolean
-        hasMobilePhone:
-          type: boolean
     PeopleSearchResponse:
       type: object
       properties:
@@ -254,6 +227,83 @@ components:
           type: string
         limit:
           type: integer
+    PersonSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        fullName:
+          type: string
+        jobTitle:
+          type: string
+        jobFunction:
+          type: string
+        jobLevel:
+          type: string
+        location:
+          type: string
+        linkedinUrl:
+          type: string
+        hasEmail:
+          type: boolean
+        hasPhone:
+          type: boolean
+        hasMobilePhone:
+          type: boolean
+    ScribeScoreResponse:
+      type: object
+      properties:
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+    ScribeEnrichmentResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    ScribeResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
     ProductScore:
       type: object
       properties:
@@ -279,56 +329,6 @@ components:
           format: int32
         contact_profile_fit:
           type: string
-    ScribeResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Firmographs'
-        scores:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-    ScribeEnrichmentResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Firmographs'
-        segments:
-          $ref: '#/components/schemas/Segments'
-    Segments:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-    ScribeScoreResponse:
-      type: object
-      properties:
-        scores:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductScore'
     Firmographs:
       type: object
       properties:
