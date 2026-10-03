@@ -87,6 +87,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnrichedContact'
+    EnrichmentRequest:
+      type: object
+      description: At least one of email, linkedInUrl, or peopleId is required.
+      properties:
+        email:
+          type: string
+        linkedInUrl:
+          type: string
+        peopleId:
+          type: string
+        referenceKeys:
+          type: object
+          additionalProperties:
+            type: string
     EnrichedContact:
       type: object
       properties:
@@ -173,20 +187,13 @@ components:
           type: object
           additionalProperties:
             type: string
-    EnrichmentRequest:
+    ErrorResponse:
       type: object
-      description: At least one of email, linkedInUrl, or peopleId is required.
       properties:
-        email:
+        status:
           type: string
-        linkedInUrl:
+        message:
           type: string
-        peopleId:
-          type: string
-        referenceKeys:
-          type: object
-          additionalProperties:
-            type: string
     Firmographs:
       type: object
       properties:
@@ -274,13 +281,6 @@ components:
           $ref: '#/components/schemas/Firmographs'
         segments:
           $ref: '#/components/schemas/Segments'
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
   securitySchemes:
     TokenAuth:
       type: apiKey

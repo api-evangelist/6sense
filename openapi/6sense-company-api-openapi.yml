@@ -279,6 +279,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CompanyDetailsResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Company'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+        confidence:
+          type: string
+          enum:
+          - Very High
+          - High
+          - Moderate
+          - Low
+    ProductScore:
+      type: object
+      properties:
+        product:
+          type: string
+        product_display_name:
+          type: string
+        is_6qa:
+          type: boolean
+        intent_score:
+          type: integer
+        buying_stage:
+          type: string
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
+        profile_score:
+          type: integer
+        profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
     Company:
       type: object
       properties:
@@ -371,60 +416,18 @@ components:
                 type: integer
               name:
                 type: string
-    CompanyDetailsResponse:
+    SegmentAccountsResponse:
       type: object
       properties:
-        company:
-          $ref: '#/components/schemas/Company'
-        scores:
+        count:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+        accounts:
           type: array
           items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-        confidence:
-          type: string
-          enum:
-          - Very High
-          - High
-          - Moderate
-          - Low
-    ProductScore:
-      type: object
-      properties:
-        product:
-          type: string
-        product_display_name:
-          type: string
-        is_6qa:
-          type: boolean
-        intent_score:
-          type: integer
-        buying_stage:
-          type: string
-          enum:
-          - Purchase
-          - Decision
-          - Consideration
-          - Awareness
-          - Target
-        profile_score:
-          type: integer
-        profile_fit:
-          type: string
-          enum:
-          - Strong
-          - Moderate
-          - Weak
-    Account:
-      type: object
-      properties:
-        name:
-          type: string
-        domain:
-          type: string
-        country:
-          type: string
+            $ref: '#/components/schemas/Account'
     ProductResponse:
       type: object
       properties:
@@ -443,18 +446,6 @@ components:
           type: string
         message:
           type: string
-    SegmentAccountsResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        created_at:
-          type: string
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
     OrgToSegmentsResponse:
       type: object
       properties:
@@ -473,6 +464,15 @@ components:
             type: object
             additionalProperties:
               type: object
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        country:
+          type: string
   securitySchemes:
     TokenAuth:
       type: apiKey
