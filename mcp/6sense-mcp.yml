@@ -120,3 +120,20 @@ x-evidence:
     http_status: 404
   - url: https://api.6sense.com/sse
     http_status: 404
+rfc9728:
+  endpoint: https://api.6sense.com/mcp
+  metadata_url: https://api.6sense.com/.well-known/oauth-protected-resource/mcp
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://api.6sense.com/mcp
+    authorization_servers:
+    - https://auth.6sense.com/v1/apps/agentic/P32lusHUPY06hG8MJtqJnKEmq7hJ/MS3CTIZ4l7VZ4pFeraAIy18Y6wIVN
+    scopes_supported:
+    - mcp:use
+    - offline_access
+    bearer_methods_supported:
+    - header
+    resource_documentation: https://api.6sense.com/docs

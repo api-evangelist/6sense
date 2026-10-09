@@ -1,4 +1,4 @@
-generated: '2026-09-16'
+generated: '2026-09-23'
 method: generated
 source: openapi/6sense-company-api-openapi.yml, openapi/6sense-enrichment-api-openapi.yml, openapi/6sense-people-api-openapi.yml,
   openapi/6sense-scoring-api-openapi.yml
@@ -8,11 +8,11 @@ description: Recommended x-agentic-access execution contracts, classified heuris
 summary:
   operations: 16
   by_action_class:
-    connected: 8
-    acting: 8
+    connected: 11
+    acting: 5
   by_consequence:
-    read: 8
-    write: 8
+    read: 11
+    write: 5
   human_in_the_loop_required: 0
 operations:
 - path: /v3/company/details
@@ -121,18 +121,12 @@ operations:
   method: post
   operationId: searchPeople
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/people/search/dictionary
   method: get
   operationId: getSearchDictionary
@@ -147,34 +141,22 @@ operations:
   method: post
   operationId: getEnrichment
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/people/score
   method: post
   operationId: getScore
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/people/full
   method: post
   operationId: getScoreAndEnrichment
