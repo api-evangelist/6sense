@@ -51,67 +51,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Segments:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-    ScribeResponse:
-      type: object
-      properties:
-        company:
-          $ref: '#/components/schemas/Firmographs'
-        scores:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductScore'
-        segments:
-          $ref: '#/components/schemas/Segments'
-    ProductScore:
-      type: object
-      properties:
-        product:
-          type: string
-        company_intent_score:
-          type: integer
-          format: int32
-        company_buying_stage:
-          type: string
-        company_profile_score:
-          type: integer
-          format: int32
-        company_profile_fit:
-          type: string
-        contact_intent_score:
-          type: integer
-          format: int32
-        contact_grade:
-          type: string
-        contact_profile_score:
-          type: integer
-          format: int32
-        contact_profile_fit:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
     Firmographs:
       type: object
       properties:
@@ -174,6 +113,67 @@ components:
             type: object
             additionalProperties:
               type: string
+    ScribeResponse:
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/Firmographs'
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductScore'
+        segments:
+          $ref: '#/components/schemas/Segments'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    ProductScore:
+      type: object
+      properties:
+        product:
+          type: string
+        company_intent_score:
+          type: integer
+          format: int32
+        company_buying_stage:
+          type: string
+        company_profile_score:
+          type: integer
+          format: int32
+        company_profile_fit:
+          type: string
+        contact_intent_score:
+          type: integer
+          format: int32
+        contact_grade:
+          type: string
+        contact_profile_score:
+          type: integer
+          format: int32
+        contact_profile_fit:
+          type: string
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
   securitySchemes:
     API_KEY:
       type: apiKey

@@ -80,6 +80,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    EnrichmentResponse:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedContact'
+    EnrichmentRequest:
+      type: object
+      description: At least one of email, linkedInUrl, or peopleId is required.
+      properties:
+        email:
+          type: string
+        linkedInUrl:
+          type: string
+        peopleId:
+          type: string
+        referenceKeys:
+          type: object
+          additionalProperties:
+            type: string
     EnrichedContact:
       type: object
       properties:
@@ -166,45 +187,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    EnrichmentRequest:
-      type: object
-      description: At least one of email, linkedInUrl, or peopleId is required.
-      properties:
-        email:
-          type: string
-        linkedInUrl:
-          type: string
-        peopleId:
-          type: string
-        referenceKeys:
-          type: object
-          additionalProperties:
-            type: string
-    EnrichmentResponse:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnrichedContact'
-    Segments:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-            format: int32
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
     Firmographs:
       type: object
       properties:
@@ -267,13 +249,6 @@ components:
             type: object
             additionalProperties:
               type: string
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
     ScribeEnrichmentResponse:
       type: object
       properties:
@@ -281,6 +256,31 @@ components:
           $ref: '#/components/schemas/Firmographs'
         segments:
           $ref: '#/components/schemas/Segments'
+    Segments:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
   securitySchemes:
     TokenAuth:
       type: apiKey

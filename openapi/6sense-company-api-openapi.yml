@@ -297,26 +297,33 @@ components:
           - High
           - Moderate
           - Low
-    Segments:
+    ProductScore:
       type: object
       properties:
-        ids:
-          type: array
-          items:
-            type: integer
-        names:
-          type: array
-          items:
-            type: string
-        list:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
+        product:
+          type: string
+        product_display_name:
+          type: string
+        is_6qa:
+          type: boolean
+        intent_score:
+          type: integer
+        buying_stage:
+          type: string
+          enum:
+          - Purchase
+          - Decision
+          - Consideration
+          - Awareness
+          - Target
+        profile_score:
+          type: integer
+        profile_fit:
+          type: string
+          enum:
+          - Strong
+          - Moderate
+          - Weak
     Company:
       type: object
       properties:
@@ -389,41 +396,13 @@ components:
           type: string
         naics_description:
           type: string
-    ProductScore:
-      type: object
-      properties:
-        product:
-          type: string
-        product_display_name:
-          type: string
-        is_6qa:
-          type: boolean
-        intent_score:
-          type: integer
-        buying_stage:
-          type: string
-          enum:
-          - Purchase
-          - Decision
-          - Consideration
-          - Awareness
-          - Target
-        profile_score:
-          type: integer
-        profile_fit:
-          type: string
-          enum:
-          - Strong
-          - Moderate
-          - Weak
-    OrgToSegmentsResponse:
+    Segments:
       type: object
       properties:
         ids:
           type: array
           items:
             type: integer
-            format: int32
         names:
           type: array
           items:
@@ -432,8 +411,27 @@ components:
           type: array
           items:
             type: object
-            additionalProperties:
-              type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+    Account:
+      type: object
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        country:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
     SegmentAccountsResponse:
       type: object
       properties:
@@ -457,22 +455,24 @@ components:
             type: object
             additionalProperties:
               type: string
-    Account:
+    OrgToSegmentsResponse:
       type: object
       properties:
-        name:
-          type: string
-        domain:
-          type: string
-        country:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
+        ids:
+          type: array
+          items:
+            type: integer
+            format: int32
+        names:
+          type: array
+          items:
+            type: string
+        list:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
   securitySchemes:
     TokenAuth:
       type: apiKey
