@@ -44,6 +44,8 @@ apis:
   humanURL: https://api.6sense.com/docs/
   baseURL: https://api.6sense.com
   tags:
+  - Data Enrichment
+  tags_raw:
   - Enrichment
   properties:
   - type: OpenAPI
