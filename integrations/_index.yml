@@ -119,19 +119,6 @@
     detected: '2026-10-21'
   status: not-a-workflow
   arazzo: null
-- slug: 6sense-salesforce-own
-  label: Salesforce (own)
-  partner: salesforce
-  partner_name: Salesforce (own)
-  category: salesIntelligence
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000DqipkUAB
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: 6sense-battery-ventures
   label: Battery Ventures
   partner: battery-ventures
@@ -158,5 +145,31 @@
     detected_by: sweep-vc-portfolios.py
     detected: '2026-10-21'
     status: Sold to Insight
+  status: not-a-workflow
+  arazzo: null
+- slug: 6sense-salesforce-own
+  label: Salesforce (own)
+  partner: salesforce
+  partner_name: Salesforce (own)
+  category: salesIntelligence
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000DqipkUAB
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: 6sense-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: ACCOUNT_BASED_MARKETING
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/6sense-1133474
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
