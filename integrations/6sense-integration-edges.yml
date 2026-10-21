@@ -12,6 +12,13 @@ checked:
 - https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
 - https://slack.com/marketplace
 - salesforce/integrations/salesforce-integration-edges.yml
+- https://a16z.com/portfolio/
+- https://www.battery.com/company/
+- https://www.battery.com/wp-admin/admin-ajax.php
+- https://www.indexventures.com/companies/
+- https://www.sequoiacap.com/our-companies/
+- https://www.sequoiacap.com/sitemap.xml
+- hubspot/integrations/hubspot-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -132,6 +139,33 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-salesforce-appexchange.py
   first_seen: '2026-10-21'
+- partner_name: Battery Ventures
+  partner: battery-ventures
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.battery.com/company/6sense/
+  category: vc portfolio participation
+  contract_reference:
+    register: Battery Ventures companies (battery.com/company/, the page's own admin-ajax list + company pages)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: 6Sense
+    register_id: https://www.battery.com/company/6sense/
+    register_country: San Francisco, California
+    register_website: http://6sense.com/
+    matched_domain: 6sense.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    status: Sold to Insight
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 - partner_name: Salesforce (own)
   partner: salesforce
   partner_match: mirror
@@ -149,6 +183,23 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: salesIntelligence
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/6sense-1133474
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - 6sense
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: ACCOUNT_BASED_MARKETING
 source:
 - https://cloudsecurityalliance.org/star/registry
 - https://eucoc.cloud/en/public-register/list-of-adherent-services
