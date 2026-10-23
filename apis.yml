@@ -179,6 +179,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/6sense.png
 access: 3rd-Party
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/6sense/overview
 - type: CapabilityMap
   url: capabilities/6sense-capability-edges.yml
   name: 6sense Business Capability Map
