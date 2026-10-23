@@ -19,6 +19,9 @@ checked:
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
 - hubspot/integrations/hubspot-integration-edges.yml
+- adobe-analytics/integrations/adobe-analytics-integration-edges.yml
+- adobe-experience-cloud/integrations/adobe-experience-cloud-integration-edges.yml
+- marketo/integrations/marketo-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -200,6 +203,57 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: ACCOUNT_BASED_MARKETING
+- partner_name: Adobe Analytics (own)
+  partner: adobe-analytics
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/105363
+  mirror_of: adobe-analytics/integrations/adobe-analytics-integration-edges.yml
+  apps:
+  - 6sense for Analytics and Target
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Analytics, Target)
+- partner_name: Adobe Experience Cloud (own)
+  partner: adobe-experience-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/105363
+  mirror_of: adobe-experience-cloud/integrations/adobe-experience-cloud-integration-edges.yml
+  apps:
+  - 6sense for Analytics and Target
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Analytics, Target)
+- partner_name: Marketo (own)
+  partner: marketo
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://exchange.adobe.com/apps/ec/600270
+  mirror_of: marketo/integrations/marketo-integration-edges.yml
+  apps:
+  - 6Sense Marketo Integration
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Exchange Experience Cloud listing (Marketo Engage)
 source:
 - https://cloudsecurityalliance.org/star/registry
 - https://eucoc.cloud/en/public-register/list-of-adherent-services
