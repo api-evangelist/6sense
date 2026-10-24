@@ -1,813 +1,618 @@
 {
+  "info": {
+    "_postman_id": "dad935b0-79f4-447d-945a-472df5aa6483",
+    "name": "6sense Enrichment API",
+    "description": "Operations tagged Enrichment across 2 of this provider's published API definitions: 6sense-people-enrichment-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:07.000Z",
+    "updatedAt": "2026-10-22T01:26:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dad935b0-79f4-447d-945a-472df5aa6483"
+  },
   "item": [
     {
-      "id": "6b97627f-1d82-4e80-9e3e-838c107e047d",
-      "name": "Enrichment",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "36ac7476-633a-442c-9d29-91d471800972",
-          "name": "Enrich Company By Email Or Domain",
-          "request": {
-            "name": "Enrich Company By Email Or Domain",
-            "description": {
-              "content": "Returns firmographic data for a company given an email or domain.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "enrichment",
-                "company"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "email",
-                  "value": "<string>",
-                  "description": "Email address (required if no domain)."
-                },
-                {
-                  "disabled": false,
-                  "key": "domain",
-                  "value": "<string>",
-                  "description": "Company domain (required if no email)."
-                },
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "company",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "industry",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "title",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "role",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "firstname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "lastname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "leadsource",
-                  "value": "<string>"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "enrichment",
+          "item": [
             {
-              "id": "ab6a10b8-94a3-405c-9e70-d0b9b6f6cc4e",
-              "name": "Company firmographics returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "enrichment",
-                    "company"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+              "name": "people",
+              "item": [
+                {
+                  "name": "Enrich People Records",
+                  "id": "3e9fb648-e8d8-411d-aaab-c1fa3698138f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Email address (required if no domain).",
-                        "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
                       },
-                      "key": "email",
-                      "value": "<string>"
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"Excepteur_0\": \"<string>\",\n      \"Lorem9f\": \"<string>\",\n      \"ad_bc\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"est329\": \"<string>\"\n    }\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/enrichment/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "enrichment",
+                        "people"
+                      ]
+                    },
+                    "description": "Batch enrich up to 25 contacts per request."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "Company domain (required if no email).",
-                        "type": "text/plain"
+                      "id": "72f90cb0-8962-4490-904e-7044e2d38de9",
+                      "name": "Enriched contacts returned.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"Excepteur_0\": \"<string>\",\n      \"Lorem9f\": \"<string>\",\n      \"ad_bc\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"est329\": \"<string>\"\n    }\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/enrichment/people",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "enrichment",
+                            "people"
+                          ]
+                        }
                       },
-                      "key": "domain",
-                      "value": "<string>"
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"contacts\": [\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"emailConfidence\": \"B\",\n      \"fullName\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"jobFunction\": \"<string>\",\n      \"jobLevel\": \"<string>\",\n      \"jobSeniority\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mobilePhone\": \"<string>\",\n      \"linkedinUrl\": \"<string>\",\n      \"linkedinId\": \"<string>\",\n      \"twitterHandle\": \"<string>\",\n      \"location\": \"<string>\",\n      \"skills\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"education\": [\n        {\n          \"schoolName\": \"<string>\",\n          \"degrees\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"schoolWebsite\": \"<string>\",\n          \"schoolLocation\": \"<string>\"\n        },\n        {\n          \"schoolName\": \"<string>\",\n          \"degrees\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"schoolWebsite\": \"<string>\",\n          \"schoolLocation\": \"<string>\"\n        }\n      ],\n      \"company\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"domain\": \"<string>\",\n        \"country\": \"<string>\",\n        \"state\": \"<string>\",\n        \"city\": \"<string>\",\n        \"industry\": \"<string>\",\n        \"employees\": \"<integer>\"\n      },\n      \"referenceKeys\": {\n        \"fugiat_884\": \"<string>\",\n        \"incididuntcf\": \"<string>\",\n        \"et_ae\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"emailConfidence\": \"A\",\n      \"fullName\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"jobFunction\": \"<string>\",\n      \"jobLevel\": \"<string>\",\n      \"jobSeniority\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mobilePhone\": \"<string>\",\n      \"linkedinUrl\": \"<string>\",\n      \"linkedinId\": \"<string>\",\n      \"twitterHandle\": \"<string>\",\n      \"location\": \"<string>\",\n      \"skills\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"education\": [\n        {\n          \"schoolName\": \"<string>\",\n          \"degrees\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"schoolWebsite\": \"<string>\",\n          \"schoolLocation\": \"<string>\"\n        },\n        {\n          \"schoolName\": \"<string>\",\n          \"degrees\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"schoolWebsite\": \"<string>\",\n          \"schoolLocation\": \"<string>\"\n        }\n      ],\n      \"company\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"domain\": \"<string>\",\n        \"country\": \"<string>\",\n        \"state\": \"<string>\",\n        \"city\": \"<string>\",\n        \"industry\": \"<string>\",\n        \"employees\": \"<integer>\"\n      },\n      \"referenceKeys\": {\n        \"non_684\": \"<string>\",\n        \"deserunt927\": \"<string>\",\n        \"eiusmod_41d\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-72f90cb0-8962-4490-904e-7044e2d38de9"
                     },
                     {
-                      "disabled": false,
-                      "key": "country",
-                      "value": "<string>"
+                      "id": "e83df1aa-61ce-4cfe-968c-b33d6db147bd",
+                      "name": "Unauthorized.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"Excepteur_0\": \"<string>\",\n      \"Lorem9f\": \"<string>\",\n      \"ad_bc\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"est329\": \"<string>\"\n    }\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/enrichment/people",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "enrichment",
+                            "people"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-e83df1aa-61ce-4cfe-968c-b33d6db147bd"
                     },
                     {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
+                      "id": "752c4579-3101-4cda-b217-97504ca4ff08",
+                      "name": "Validation error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"Excepteur_0\": \"<string>\",\n      \"Lorem9f\": \"<string>\",\n      \"ad_bc\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"est329\": \"<string>\"\n    }\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/enrichment/people",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "enrichment",
+                            "people"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-752c4579-3101-4cda-b217-97504ca4ff08"
                     },
                     {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
+                      "id": "703524ab-45b7-4ca5-a1fb-3f45141ba057",
+                      "name": "Rate limit exceeded (default 20 QPS).",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"Excepteur_0\": \"<string>\",\n      \"Lorem9f\": \"<string>\",\n      \"ad_bc\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"est329\": \"<string>\"\n    }\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/enrichment/people",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "enrichment",
+                            "people"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-703524ab-45b7-4ca5-a1fb-3f45141ba057"
                     }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T01:26:08.000Z",
+                  "updatedAt": "2026-10-22T01:26:08.000Z",
+                  "uid": "35240-3e9fb648-e8d8-411d-aaab-c1fa3698138f"
                 }
               ],
-              "body": "{\n  \"company\": {\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"industry\": \"string\",\n    \"country\": \"string\",\n    \"countryISOCode\": \"string\",\n    \"region\": \"string\",\n    \"state\": \"string\",\n    \"city\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"companyPhone\": \"string\",\n    \"employeeCount\": \"string\",\n    \"employeeRange\": \"string\",\n    \"annualRevenue\": \"string\",\n    \"revenueRange\": \"string\",\n    \"siccode\": \"string\",\n    \"sicdescription\": \"string\",\n    \"naicscode\": \"string\",\n    \"naicsdescription\": \"string\",\n    \"titleLevel\": \"string\",\n    \"titleFunction\": \"string\"\n  },\n  \"segments\": {\n    \"ids\": [\n      1247,\n      7122\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 328,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 5675,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "378dd882-d71d-44d9-9879-2d0c8e852277",
-              "name": "Unauthorized.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "enrichment",
-                    "company"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Email address (required if no domain).",
-                        "type": "text/plain"
-                      },
-                      "key": "email",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Company domain (required if no email).",
-                        "type": "text/plain"
-                      },
-                      "key": "domain",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "country",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "4e960b9c-2fc7-403b-86bb-ce7cad3dce87",
-              "name": "Company not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "enrichment",
-                    "company"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Email address (required if no domain).",
-                        "type": "text/plain"
-                      },
-                      "key": "email",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Company domain (required if no email).",
-                        "type": "text/plain"
-                      },
-                      "key": "domain",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "country",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "afed176e-f797-43e2-824a-ef3d48a2dfb0",
-              "name": "Rate limit exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "enrichment",
-                    "company"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Email address (required if no domain).",
-                        "type": "text/plain"
-                      },
-                      "key": "email",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "Company domain (required if no email).",
-                        "type": "text/plain"
-                      },
-                      "key": "domain",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "country",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "5dc2587b-3dd3-42e5-bd3e-4eac972c1661",
+              "createdAt": "2026-10-22T01:26:08.000Z",
+              "updatedAt": "2026-10-22T01:26:08.000Z",
+              "uid": "35240-5dc2587b-3dd3-42e5-bd3e-4eac972c1661"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c9b890bb-a3f4-4db1-8fd5-6fbc20c918bf",
-          "name": "Enrich People Records",
-          "request": {
-            "name": "Enrich People Records",
-            "description": {
-              "content": "Batch enrich up to 25 contacts per request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "enrichment",
-                "people"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\"\n    }\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a1da251a-3cd4-4910-9ccc-60adb5458417",
-              "name": "Enriched contacts returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "enrichment",
-                    "people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"contacts\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"emailConfidence\": \"A\",\n      \"fullName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"jobSeniority\": \"string\",\n      \"phone\": \"string\",\n      \"mobilePhone\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"linkedinId\": \"string\",\n      \"twitterHandle\": \"string\",\n      \"location\": \"string\",\n      \"skills\": [\n        \"string\",\n        \"string\"\n      ],\n      \"education\": [\n        {\n          \"schoolName\": \"string\",\n          \"degrees\": [\n            \"string\",\n            \"string\"\n          ],\n          \"startDate\": \"string\",\n          \"endDate\": \"string\",\n          \"schoolWebsite\": \"string\",\n          \"schoolLocation\": \"string\"\n        },\n        {\n          \"schoolName\": \"string\",\n          \"degrees\": [\n            \"string\",\n            \"string\"\n          ],\n          \"startDate\": \"string\",\n          \"endDate\": \"string\",\n          \"schoolWebsite\": \"string\",\n          \"schoolLocation\": \"string\"\n        }\n      ],\n      \"company\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"domain\": \"string\",\n        \"country\": \"string\",\n        \"state\": \"string\",\n        \"city\": \"string\",\n        \"industry\": \"string\",\n        \"employees\": 4818\n      },\n      \"referenceKeys\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"emailConfidence\": \"B\",\n      \"fullName\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"jobSeniority\": \"string\",\n      \"phone\": \"string\",\n      \"mobilePhone\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"linkedinId\": \"string\",\n      \"twitterHandle\": \"string\",\n      \"location\": \"string\",\n      \"skills\": [\n        \"string\",\n        \"string\"\n      ],\n      \"education\": [\n        {\n          \"schoolName\": \"string\",\n          \"degrees\": [\n            \"string\",\n            \"string\"\n          ],\n          \"startDate\": \"string\",\n          \"endDate\": \"string\",\n          \"schoolWebsite\": \"string\",\n          \"schoolLocation\": \"string\"\n        },\n        {\n          \"schoolName\": \"string\",\n          \"degrees\": [\n            \"string\",\n            \"string\"\n          ],\n          \"startDate\": \"string\",\n          \"endDate\": \"string\",\n          \"schoolWebsite\": \"string\",\n          \"schoolLocation\": \"string\"\n        }\n      ],\n      \"company\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"domain\": \"string\",\n        \"country\": \"string\",\n        \"state\": \"string\",\n        \"city\": \"string\",\n        \"industry\": \"string\",\n        \"employees\": 6517\n      },\n      \"referenceKeys\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "73dda751-fe75-488b-9324-78c6eb6ccdbf",
-              "name": "Unauthorized.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "enrichment",
-                    "people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "72f2fc89-51e3-4e69-a44e-10ec5802b4ee",
-              "name": "Validation error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "enrichment",
-                    "people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "60629758-56c4-41fc-ad6e-c9951e27a1d5",
-              "name": "Rate limit exceeded (default 20 QPS).",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "enrichment",
-                    "people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  },\n  {\n    \"email\": \"<string>\",\n    \"linkedInUrl\": \"<string>\",\n    \"peopleId\": \"<string>\",\n    \"referenceKeys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "452330b9-c07e-456f-81b8-aed6174da075",
+          "createdAt": "2026-10-22T01:26:08.000Z",
+          "updatedAt": "2026-10-22T01:26:08.000Z",
+          "uid": "35240-452330b9-c07e-456f-81b8-aed6174da075"
         }
       ],
-      "event": []
+      "id": "3028d56d-11bb-4753-8899-6977b65b8033",
+      "createdAt": "2026-10-22T01:26:08.000Z",
+      "updatedAt": "2026-10-22T01:26:08.000Z",
+      "uid": "35240-3028d56d-11bb-4753-8899-6977b65b8033"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "enrichment",
+          "item": [
+            {
+              "name": "company",
+              "item": [
+                {
+                  "name": "Company firmographics",
+                  "id": "e142288c-241d-4d9a-9279-4dfa567155b4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/enrichment/company",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "enrichment",
+                        "company"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "dda5c665-e415-4504-88f7-a770b424175e",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/enrichment/company",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "enrichment",
+                            "company"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"company\": {\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"countryISOCode\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"companyPhone\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"employeeRange\": \"<string>\",\n    \"revenueRange\": \"<string>\",\n    \"employeeCount\": \"<string>\",\n    \"annualRevenue\": \"<string>\",\n    \"segments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryV2RankedList\": [\n      {\n        \"exercitation_e\": \"<string>\"\n      },\n      {\n        \"voluptate_31\": \"<string>\",\n        \"id_0_c\": \"<string>\"\n      }\n    ],\n    \"siccode\": \"<string>\",\n    \"naicscode\": \"<string>\",\n    \"sicdescription\": \"<string>\",\n    \"naicsdescription\": \"<string>\",\n    \"naciscode\": \"<string>\",\n    \"industry_v2\": [\n      {\n        \"deseruntc7\": \"<string>\"\n      },\n      {\n        \"nulla_e31\": \"<string>\",\n        \"nulla_a1\": \"<string>\",\n        \"sitb\": \"<string>\",\n        \"aliquipf7\": \"<string>\"\n      }\n    ]\n  },\n  \"segments\": {\n    \"ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"list\": [\n      {\n        \"enime\": {}\n      },\n      {\n        \"in_e\": {},\n        \"aliqua37e\": {}\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-dda5c665-e415-4504-88f7-a770b424175e"
+                    },
+                    {
+                      "id": "56a522de-0af2-4dc5-8868-a998a0c257f4",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/enrichment/company",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "enrichment",
+                            "company"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-56a522de-0af2-4dc5-8868-a998a0c257f4"
+                    },
+                    {
+                      "id": "f2ab7e82-8760-4ebb-bee2-9950a663b561",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/enrichment/company",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "enrichment",
+                            "company"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-f2ab7e82-8760-4ebb-bee2-9950a663b561"
+                    },
+                    {
+                      "id": "de5d0768-8c85-4c63-92b8-db432312e18e",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/enrichment/company",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "enrichment",
+                            "company"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-de5d0768-8c85-4c63-92b8-db432312e18e"
+                    },
+                    {
+                      "id": "7fc297cc-3457-4467-a4e6-c8b42328e758",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/enrichment/company",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "enrichment",
+                            "company"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:08.000Z",
+                      "updatedAt": "2026-10-22T01:26:08.000Z",
+                      "uid": "35240-7fc297cc-3457-4467-a4e6-c8b42328e758"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:08.000Z",
+                  "updatedAt": "2026-10-22T01:26:08.000Z",
+                  "uid": "35240-e142288c-241d-4d9a-9279-4dfa567155b4"
+                }
+              ],
+              "id": "622e8b7d-1d61-4dd7-8a6e-a1680775871b",
+              "createdAt": "2026-10-22T01:26:08.000Z",
+              "updatedAt": "2026-10-22T01:26:08.000Z",
+              "uid": "35240-622e8b7d-1d61-4dd7-8a6e-a1680775871b"
+            }
+          ],
+          "id": "59921717-b548-4866-b8fa-e1a4a240df03",
+          "createdAt": "2026-10-22T01:26:08.000Z",
+          "updatedAt": "2026-10-22T01:26:08.000Z",
+          "uid": "35240-59921717-b548-4866-b8fa-e1a4a240df03"
+        }
+      ],
+      "id": "b41452c2-b325-4cd2-bbfc-c206f2553f89",
+      "createdAt": "2026-10-22T01:26:08.000Z",
+      "updatedAt": "2026-10-22T01:26:08.000Z",
+      "uid": "35240-b41452c2-b325-4cd2-bbfc-c206f2553f89"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.6sense.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.6sense.com"
     }
-  ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "Authorization"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "82772d5f-e605-4028-9c2e-08ef3840a040",
-    "name": "6sense Firmographics Company Enrichment API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Returns company firmographics based on email or domain. Includes industry, employee/revenue\nranges, SIC/NAICS codes, and 6sense segment membership when applicable.\n\n\nContact Support:\n Name: 6sense API Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

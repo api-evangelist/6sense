@@ -1,341 +1,2122 @@
 {
+  "info": {
+    "_postman_id": "1c24bb9d-bb0e-4432-94c9-767acab868d1",
+    "name": "6sense Company API",
+    "description": "Operations tagged Company across 2 of this provider's published API definitions: 6sense-company-identification-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:00.000Z",
+    "updatedAt": "2026-10-22T01:26:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c24bb9d-bb0e-4432-94c9-767acab868d1"
+  },
   "item": [
     {
-      "id": "948f0d74-6080-4104-9180-fb204571c23e",
-      "name": "Company",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "57dddd08-e15e-49ae-ac8a-5caafcb4e8df",
-          "name": "Get Company Details By IP",
-          "request": {
-            "name": "Get Company Details By IP",
-            "description": {
-              "content": "Identify a company from an IP address. Returns firmographics, scoring, buying stage, profile fit, and segment membership.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "company",
-                "details"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "ip",
-                  "value": "<string>",
-                  "description": "(Required) Visitor IP address (IPv4 or IPv6)."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "6sense visitor tracking cookie.",
-                "key": "EpsilonCookie",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "Custom client-supplied identifier for tracking.",
-                "key": "X-6s-CustomID",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "company",
+          "item": [
             {
-              "id": "837b689d-77d6-48d7-8e55-6386288ba58c",
-              "name": "Company identified.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "company",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "details",
+              "item": [
+                {
+                  "name": "Get Company Details By IP",
+                  "id": "73a8fbeb-d258-479c-a32b-fdbb2a7defaa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "6sense visitor tracking cookie.",
+                        "key": "EpsilonCookie",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Custom client-supplied identifier for tracking.",
+                        "key": "X-6s-CustomID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/company/details?ip=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "company",
+                        "details"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Visitor IP address (IPv4 or IPv6).",
+                          "key": "ip",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Identify a company from an IP address. Returns firmographics, scoring, buying stage, profile fit, and segment membership."
+                  },
+                  "response": [
                     {
-                      "key": "ip",
-                      "value": "<string>"
+                      "id": "46d78821-56cc-46f2-a981-201861e6af06",
+                      "name": "Company identified.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "6sense visitor tracking cookie.",
+                            "key": "EpsilonCookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Custom client-supplied identifier for tracking.",
+                            "key": "X-6s-CustomID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/company/details?ip=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "company",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Visitor IP address (IPv4 or IPv6).",
+                              "key": "ip",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"company\": {\n    \"company_match\": \"Non-actionable Match\",\n    \"additional_comment\": \"<string>\",\n    \"companyId\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_iso_code\": \"<string>\",\n    \"state\": \"<string>\",\n    \"state_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"address\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"industry_v2\": [\n      {\n        \"industry\": \"<string>\",\n        \"subindustry\": \"<string>\"\n      },\n      {\n        \"industry\": \"<string>\",\n        \"subindustry\": \"<string>\"\n      }\n    ],\n    \"employee_range\": \"<string>\",\n    \"employee_count\": \"<integer>\",\n    \"revenue_range\": \"<string>\",\n    \"annual_revenue\": \"<number>\",\n    \"is_blacklisted\": \"<boolean>\",\n    \"is_6qa\": \"<boolean>\",\n    \"geoIP_country\": \"<string>\",\n    \"geoIP_state\": \"<string>\",\n    \"geoIP_city\": \"<string>\",\n    \"sic\": \"<string>\",\n    \"sic_description\": \"<string>\",\n    \"naics\": \"<string>\",\n    \"naics_description\": \"<string>\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"<string>\",\n      \"product_display_name\": \"<string>\",\n      \"is_6qa\": \"<boolean>\",\n      \"intent_score\": \"<integer>\",\n      \"buying_stage\": \"Decision\",\n      \"profile_score\": \"<integer>\",\n      \"profile_fit\": \"Weak\"\n    },\n    {\n      \"product\": \"<string>\",\n      \"product_display_name\": \"<string>\",\n      \"is_6qa\": \"<boolean>\",\n      \"intent_score\": \"<integer>\",\n      \"buying_stage\": \"Awareness\",\n      \"profile_score\": \"<integer>\",\n      \"profile_fit\": \"Weak\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"list\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"confidence\": \"High\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-46d78821-56cc-46f2-a981-201861e6af06"
+                    },
+                    {
+                      "id": "c79f20b4-3b49-46be-8a6d-d5ef5962a570",
+                      "name": "Unauthorized.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "6sense visitor tracking cookie.",
+                            "key": "EpsilonCookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Custom client-supplied identifier for tracking.",
+                            "key": "X-6s-CustomID",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/company/details?ip=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "company",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Visitor IP address (IPv4 or IPv6).",
+                              "key": "ip",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-c79f20b4-3b49-46be-8a6d-d5ef5962a570"
+                    },
+                    {
+                      "id": "a300fb5f-4579-4e5d-81cb-7b975210fbd2",
+                      "name": "No company match.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "6sense visitor tracking cookie.",
+                            "key": "EpsilonCookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Custom client-supplied identifier for tracking.",
+                            "key": "X-6s-CustomID",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/company/details?ip=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "company",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Visitor IP address (IPv4 or IPv6).",
+                              "key": "ip",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-a300fb5f-4579-4e5d-81cb-7b975210fbd2"
+                    },
+                    {
+                      "id": "c575d55d-a706-4369-8c2f-bc9a02acccd8",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "6sense visitor tracking cookie.",
+                            "key": "EpsilonCookie",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Custom client-supplied identifier for tracking.",
+                            "key": "X-6s-CustomID",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/company/details?ip=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "company",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Visitor IP address (IPv4 or IPv6).",
+                              "key": "ip",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-c575d55d-a706-4369-8c2f-bc9a02acccd8"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "6sense visitor tracking cookie.",
-                    "key": "EpsilonCookie",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Custom client-supplied identifier for tracking.",
-                    "key": "X-6s-CustomID",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-73a8fbeb-d258-479c-a32b-fdbb2a7defaa"
                 }
               ],
-              "body": "{\n  \"company\": {\n    \"company_match\": \"Match\",\n    \"additional_comment\": \"string\",\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"country_iso_code\": \"string\",\n    \"state\": \"string\",\n    \"state_code\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"zip\": \"string\",\n    \"phone\": \"string\",\n    \"industry\": \"string\",\n    \"industry_v2\": [\n      {\n        \"industry\": \"string\",\n        \"subindustry\": \"string\"\n      },\n      {\n        \"industry\": \"string\",\n        \"subindustry\": \"string\"\n      }\n    ],\n    \"employee_range\": \"string\",\n    \"employee_count\": 6580,\n    \"revenue_range\": \"string\",\n    \"annual_revenue\": 2725.2141933730845,\n    \"is_blacklisted\": false,\n    \"is_6qa\": true,\n    \"geoIP_country\": \"string\",\n    \"geoIP_state\": \"string\",\n    \"geoIP_city\": \"string\",\n    \"sic\": \"string\",\n    \"sic_description\": \"string\",\n    \"naics\": \"string\",\n    \"naics_description\": \"string\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"product_display_name\": \"string\",\n      \"is_6qa\": true,\n      \"intent_score\": 9174,\n      \"buying_stage\": \"Awareness\",\n      \"profile_score\": 3310,\n      \"profile_fit\": \"Moderate\"\n    },\n    {\n      \"product\": \"string\",\n      \"product_display_name\": \"string\",\n      \"is_6qa\": false,\n      \"intent_score\": 9126,\n      \"buying_stage\": \"Target\",\n      \"profile_score\": 8084,\n      \"profile_fit\": \"Strong\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      4621,\n      8789\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 4008,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 3084,\n        \"name\": \"string\"\n      }\n    ]\n  },\n  \"confidence\": \"Low\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d9c67ca0-4853-4fe0-9b0c-fd117b8e889a",
-              "name": "Unauthorized.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "company",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ip",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "6sense visitor tracking cookie.",
-                    "key": "EpsilonCookie",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Custom client-supplied identifier for tracking.",
-                    "key": "X-6s-CustomID",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1889ef1d-d957-4c01-932e-225c71a75b1a",
-              "name": "No company match.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "company",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ip",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "6sense visitor tracking cookie.",
-                    "key": "EpsilonCookie",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Custom client-supplied identifier for tracking.",
-                    "key": "X-6s-CustomID",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "eee9b7df-0c50-408a-9918-1e493aa36747",
-              "name": "Rate limit exceeded.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "company",
-                    "details"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ip",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "6sense visitor tracking cookie.",
-                    "key": "EpsilonCookie",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Custom client-supplied identifier for tracking.",
-                    "key": "X-6s-CustomID",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "a44eb1ec-9116-44f1-bdd5-67f86498ae1e",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-a44eb1ec-9116-44f1-bdd5-67f86498ae1e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2309c3d3-3188-465d-85f6-b5ec5641b934",
+          "createdAt": "2026-10-22T01:26:00.000Z",
+          "updatedAt": "2026-10-22T01:26:00.000Z",
+          "uid": "35240-2309c3d3-3188-465d-85f6-b5ec5641b934"
         }
       ],
-      "event": []
+      "id": "11121034-9167-46b4-b3e7-8f0eb36bf824",
+      "createdAt": "2026-10-22T01:26:00.000Z",
+      "updatedAt": "2026-10-22T01:26:00.000Z",
+      "uid": "35240-11121034-9167-46b4-b3e7-8f0eb36bf824"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "company",
+          "item": [
+            {
+              "name": "products",
+              "item": [
+                {
+                  "name": "Get products list",
+                  "id": "3d18383e-dd7c-4289-9247-b385e71afde4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/company/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "company",
+                        "products"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e8aa5229-7443-46f6-8b32-8f8a5dc1c57c",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"org\": \"<string>\",\n  \"products\": [\n    {\n      \"in_d\": \"<string>\"\n    },\n    {\n      \"sit9c\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-e8aa5229-7443-46f6-8b32-8f8a5dc1c57c"
+                    },
+                    {
+                      "id": "1bf7d35b-8f22-4b88-bd4a-fe3367e96725",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-1bf7d35b-8f22-4b88-bd4a-fe3367e96725"
+                    },
+                    {
+                      "id": "2f5f0dc9-9d24-42d8-8c70-008313e19de6",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-2f5f0dc9-9d24-42d8-8c70-008313e19de6"
+                    },
+                    {
+                      "id": "07812cb3-9e56-4621-9953-03d7029d5a79",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-07812cb3-9e56-4621-9953-03d7029d5a79"
+                    },
+                    {
+                      "id": "8edf8c3e-2808-435d-9892-9a6a2fccd5f9",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-8edf8c3e-2808-435d-9892-9a6a2fccd5f9"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-3d18383e-dd7c-4289-9247-b385e71afde4"
+                }
+              ],
+              "id": "3c7f3036-628c-4f77-9022-b9c440a2e036",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-3c7f3036-628c-4f77-9022-b9c440a2e036"
+            },
+            {
+              "name": "segment",
+              "item": [
+                {
+                  "name": "{segment_id}",
+                  "item": [
+                    {
+                      "name": "Get accounts list 1",
+                      "id": "1b11d86d-6738-4a70-9972-da2e1048a297",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segment",
+                            ":segment_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c66df80c-f2cb-4f19-83d1-bdef41db6d79",
+                              "key": "segment_id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8bbcfa9c-1e22-4019-a2e4-caa279abf293",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"created_at\": \"<string>\",\n  \"accounts\": [\n    {\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-8bbcfa9c-1e22-4019-a2e4-caa279abf293"
+                        },
+                        {
+                          "id": "5cdeba8d-5ada-4f06-a645-503539af6275",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-5cdeba8d-5ada-4f06-a645-503539af6275"
+                        },
+                        {
+                          "id": "11e3c7e8-7582-48c9-94e6-36a668f599a8",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-11e3c7e8-7582-48c9-94e6-36a668f599a8"
+                        },
+                        {
+                          "id": "1e572295-bdf8-4cc3-bd64-ea5f4f9a8d90",
+                          "name": "402 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Payment Required",
+                          "code": 402,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-1e572295-bdf8-4cc3-bd64-ea5f4f9a8d90"
+                        },
+                        {
+                          "id": "22581a50-2076-420b-bc07-96246dabadf3",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-22581a50-2076-420b-bc07-96246dabadf3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-1b11d86d-6738-4a70-9972-da2e1048a297"
+                    }
+                  ],
+                  "id": "7e2c64bc-61bb-42d1-b81f-bb64985b1db4",
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-7e2c64bc-61bb-42d1-b81f-bb64985b1db4"
+                }
+              ],
+              "id": "64da110a-6e64-479d-aae7-32a57220eaaa",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-64da110a-6e64-479d-aae7-32a57220eaaa"
+            },
+            {
+              "name": "segments",
+              "item": [
+                {
+                  "name": "Get segments 1",
+                  "id": "9542bf75-dcb1-4951-a21b-98e7673e663b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/company/segments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "company",
+                        "segments"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fe679c47-9e76-4aa1-861f-07fc02b70077",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list\": [\n    {\n      \"esse_e\": {},\n      \"irureca7\": {},\n      \"sede9f\": {}\n    },\n    {\n      \"mollit_c7\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-fe679c47-9e76-4aa1-861f-07fc02b70077"
+                    },
+                    {
+                      "id": "f3bf3e2b-1b23-49fd-8d9e-0cced04f1786",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-f3bf3e2b-1b23-49fd-8d9e-0cced04f1786"
+                    },
+                    {
+                      "id": "84e2b867-3ac8-4e3f-a82a-9d88488bb079",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-84e2b867-3ac8-4e3f-a82a-9d88488bb079"
+                    },
+                    {
+                      "id": "55fb2aa6-d83f-4855-80e2-c9f93c4a2a64",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-55fb2aa6-d83f-4855-80e2-c9f93c4a2a64"
+                    },
+                    {
+                      "id": "bca0dba5-0087-46a6-9507-326bc0cf4288",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-bca0dba5-0087-46a6-9507-326bc0cf4288"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-9542bf75-dcb1-4951-a21b-98e7673e663b"
+                }
+              ],
+              "id": "4c6c0482-041d-4f24-98b5-43b5b4e47b2c",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-4c6c0482-041d-4f24-98b5-43b5b4e47b2c"
+            },
+            {
+              "name": "validate_access",
+              "item": [
+                {
+                  "name": "segments",
+                  "item": [
+                    {
+                      "name": "Validate segment",
+                      "id": "ca8f6db4-468a-4895-832c-6b1a100767a7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/company/validate_access/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "company",
+                            "validate_access",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "6b90bf2f-8760-42b3-a6a2-d981287b8811",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/validate_access/segments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "validate_access",
+                                "segments"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-6b90bf2f-8760-42b3-a6a2-d981287b8811"
+                        },
+                        {
+                          "id": "69b25484-ec36-4259-801a-a5b6cbae2d2c",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/validate_access/segments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "validate_access",
+                                "segments"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-69b25484-ec36-4259-801a-a5b6cbae2d2c"
+                        },
+                        {
+                          "id": "886cbb5a-0850-4113-be54-dd0e218abc6d",
+                          "name": "402 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/validate_access/segments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "validate_access",
+                                "segments"
+                              ]
+                            }
+                          },
+                          "status": "Payment Required",
+                          "code": 402,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-886cbb5a-0850-4113-be54-dd0e218abc6d"
+                        },
+                        {
+                          "id": "e4238958-0a08-40f5-9094-16fd26da1892",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/company/validate_access/segments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "company",
+                                "validate_access",
+                                "segments"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-e4238958-0a08-40f5-9094-16fd26da1892"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-ca8f6db4-468a-4895-832c-6b1a100767a7"
+                    }
+                  ],
+                  "id": "09362bad-0dbf-4d6e-b58a-8aeabd17e336",
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-09362bad-0dbf-4d6e-b58a-8aeabd17e336"
+                }
+              ],
+              "id": "0291005f-e224-4527-a6c3-fc222b3e24b7",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-0291005f-e224-4527-a6c3-fc222b3e24b7"
+            }
+          ],
+          "id": "b33c98a9-61b9-4dde-abd3-ef6266b3efa0",
+          "createdAt": "2026-10-22T01:26:00.000Z",
+          "updatedAt": "2026-10-22T01:26:00.000Z",
+          "uid": "35240-b33c98a9-61b9-4dde-abd3-ef6266b3efa0"
+        }
+      ],
+      "id": "a6a55535-0f1d-46d7-b415-d833f6474b18",
+      "createdAt": "2026-10-22T01:26:00.000Z",
+      "updatedAt": "2026-10-22T01:26:00.000Z",
+      "uid": "35240-a6a55535-0f1d-46d7-b415-d833f6474b18"
+    },
+    {
+      "name": "company",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "segment",
+              "item": [
+                {
+                  "name": "{segment_id}",
+                  "item": [
+                    {
+                      "name": "Get accounts list",
+                      "id": "93cf53c2-98fc-4f61-b457-602a8b3105e1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segment",
+                            ":segment_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "79427eb8-ebc5-496d-835b-78dd32b07e57",
+                              "key": "segment_id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "af53783a-479b-4808-8e68-e58613800540",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "company",
+                                "v1",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"created_at\": \"<string>\",\n  \"accounts\": [\n    {\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-af53783a-479b-4808-8e68-e58613800540"
+                        },
+                        {
+                          "id": "9a6aa298-d837-41e4-ae2a-2fb899ffce2c",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "company",
+                                "v1",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-9a6aa298-d837-41e4-ae2a-2fb899ffce2c"
+                        },
+                        {
+                          "id": "d686ee55-d0c5-4301-83af-db3bfe3ca82c",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "company",
+                                "v1",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-d686ee55-d0c5-4301-83af-db3bfe3ca82c"
+                        },
+                        {
+                          "id": "df99f772-910b-4e81-af6f-24e8309de799",
+                          "name": "402 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "company",
+                                "v1",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Payment Required",
+                          "code": 402,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-df99f772-910b-4e81-af6f-24e8309de799"
+                        },
+                        {
+                          "id": "d911cc1c-7fdd-4ad3-99cc-bf2877655d34",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/company/v1/segment/:segment_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "company",
+                                "v1",
+                                "segment",
+                                ":segment_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "segment_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:26:00.000Z",
+                          "updatedAt": "2026-10-22T01:26:00.000Z",
+                          "uid": "35240-d911cc1c-7fdd-4ad3-99cc-bf2877655d34"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-93cf53c2-98fc-4f61-b457-602a8b3105e1"
+                    }
+                  ],
+                  "id": "5e6f4a6f-777e-4d5b-aca5-26e94435315a",
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-5e6f4a6f-777e-4d5b-aca5-26e94435315a"
+                }
+              ],
+              "id": "02e170b0-4b94-435c-8329-01b0cf3f6ecc",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-02e170b0-4b94-435c-8329-01b0cf3f6ecc"
+            },
+            {
+              "name": "segments",
+              "item": [
+                {
+                  "name": "Get segments",
+                  "id": "9e030485-e0a6-44e6-9c12-f5ca118f9658",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/company/v1/segments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "company",
+                        "v1",
+                        "segments"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c5ea745d-8422-441d-8bda-53945e51a8f9",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"list\": [\n    {\n      \"esse_e\": {},\n      \"irureca7\": {},\n      \"sede9f\": {}\n    },\n    {\n      \"mollit_c7\": {}\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-c5ea745d-8422-441d-8bda-53945e51a8f9"
+                    },
+                    {
+                      "id": "c8c1786c-8f91-4fa3-aebc-9a92b345ead1",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-c8c1786c-8f91-4fa3-aebc-9a92b345ead1"
+                    },
+                    {
+                      "id": "9f4078d6-eb80-4a9f-b6c1-775f16cca876",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-9f4078d6-eb80-4a9f-b6c1-775f16cca876"
+                    },
+                    {
+                      "id": "0c28b140-6684-465c-bbb9-ae64074ece11",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-0c28b140-6684-465c-bbb9-ae64074ece11"
+                    },
+                    {
+                      "id": "faf79a2c-45fd-46f3-9abc-8bbc293f0152",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/company/v1/segments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "company",
+                            "v1",
+                            "segments"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:00.000Z",
+                      "updatedAt": "2026-10-22T01:26:00.000Z",
+                      "uid": "35240-faf79a2c-45fd-46f3-9abc-8bbc293f0152"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:00.000Z",
+                  "updatedAt": "2026-10-22T01:26:00.000Z",
+                  "uid": "35240-9e030485-e0a6-44e6-9c12-f5ca118f9658"
+                }
+              ],
+              "id": "92be2604-22fd-4c6e-ae01-7275762d4680",
+              "createdAt": "2026-10-22T01:26:00.000Z",
+              "updatedAt": "2026-10-22T01:26:00.000Z",
+              "uid": "35240-92be2604-22fd-4c6e-ae01-7275762d4680"
+            }
+          ],
+          "id": "29863ea3-2d4c-4f31-9044-6f2c1665047e",
+          "createdAt": "2026-10-22T01:26:00.000Z",
+          "updatedAt": "2026-10-22T01:26:00.000Z",
+          "uid": "35240-29863ea3-2d4c-4f31-9044-6f2c1665047e"
+        }
+      ],
+      "id": "5a353ef7-ee08-4254-bc1d-3a6ae236bacb",
+      "createdAt": "2026-10-22T01:26:00.000Z",
+      "updatedAt": "2026-10-22T01:26:00.000Z",
+      "uid": "35240-5a353ef7-ee08-4254-bc1d-3a6ae236bacb"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.6sense.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://epsilon.6sense.com"
     }
-  ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "Authorization"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "1a743778-7ca7-4aad-b4fb-bd2cbd4889f3",
-    "name": "6sense Firmographics Company API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Returns company firmographics based on email or domain. Includes industry, employee/revenue\nranges, SIC/NAICS codes, and 6sense segment membership when applicable.\n\n\nContact Support:\n Name: 6sense API Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

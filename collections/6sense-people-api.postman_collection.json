@@ -1,646 +1,1389 @@
 {
+  "info": {
+    "_postman_id": "122c70e6-b726-4609-ab38-fa91f2867dd1",
+    "name": "6sense People API",
+    "description": "Operations tagged People across 2 of this provider's published API definitions: 6sense-people-search-api-openapi.yml, 6sense-scribe-openapi.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:13.000Z",
+    "updatedAt": "2026-10-22T01:26:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-122c70e6-b726-4609-ab38-fa91f2867dd1"
+  },
   "item": [
     {
-      "id": "6d28e6ac-cdd3-424c-a642-da883e41477b",
-      "name": "People",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "327493e6-b1b3-4bcb-8dd1-93c4111b5f61",
-          "name": "Score A Lead",
-          "request": {
-            "name": "Score A Lead",
-            "description": {
-              "content": "Returns predictive scores per product for a contact.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "people",
-                "score"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "email",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "website",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "company",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "title",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "leadsource",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "firstname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "lastname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "role",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "industry",
-                  "value": "<string>"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "people",
+          "item": [
             {
-              "id": "db8f7122-bc1d-408e-b9d9-d59fcfce78db",
-              "name": "Scoring returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "people",
-                    "score"
+              "name": "search",
+              "item": [
+                {
+                  "name": "dictionary",
+                  "item": [
+                    {
+                      "name": "Get People Search Filter Dictionary",
+                      "id": "41076ddd-6c65-465c-a061-874cb66d38c9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/search/dictionary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "search",
+                            "dictionary"
+                          ]
+                        },
+                        "description": "Returns valid filter values for job title, function, level, industry, and other facets."
+                      },
+                      "response": [
+                        {
+                          "id": "1d36d4d4-3471-46d5-947f-707fb864afc3",
+                          "name": "Dictionary returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/people/search/dictionary",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "people",
+                                "search",
+                                "dictionary"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"commodoc0\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Utf6d\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dolor8c\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fugiat95\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-22T01:26:13.000Z",
+                          "updatedAt": "2026-10-22T01:26:13.000Z",
+                          "uid": "35240-1d36d4d4-3471-46d5-947f-707fb864afc3"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-41076ddd-6c65-465c-a061-874cb66d38c9"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "id": "da3532a9-3007-4826-b7d8-1027871b2c15",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-da3532a9-3007-4826-b7d8-1027871b2c15"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
+                {
+                  "name": "Search People By Company",
+                  "id": "ed44cbf4-3cfe-4e15-b8f0-1c0f812448ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people",
+                        "search"
+                      ]
+                    },
+                    "description": "Returns contact profiles matching the supplied domain and filters."
+                  },
+                  "response": [
+                    {
+                      "id": "ed8656cd-30c7-4166-bde1-ab4aa27f4e01",
+                      "name": "Search results returned.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/search",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "search"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"people\": [\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"jobFunction\": \"<string>\",\n      \"jobLevel\": \"<string>\",\n      \"location\": \"<string>\",\n      \"linkedinUrl\": \"<string>\",\n      \"hasEmail\": \"<boolean>\",\n      \"hasPhone\": \"<boolean>\",\n      \"hasMobilePhone\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"jobFunction\": \"<string>\",\n      \"jobLevel\": \"<string>\",\n      \"location\": \"<string>\",\n      \"linkedinUrl\": \"<string>\",\n      \"hasEmail\": \"<boolean>\",\n      \"hasPhone\": \"<boolean>\",\n      \"hasMobilePhone\": \"<boolean>\"\n    }\n  ],\n  \"totalResults\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-ed8656cd-30c7-4166-bde1-ab4aa27f4e01"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-ed44cbf4-3cfe-4e15-b8f0-1c0f812448ff"
+                }
+              ],
+              "id": "5d62b3f5-7bc9-4eb8-8fae-3899bc343525",
+              "createdAt": "2026-10-22T01:26:13.000Z",
+              "updatedAt": "2026-10-22T01:26:13.000Z",
+              "uid": "35240-5d62b3f5-7bc9-4eb8-8fae-3899bc343525"
+            },
+            {
+              "name": "enrichment",
+              "item": [
+                {
+                  "name": "Get enrichment",
+                  "id": "fc5cc00a-045e-473e-9e69-861a4f5fa5fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people/enrichment",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people",
+                        "enrichment"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d55e7181-6110-444c-845f-0794dc3b4503",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/enrichment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "enrichment"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"company\": {\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"countryISOCode\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"companyPhone\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"employeeRange\": \"<string>\",\n    \"revenueRange\": \"<string>\",\n    \"employeeCount\": \"<string>\",\n    \"annualRevenue\": \"<string>\",\n    \"segments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryV2RankedList\": [\n      {\n        \"dolore_0cb\": \"<string>\"\n      },\n      {\n        \"aliquip8\": \"<string>\",\n        \"in183\": \"<string>\",\n        \"aliqua_08\": \"<string>\",\n        \"doloree_8\": \"<string>\"\n      }\n    ],\n    \"siccode\": \"<string>\",\n    \"naicscode\": \"<string>\",\n    \"sicdescription\": \"<string>\",\n    \"naicsdescription\": \"<string>\",\n    \"naciscode\": \"<string>\",\n    \"industry_v2\": [\n      {\n        \"tempor_0\": \"<string>\"\n      },\n      {\n        \"aute_4_a\": \"<string>\",\n        \"in__\": \"<string>\",\n        \"amet32\": \"<string>\"\n      }\n    ]\n  },\n  \"segments\": {\n    \"ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"list\": [\n      {\n        \"consequat9\": {}\n      },\n      {\n        \"amet_37\": {},\n        \"proident__d\": {}\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-d55e7181-6110-444c-845f-0794dc3b4503"
+                    },
+                    {
+                      "id": "e1d444e6-2cbf-440a-9aa2-ff3df87d3aa8",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/enrichment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "enrichment"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-e1d444e6-2cbf-440a-9aa2-ff3df87d3aa8"
+                    },
+                    {
+                      "id": "126bd600-8cda-4899-8afd-e709419ea2ec",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/enrichment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "enrichment"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-126bd600-8cda-4899-8afd-e709419ea2ec"
+                    },
+                    {
+                      "id": "1f7d2b53-f0ef-4aac-aefb-0a4de506e515",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/enrichment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "enrichment"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-1f7d2b53-f0ef-4aac-aefb-0a4de506e515"
+                    },
+                    {
+                      "id": "d18eb82f-b97d-4376-83e7-fae272e0851c",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/enrichment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "enrichment"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-d18eb82f-b97d-4376-83e7-fae272e0851c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-fc5cc00a-045e-473e-9e69-861a4f5fa5fd"
+                }
+              ],
+              "id": "4c581318-9ec5-4f76-b879-c42fe6d835f4",
+              "createdAt": "2026-10-22T01:26:13.000Z",
+              "updatedAt": "2026-10-22T01:26:13.000Z",
+              "uid": "35240-4c581318-9ec5-4f76-b879-c42fe6d835f4"
+            },
+            {
+              "name": "score",
+              "item": [
+                {
+                  "name": "Get score",
+                  "id": "b9217354-5e3e-47fb-98a1-7499f7920130",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people/score",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people",
+                        "score"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "32147af1-5e9a-4ba5-b33e-346321a756aa",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/score",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "score"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"scores\": [\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    },\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-32147af1-5e9a-4ba5-b33e-346321a756aa"
+                    },
+                    {
+                      "id": "da027875-dc68-4968-aef6-a9f6c322c54c",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/score",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "score"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-da027875-dc68-4968-aef6-a9f6c322c54c"
+                    },
+                    {
+                      "id": "8016c1e2-227d-4e40-9dec-1501fa4cb172",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/score",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "score"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-8016c1e2-227d-4e40-9dec-1501fa4cb172"
+                    },
+                    {
+                      "id": "0c6f612a-f4cb-4e0f-8c1e-057102361c6e",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/score",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "score"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-0c6f612a-f4cb-4e0f-8c1e-057102361c6e"
+                    },
+                    {
+                      "id": "23a952a1-badf-4ce6-8201-590935d6cabf",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/score",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "score"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-23a952a1-badf-4ce6-8201-590935d6cabf"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-b9217354-5e3e-47fb-98a1-7499f7920130"
+                }
+              ],
+              "id": "91b76a60-fb1a-4faf-9601-a28300c4b6cc",
+              "createdAt": "2026-10-22T01:26:13.000Z",
+              "updatedAt": "2026-10-22T01:26:13.000Z",
+              "uid": "35240-91b76a60-fb1a-4faf-9601-a28300c4b6cc"
+            },
+            {
+              "name": "full",
+              "item": [
+                {
+                  "name": "Get score and enrichment",
+                  "id": "ba5da1e7-74d0-4f44-ae49-1540b3f2dab4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people/full",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people",
+                        "full"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "962d0ba4-f711-4b04-856d-272a95f5259f",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/full",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "full"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"company\": {\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"countryISOCode\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"companyPhone\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"employeeRange\": \"<string>\",\n    \"revenueRange\": \"<string>\",\n    \"employeeCount\": \"<string>\",\n    \"annualRevenue\": \"<string>\",\n    \"segments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryV2RankedList\": [\n      {\n        \"laboris6ed\": \"<string>\",\n        \"pariatur_7\": \"<string>\",\n        \"laboris615\": \"<string>\"\n      },\n      {\n        \"pariatur0c\": \"<string>\"\n      }\n    ],\n    \"siccode\": \"<string>\",\n    \"naicscode\": \"<string>\",\n    \"sicdescription\": \"<string>\",\n    \"naicsdescription\": \"<string>\",\n    \"naciscode\": \"<string>\",\n    \"industry_v2\": [\n      {\n        \"pariatur_d5\": \"<string>\",\n        \"anim_9\": \"<string>\"\n      },\n      {\n        \"adipisicing49_\": \"<string>\",\n        \"sinte\": \"<string>\"\n      }\n    ]\n  },\n  \"scores\": [\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    },\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"list\": [\n      {\n        \"sita7\": {}\n      },\n      {\n        \"proident62\": {},\n        \"quis_0\": {}\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-962d0ba4-f711-4b04-856d-272a95f5259f"
+                    },
+                    {
+                      "id": "293ecc8b-8f24-4cb1-88a0-57c0464b67fd",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/full",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "full"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-293ecc8b-8f24-4cb1-88a0-57c0464b67fd"
+                    },
+                    {
+                      "id": "4547068a-5ee0-4a70-bff2-35e04a7b35fa",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/full",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "full"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-4547068a-5ee0-4a70-bff2-35e04a7b35fa"
+                    },
+                    {
+                      "id": "5c73719e-2a27-4c5b-ad7c-98f98bbfa324",
+                      "name": "402 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/full",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "full"
+                          ]
+                        }
+                      },
+                      "status": "Payment Required",
+                      "code": 402,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-5c73719e-2a27-4c5b-ad7c-98f98bbfa324"
+                    },
+                    {
+                      "id": "5099b24c-1b98-491f-9292-c2ddd61b6bc2",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/people/full",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "people",
+                            "full"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:26:13.000Z",
+                      "updatedAt": "2026-10-22T01:26:13.000Z",
+                      "uid": "35240-5099b24c-1b98-491f-9292-c2ddd61b6bc2"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-ba5da1e7-74d0-4f44-ae49-1540b3f2dab4"
+                }
+              ],
+              "id": "4942a9ad-8223-4a83-8825-bfb43605141e",
+              "createdAt": "2026-10-22T01:26:13.000Z",
+              "updatedAt": "2026-10-22T01:26:13.000Z",
+              "uid": "35240-4942a9ad-8223-4a83-8825-bfb43605141e"
+            },
+            {
+              "name": "Score V2",
+              "id": "7c607ed2-7bb3-42ca-b28c-53a679ba31b0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "email",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "country",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "website",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
-                    }
+                "url": {
+                  "raw": "{{baseUrl}}/v2/people",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "people"
                   ]
                 }
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 87,\n      \"company_buying_stage\": \"Target\",\n      \"company_profile_score\": 8,\n      \"company_profile_fit\": \"Weak\",\n      \"contact_intent_score\": 88,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 5,\n      \"contact_profile_fit\": \"Strong\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 23,\n      \"company_buying_stage\": \"Consideration\",\n      \"company_profile_score\": 46,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 16,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 38,\n      \"contact_profile_fit\": \"Moderate\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "46bf85b3-6356-42df-8467-e9eaaa8451dc",
-          "name": "Get Lead Scoring And Firmographics",
-          "request": {
-            "name": "Get Lead Scoring And Firmographics",
-            "description": {
-              "content": "Returns firmographics, scoring, and segment membership for a contact.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "people",
-                "full"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "email",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "website",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "company",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "title",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "leadsource",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "firstname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "lastname",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "role",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "industry",
-                  "value": "<string>"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "674920f5-1900-491e-b7e4-8070c293dded",
-              "name": "Combined response returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "people",
-                    "full"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
+                  "id": "1c8913ec-152a-4c18-b211-c1a98aabe60a",
+                  "name": "200 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
                       },
-                      "key": "email",
-                      "value": "<string>"
-                    },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"company\": {\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"countryISOCode\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"companyPhone\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"employeeRange\": \"<string>\",\n    \"revenueRange\": \"<string>\",\n    \"employeeCount\": \"<string>\",\n    \"annualRevenue\": \"<string>\",\n    \"segments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"industryV2RankedList\": [\n      {\n        \"laboris6ed\": \"<string>\",\n        \"pariatur_7\": \"<string>\",\n        \"laboris615\": \"<string>\"\n      },\n      {\n        \"pariatur0c\": \"<string>\"\n      }\n    ],\n    \"siccode\": \"<string>\",\n    \"naicscode\": \"<string>\",\n    \"sicdescription\": \"<string>\",\n    \"naicsdescription\": \"<string>\",\n    \"naciscode\": \"<string>\",\n    \"industry_v2\": [\n      {\n        \"pariatur_d5\": \"<string>\",\n        \"anim_9\": \"<string>\"\n      },\n      {\n        \"adipisicing49_\": \"<string>\",\n        \"sinte\": \"<string>\"\n      }\n    ]\n  },\n  \"scores\": [\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    },\n    {\n      \"product\": \"<string>\",\n      \"company_intent_score\": \"<integer>\",\n      \"company_buying_stage\": \"<string>\",\n      \"company_profile_score\": \"<integer>\",\n      \"company_profile_fit\": \"<string>\",\n      \"contact_intent_score\": \"<integer>\",\n      \"contact_grade\": \"<string>\",\n      \"contact_profile_score\": \"<integer>\",\n      \"contact_profile_fit\": \"<string>\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"list\": [\n      {\n        \"sita7\": {}\n      },\n      {\n        \"proident62\": {},\n        \"quis_0\": {}\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-1c8913ec-152a-4c18-b211-c1a98aabe60a"
+                },
+                {
+                  "id": "d8b32064-a07b-4954-8157-1ed0d862fcf1",
+                  "name": "400 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
                       },
-                      "key": "country",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "website",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "company",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "title",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "leadsource",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "firstname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "lastname",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "role",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "industry",
-                      "value": "<string>"
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people"
+                      ]
                     }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"company\": {\n    \"companyId\": \"string\",\n    \"domain\": \"string\",\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"country\": \"string\",\n    \"countryISOCode\": \"string\",\n    \"state\": \"string\",\n    \"city\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"companyPhone\": \"string\",\n    \"industry\": \"string\",\n    \"employeeRange\": \"string\",\n    \"revenueRange\": \"string\",\n    \"employeeCount\": 913,\n    \"annualRevenue\": 4900.591273225188,\n    \"titleLevel\": \"string\",\n    \"titleFunction\": \"string\",\n    \"sicdescription\": \"string\",\n    \"siccode\": \"string\",\n    \"naicscode\": \"string\",\n    \"naicsdescription\": \"string\"\n  },\n  \"scores\": [\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 411,\n      \"company_buying_stage\": \"Consideration\",\n      \"company_profile_score\": 2230,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 3594,\n      \"contact_grade\": \"C\",\n      \"contact_profile_score\": 1050,\n      \"contact_profile_fit\": \"Strong\"\n    },\n    {\n      \"product\": \"string\",\n      \"company_intent_score\": 9767,\n      \"company_buying_stage\": \"Decision\",\n      \"company_profile_score\": 6831,\n      \"company_profile_fit\": \"Strong\",\n      \"contact_intent_score\": 8421,\n      \"contact_grade\": \"B\",\n      \"contact_profile_score\": 7789,\n      \"contact_profile_fit\": \"Moderate\"\n    }\n  ],\n  \"segments\": {\n    \"ids\": [\n      2758,\n      5481\n    ],\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"list\": [\n      {\n        \"id\": 342,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 2629,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0053c7d0-b14c-4362-82e5-7dcefc28812c",
-          "name": "Search People By Company",
-          "request": {
-            "name": "Search People By Company",
-            "description": {
-              "content": "Returns contact profiles matching the supplied domain and filters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "people",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b543fa4f-7c83-4e26-9ba0-854b444923ac",
-              "name": "Search results returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "people",
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"domain\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"jobFunction\": \"<string>\",\n  \"jobLevel\": \"<string>\",\n  \"location\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"people\": [\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"location\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"hasEmail\": true,\n      \"hasPhone\": true,\n      \"hasMobilePhone\": false\n    },\n    {\n      \"id\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"fullName\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobFunction\": \"string\",\n      \"jobLevel\": \"string\",\n      \"location\": \"string\",\n      \"linkedinUrl\": \"string\",\n      \"hasEmail\": true,\n      \"hasPhone\": false,\n      \"hasMobilePhone\": false\n    }\n  ],\n  \"totalResults\": 1333\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a17a0bd-4bee-4e38-855f-5f063a3e5c6d",
-          "name": "Get People Search Filter Dictionary",
-          "request": {
-            "name": "Get People Search Filter Dictionary",
-            "description": {
-              "content": "Returns valid filter values for job title, function, level, industry, and other facets.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "people",
-                "search",
-                "dictionary"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "74ee39a6-2ec5-4d15-ac6b-d0bfba1a8412",
-              "name": "Dictionary returned.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "people",
-                    "search",
-                    "dictionary"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-d8b32064-a07b-4954-8157-1ed0d862fcf1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "cd59c703-9970-4f43-be54-141362bbb404",
+                  "name": "401 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-cd59c703-9970-4f43-be54-141362bbb404"
+                },
+                {
+                  "id": "238f38ec-09e8-4050-9461-ba0e0718f985",
+                  "name": "402 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people"
+                      ]
+                    }
+                  },
+                  "status": "Payment Required",
+                  "code": 402,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-238f38ec-09e8-4050-9461-ba0e0718f985"
+                },
+                {
+                  "id": "50ad3fad-d427-4132-b5cf-da4559c2dd73",
+                  "name": "403 response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/people",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "people"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:26:13.000Z",
+                  "updatedAt": "2026-10-22T01:26:13.000Z",
+                  "uid": "35240-50ad3fad-d427-4132-b5cf-da4559c2dd73"
                 }
               ],
-              "body": "{\n  \"key_0\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:26:13.000Z",
+              "updatedAt": "2026-10-22T01:26:13.000Z",
+              "uid": "35240-7c607ed2-7bb3-42ca-b28c-53a679ba31b0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c1f46e40-ccf4-4baf-a7b1-704c41f2ab7e",
+          "createdAt": "2026-10-22T01:26:13.000Z",
+          "updatedAt": "2026-10-22T01:26:13.000Z",
+          "uid": "35240-c1f46e40-ccf4-4baf-a7b1-704c41f2ab7e"
         }
       ],
-      "event": []
+      "id": "59554546-3e46-4449-a5c4-8d2b433e5c86",
+      "createdAt": "2026-10-22T01:26:13.000Z",
+      "updatedAt": "2026-10-22T01:26:13.000Z",
+      "uid": "35240-59554546-3e46-4449-a5c4-8d2b433e5c86"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.6sense.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.6sense.com"
     }
-  ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "Authorization"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
-  "info": {
-    "_postman_id": "8094b5a8-e1a0-4cc5-9d21-9763b5712815",
-    "name": "6sense Firmographics Company People API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Returns company firmographics based on email or domain. Includes industry, employee/revenue\nranges, SIC/NAICS codes, and 6sense segment membership when applicable.\n\n\nContact Support:\n Name: 6sense API Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

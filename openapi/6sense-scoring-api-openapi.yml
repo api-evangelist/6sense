@@ -1,5 +1,6 @@
 openapi: 3.2.0
 info:
+  version: "1.0"
   title: Scribe Scoring API
   description: 'Scribe : The Score Keeper'
   termsOfService: https://6sense.com/terms-of-use/
