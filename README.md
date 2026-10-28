@@ -1,4 +1,4 @@
-# 6sense (6sense)
+# 6sense
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,170 +64,211 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/6sense/refs/heads/main/apis.yml)
+6sense Insights is a B2B revenue AI platform that identifies in-market accounts from anonymous buying signals and orchestrates marketing and sales against them. Its Signalverse intent graph, Master Company Database of roughly 76 million company accounts and predictive models power account-based marketing, advertising, AI email agents and sales intelligence. For developers, 6sense exposes six HTTP data APIs across three hosts — Company Identification, Company Firmographics, Lead Scoring, Lead Scoring and Firmographics, People Enrichment and People Search — plus the acquired AI Email (Saleswhale) API with a signed webhook surface, and a hosted remote MCP server at api.6sense.com/mcp for agent access. Access is token-based and metered against contract-year credit pools rather than list-priced plans.
 
-## Scope
+**Areas:** Account Based Marketing · Intent Data · B2B · Predictive Analytics · Revenue · Sales Intelligence · Artificial Intelligence · Marketing Technology
 
-- **Access:** 3rd-Party
+## 6sense on APIs.io
 
-## Tags
+Everything profiled for 6sense is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/6sense/](https://apis.io/providers/6sense/)** — or go straight to one of the APIs or properties below.
 
-- ABM
-- Account-Based Marketing
-- Intent Data
-- B2B
-- Predictive Analytics
-- Revenue
-- Sales Intelligence
-- AI
-- Marketing Technology
+### APIs (5)
 
-## APIs
+- [6sense Company API](https://apis.io/apis/6sense/6sense-company-api/) — The Company API from 6sense — 1 operation(s) for company.
+- [6sense Enrichment API](https://apis.io/apis/6sense/6sense-enrichment-api/) — The Enrichment API from 6sense — 2 operation(s) for enrichment.
+- [6sense People API](https://apis.io/apis/6sense/6sense-people-api/) — The People API from 6sense — 4 operation(s) for people.
+- [6sense MCP Server](https://apis.io/apis/6sense/6sense-mcp/) — Hosted remote Model Context Protocol server at https://api.6sense.com/mcp (beta). Read-only retrieval of Revvy AI-powered 6sense insights — account…
+- [6sense Scoring API](https://apis.io/apis/6sense/6sense-scoring-api/) — The Scoring API from 6sense — 1 operation(s) for scoring.
 
-### 6sense Company Identification API
+### Published properties
 
-Identify a company from a visitor IP address and return firmographics, product-level intent scoring, buying stage, profile fit, 6QA flag, and segment membership. Powers 6sense's web deanonymization use case.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+#### AsyncAPI (2)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- ABM
-- Intent
-- Web Deanonymization
-- B2B
+- [6sense AI Email Webhooks](https://apis.io/asyncapis/6sense/6sense-ai-email-asyncapi/)
+- [6Sense Ai Email Webhooks](https://apis.io/asyncapis/6sense/6sense-ai-email-webhooks/)
 
-#### Properties
+#### Event channels (1)
 
-- [Documentation](https://api.6sense.com/docs/)
-- [Documentation](https://support.6sense.com/docs/6sense-api-overview)
-- [OpenAPI](openapi/6sense-company-identification-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-company-identification-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-company-identification-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/6sense-company-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/6sense-score-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/6sense-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Individual events and webhooks the provider emits.
 
-### 6sense Company Firmographics API
+- [/](https://apis.io/channels/6sense/webhook/)
 
-Enrich a company by email or domain. Returns industry, employee and revenue ranges, SIC/NAICS classification, address, and segment membership.
+#### GraphQL (1)
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/6sense/](https://apis.io/graphqls/6sense/6sense-graphql/)
 
-- ABM
-- Firmographics
-- Enrichment
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://api.6sense.com/docs/)
-- [OpenAPI](openapi/6sense-company-firmographics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-company-firmographics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-company-firmographics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/6sense-company-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [6sense MCP](https://apis.io/servers/6sense/6sense-mcp/)
 
-### 6sense Lead Scoring API
+#### Agentic access (1)
 
-Returns predictive product-level scoring for a contact — company intent score and buying stage, profile fit, contact-level intent score, and contact grade — driven by 6sense's predictive analytics models.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+- [6Sense Agentic Access](https://apis.io/agentic-access/6sense/6sense-agentic-access/)
 
-#### Tags
+#### JSON Schema (3)
 
-- ABM
-- Scoring
-- Intent
-- Predictive Analytics
+The data models the API reads and writes.
 
-#### Properties
+- [6sense Company](https://apis.io/schemas/6sense/6sense-company/)
+- [6sense Enriched Contact](https://apis.io/schemas/6sense/6sense-contact/)
+- [6sense Product Score](https://apis.io/schemas/6sense/6sense-score/)
 
-- [Documentation](https://api.6sense.com/docs/)
-- [OpenAPI](openapi/6sense-lead-scoring-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-lead-scoring-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-lead-scoring-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/6sense-score-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### JSON-LD (1)
 
-### 6sense Lead Scoring And Firmographics API
+Linked-data contexts for the provider's vocabulary.
 
-Combined endpoint that returns firmographic enrichment, predictive scoring, and segment membership for a contact in a single response.
+- [6Sense Context](https://apis.io/jsonld/6sense/6sense-context/)
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
-- ABM
-- Scoring
-- Firmographics
-- Intent
+- [6Sense Vocabulary](https://apis.io/vocabularies/6sense/6sense-vocabulary/)
 
-#### Properties
+#### Collections (9)
 
-- [Documentation](https://api.6sense.com/docs/)
-- [OpenAPI](openapi/6sense-lead-scoring-firmographics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-lead-scoring-firmographics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-lead-scoring-firmographics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### 6sense People Enrichment API
+- [6sense Firmographics Company API](https://apis.io/collections/6sense/open-6sense-company-api/)
+- [6sense Company Firmographics API](https://apis.io/collections/6sense/open-6sense-company-firmographics-api/)
+- [6sense Company Identification API](https://apis.io/collections/6sense/open-6sense-company-identification-api/)
+- [6sense Firmographics Company Enrichment API](https://apis.io/collections/6sense/open-6sense-enrichment-api/)
+- [6sense Lead Scoring API](https://apis.io/collections/6sense/open-6sense-lead-scoring-api/)
+- [6sense Lead Scoring And Firmographics API](https://apis.io/collections/6sense/open-6sense-lead-scoring-firmographics-api/)
+- [6sense Firmographics Company People API](https://apis.io/collections/6sense/open-6sense-people-api/)
+- [6sense People Enrichment API](https://apis.io/collections/6sense/open-6sense-people-enrichment-api/)
+- [6sense People Search API](https://apis.io/collections/6sense/open-6sense-people-search-api/)
 
-Batch enrich up to 25 contact records per request keyed by email, LinkedIn URL, or 6sense peopleId. Returns rich profile data (job, location, skills, education) and embedded company firmographics. Up to 20 QPS per customer.
+#### Overlays (8)
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags
+- [6Sense Company Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-company-api-phrasing-overlay/)
+- [6Sense Company Overlay](https://apis.io/overlays/6sense/6sense-company-overlay/)
+- [6Sense Enrichment Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-enrichment-api-phrasing-overlay/)
+- [6Sense Enrichment Overlay](https://apis.io/overlays/6sense/6sense-enrichment-overlay/)
+- [6Sense People Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-people-api-phrasing-overlay/)
+- [6Sense People Overlay](https://apis.io/overlays/6sense/6sense-people-overlay/)
+- [6Sense Scoring Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-scoring-api-phrasing-overlay/)
+- [6Sense Scribe Overlay](https://apis.io/overlays/6sense/6sense-scribe-overlay/)
 
-- Enrichment
-- People
-- Contacts
-- B2B
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://api.6sense.com/docs/)
-- [OpenAPI](openapi/6sense-people-enrichment-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-people-enrichment-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-people-enrichment-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/6sense-contact-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [6sense — jsonschema rules](https://apis.io/rules/6sense/6sense-jsonschema-spectral-rules/)
 
-### 6sense People Search API
+#### Security (3)
 
-Search contacts at a target company by domain with optional job-title, function, level, location, and industry filters. Includes a dictionary endpoint exposing valid filter values.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://api.6sense.com/docs/](https://api.6sense.com/docs/)
+- [6Sense Authentication](https://apis.io/security/6sense/6sense-authentication/)
+- [6Sense Domain Security](https://apis.io/security/6sense/6sense-domain-security/)
+- [6Sense Trust Center](https://apis.io/security/6sense/6sense-trust-center/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Search
-- People
-- Contacts
+The permissions the API asks for.
 
-#### Properties
+- [6Sense Scopes](https://apis.io/scopes/6sense/6sense-scopes/)
 
-- [Documentation](https://api.6sense.com/docs/)
-- [OpenAPI](openapi/6sense-people-search-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/6sense-people-search-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/6sense-people-search-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
+
+- [6Sense Plans Pricing](https://apis.io/plans/6sense/6sense-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [6Sense Rate Limits](https://apis.io/rate-limits/6sense/6sense-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [6Sense Finops](https://apis.io/finops/6sense/6sense-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://6sense.com)
 - [Documentation](https://6sense.com/platform)
-- [Portal](https://api.6sense.com/docs/)
-- [Documentation](https://support.6sense.com/docs/6sense-api-overview)
-- [Support](https://support.6sense.com)
-- [Case Studies](https://6sense.com/customers)
-- [Blog](https://6sense.com/blog)
-- [LinkedIn](https://www.linkedin.com/company/6sense)
-- [Github](https://github.com/6si)
+- [Getting started](https://support.6sense.com/docs/api-credits-api-tokens)
+- [API reference](https://api.6sense.com/docs/)
 - [Pricing](https://6sense.com/pricing)
-- [Plans](plans/6sense-plans-pricing.yml)
-- [Rate Limits](rate-limits/6sense-rate-limits.yml)
-- [Fin Ops](finops/6sense-finops.yml)
-- [Vocabulary](vocabulary/6sense-vocabulary.yml)
-- [JSON-LD](json-ld/6sense-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Support](https://support.6sense.com)
+- [Changelog](https://support.6sense.com/docs/product-release-notes)
+- [Blog](https://6sense.com/blog)
+- [Compliance](https://trust.6sense.com/)
+- [Terms of service](https://6sense.com/terms-of-use/)
+- [Privacy policy](https://6sense.com/privacy-policy/)
+- [GitHub](https://github.com/6si)
+- [Status](https://status.6sense.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 71.8** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 60.8 |
+| Contract governance | 41.7 |
+| Operational transparency | 81.6 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 93.4 |
+
+**Agent readiness 54.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 36.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/6sense/](https://apis.io/providers/6sense/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for 6sense: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/6sense/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
