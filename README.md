@@ -113,7 +113,7 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [6Sense Agentic Access](https://apis.io/agentic-access/6sense/6sense-agentic-access/)
+- [6sense Agentic Access](https://apis.io/agentic-access/6sense/6sense-agentic-access/)
 
 #### JSON Schema (3)
 
@@ -153,14 +153,14 @@ Postman and Open Collection request collections.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [6Sense Company Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-company-api-phrasing-overlay/)
-- [6Sense Company Overlay](https://apis.io/overlays/6sense/6sense-company-overlay/)
-- [6Sense Enrichment Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-enrichment-api-phrasing-overlay/)
-- [6Sense Enrichment Overlay](https://apis.io/overlays/6sense/6sense-enrichment-overlay/)
-- [6Sense People Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-people-api-phrasing-overlay/)
-- [6Sense People Overlay](https://apis.io/overlays/6sense/6sense-people-overlay/)
-- [6Sense Scoring Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-scoring-api-phrasing-overlay/)
-- [6Sense Scribe Overlay](https://apis.io/overlays/6sense/6sense-scribe-overlay/)
+- [6sense Company Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-company-api-phrasing-overlay/)
+- [6sense Company Overlay](https://apis.io/overlays/6sense/6sense-company-overlay/)
+- [6sense Enrichment Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-enrichment-api-phrasing-overlay/)
+- [6sense Enrichment Overlay](https://apis.io/overlays/6sense/6sense-enrichment-overlay/)
+- [6sense People Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-people-api-phrasing-overlay/)
+- [6sense People Overlay](https://apis.io/overlays/6sense/6sense-people-overlay/)
+- [6sense Scoring Api Phrasing Overlay](https://apis.io/overlays/6sense/6sense-scoring-api-phrasing-overlay/)
+- [6sense Scribe Overlay](https://apis.io/overlays/6sense/6sense-scribe-overlay/)
 
 #### Governance rules (1)
 
@@ -172,33 +172,33 @@ Spectral rulesets for the provider's contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [6Sense Authentication](https://apis.io/security/6sense/6sense-authentication/)
-- [6Sense Domain Security](https://apis.io/security/6sense/6sense-domain-security/)
-- [6Sense Trust Center](https://apis.io/security/6sense/6sense-trust-center/)
+- [6sense Authentication](https://apis.io/security/6sense/6sense-authentication/)
+- [6sense Domain Security](https://apis.io/security/6sense/6sense-domain-security/)
+- [6sense Trust Center](https://apis.io/security/6sense/6sense-trust-center/)
 
 #### OAuth scopes (1)
 
 The permissions the API asks for.
 
-- [6Sense Scopes](https://apis.io/scopes/6sense/6sense-scopes/)
+- [6sense Scopes](https://apis.io/scopes/6sense/6sense-scopes/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [6Sense Plans Pricing](https://apis.io/plans/6sense/6sense-plans-pricing/)
+- [6sense Plans Pricing](https://apis.io/plans/6sense/6sense-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [6Sense Rate Limits](https://apis.io/rate-limits/6sense/6sense-rate-limits/)
+- [6sense Rate Limits](https://apis.io/rate-limits/6sense/6sense-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [6Sense Finops](https://apis.io/finops/6sense/6sense-finops/)
+- [6sense Finops](https://apis.io/finops/6sense/6sense-finops/)
 
 ## Where to find this API
 
@@ -220,18 +220,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 71.8** — exemplar · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 69.2** — exemplar · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 80.0 |
 | Contract quality | 60.8 |
 | Contract governance | 41.7 |
-| Operational transparency | 81.6 |
+| Operational transparency | 81.0 |
 | Developer ergonomics | 58.9 |
-| Access clarity | 93.4 |
+| Access clarity | 85.1 |
 
-**Agent readiness 54.6** — agent-ready (gated down from agent-native)
+**Agent readiness 53.5** — agent-ready (gated down from agent-native)
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -256,8 +256,12 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | — |
 | Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 36.4** — Horizontal (data, software, accessibility, platform)
+**Regulatory alignment 30.9** — Horizontal (data, software, accessibility, platform)
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/6sense/](https://apis.io/providers/6sense/).
 
